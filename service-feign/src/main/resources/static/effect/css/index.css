@@ -1,0 +1,200 @@
+@charset "UTF-8";
+/* CSS Document */
+
+section{
+  margin: 50px;
+}
+
+div #blog{
+    width: 200px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 2; /** 显示的行数 **/
+    overflow: hidden;  /** 隐藏超出的内容 **/
+}
+body {
+	width: 80%;
+	margin: 40px auto;
+	color:#fff;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	background: -webkit-linear-gradient(left, #9370DB, #48D1CC);
+ 	background: linear-gradient(to right, #9370DB, #00FFFF);
+	/* background: #F5F5F5; */
+}
+
+form {
+	padding: 0;
+	margin: 0 auto;
+	width: 98%;
+}
+
+img {
+	border: medium none;
+	margin: 0;
+	padding: 0;
+} /* img elements 图片元素 */
+/** 设置默认字体 **/
+body,button,input,select,textarea {
+	font-size: 12px;
+	font: 12px/1.5 ’宋体’, Arial, tahoma, Srial, helvetica, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+}
+
+em {
+	font-style: normal;
+}
+/** 重置列表元素 **/
+ul,ol {
+	list-style: none;
+}
+/** 重置超链接元素 **/
+a {
+	text-decoration: none;
+	color:#fff;
+}
+
+/** 重置图片元素 **/
+img {
+	border: 0px;
+	margin-bottom: -7px;
+}
+
+table {
+	padding: 0;
+	margin: 0 auto;
+	width: 98%;
+	border-collapse: collapse;
+	overflow-x:auto;
+	border: 1px solid rgba(255,255,255,0.3);
+}
+td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 13px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.th{
+  background-color: rgba(255,255,255,0.3);
+ }
+
+input[type="text"] {
+	border: 1px solid;
+	border-color: #CCC #EEE #EEE #CCC;
+	height: 18px;
+	width: 160px;
+	background-color: rgba(255,255,255,0.3);
+}
+
+input[type="password"] {
+	border: 1px solid;
+	border-color: #CCC #EEE #EEE #CCC;
+	color: #000;
+	background: #F5F5F5;
+	width: 160px;
+}
+
+input[type="submit"] {
+	border: 1px solid;
+	border-color: #EEE #CCC #CCC #EEE;
+	color: #fff;
+	font-weight: bold;
+	background: #22b5c5;
+}
+
+input[type="button"] {
+	border: 1px solid;
+	border-color: #EEE #CCC #CCC #EEE;
+	font-weight: bold;
+}
+
+.red {
+	color:#fff;
+	background-color: #d04516;
+}
+.blue {
+	color:#fff;
+	background-color: #65d8f7;
+}
+.orange {
+	color:#fff;
+	background-color: #eca445;
+}
+.yellow {
+	color:#fff;
+	background-color: #d6d65c;
+}
+.green {
+	color:#fff;
+	background-color: #68b163;
+}
+.purple {
+	color:#fff;
+	background-color: #cd59c6;
+}
+.jin {
+	color:#fff;
+	background-color: #bb9d38;
+}
+.pink {
+	color:#fff;
+	background-color: #e697c0;
+}
+.qing {
+	color:#fff;
+	background-color: #9ac000;
+}
+.baihong {
+	color:#fff;
+	background-color: #ff7d78;
+}
+
+input[type="reset"] {
+	border: 1px solid;
+	border-color: #EEE #CCC #CCC #EEE;
+	color: #000;
+	background: #F5F5F5;
+}
+
+select {
+	border: 1px solid;
+	border-color: #CCC #EEE #EEE #CCC;
+	height: 18px;
+	width: 165px;
+	color:#fff;
+	background-color: rgba(255,255,255,0.3);
+}
+
+textarea {
+	border: 1px solid;
+	border-color: #EEE #CCC #CCC #EEE;
+	color: #000;
+	background: #F5F5F5;
+	width: 600px;
+	height: 150px;
+}
+
+p {
+	margin-left: 10px;
+	margin-top: 2px;
+	margin-bottom: 5px;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 14px;
+}
