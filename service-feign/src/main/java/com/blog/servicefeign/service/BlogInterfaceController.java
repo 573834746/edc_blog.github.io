@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 该接口内的 @RequestMapping内须填写自己的路径   如： @RequestMapping(value = "xuran/list"）
  */
-@FeignClient(value = "order-server")
+@FeignClient(value = "order")
 public interface BlogInterfaceController {
     @RequestMapping(value = "/hii",method = RequestMethod.GET)
     String sayHiFromClientOne(@RequestParam(value = "name") String name);
