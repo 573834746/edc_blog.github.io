@@ -15,10 +15,11 @@
         <relativePath/>
     </parent>
 
-    <modules>
-        <module>eureka</module>
-        <module>order-server</module>
-    </modules>
+    <!--<modules>-->
+        <!--<module>eureka</module>-->
+        <!--<module>order-server</module>-->
+        <!--<module>service-feign</module>-->
+    <!--</modules>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
