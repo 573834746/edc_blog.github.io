@@ -1,6 +1,6 @@
 package com.blog.servicefeign.service;
 
-import com.blog.servicefeign.pojo.Blog;
+import com.blog.servicefeign.pojo.BlogsExtends;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,5 +17,5 @@ public interface BlogInterfaceController {
     String sayHiFromClientOne(@RequestParam(value = "name") String name);
 
     @RequestMapping(value = "xuran/list",method = RequestMethod.GET)
-    List<Blog> selectObjects();
+    List<BlogsExtends> selectObjects();
 }

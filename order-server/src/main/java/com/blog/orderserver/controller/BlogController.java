@@ -1,6 +1,6 @@
 package com.blog.orderserver.controller;
 
-import com.blog.orderserver.pojo.Blogs;
+import com.blog.orderserver.pojo.BlogsExtends;
 import com.blog.orderserver.service.BlogService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +20,8 @@ public class BlogController {
     private BlogService blogService;
 
     @RequestMapping("/list")
-    public List<Blogs> selectObjects(){
-        List<Blogs> blogs = blogService.selectObjects();
+    public List<BlogsExtends> selectObjects(){
+        List<BlogsExtends> blogs = blogService.selectObjects();
         return blogs;
     }
 

@@ -1,6 +1,6 @@
 package com.blog.servicefeign.controller;
 
-import com.blog.servicefeign.pojo.Blog;
+import com.blog.servicefeign.pojo.BlogsExtends;
 import com.blog.servicefeign.service.BlogInterfaceController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +30,7 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/list")
-    public @ResponseBody List<Blog> test(){
+    public @ResponseBody List<BlogsExtends> test(){
         return blogInterfaceController.selectObjects();
     }
     @RequestMapping(value = "/login")
