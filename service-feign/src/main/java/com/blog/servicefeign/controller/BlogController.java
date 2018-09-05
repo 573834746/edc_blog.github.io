@@ -30,11 +30,12 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/list")
-    public @ResponseBody List<BlogsExtends> test(){
+    public @ResponseBody List<BlogsExtends> selectObjects(){
         return blogInterfaceController.selectObjects();
     }
-    @RequestMapping(value = "/login")
-    public String test01(){
-        return "list";
+
+    @RequestMapping(value = "/home")
+    public String homePage(){
+        return "home";
     }
 }
