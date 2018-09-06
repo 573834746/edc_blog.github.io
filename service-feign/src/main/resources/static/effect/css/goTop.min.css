@@ -77,12 +77,12 @@
 	margin-bottom: 2px;
 	line-height: 61.5px;
 	height: 61.5px;
-	background: url(https://csdnimg.cn/public/common/gotop/image/freej.png) no-repeat;
+	background: url(../images/freej.png) no-repeat;
 	border-radius: 0;
 	background-size: 100% 100%
 }
 
 .meau-gotop-box a.btn-meau#adContent:hover {
-	background: url(https://csdnimg.cn/public/common/gotop/image/freead.gif) no-repeat;
+	background: url(../images/freead.gif) no-repeat;
 	background-size: 100% 100%
 }

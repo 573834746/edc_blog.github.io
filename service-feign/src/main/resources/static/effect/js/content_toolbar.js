@@ -131,13 +131,13 @@ var userAgent = navigator.userAgent.toLowerCase();
         end_time = 1529337600,  // toolbar 特殊样式结束时间戳
         now_time = Math.floor(Date.now() / 1000), // 当前时间戳
         logo_tpl = '<svg class="toolbar-icon" aria-hidden="true"><use xlink:href="#gonggong_csdnlogo_"></use></svg>',  // 正常样式
-        logo_title = 'CSDN首页', // 正常提示
+        logo_title = '博客首页', // 正常提示
         logo_href= 'https://www.csdn.net';
         /**
          * 当前时间在起始与结束时间内时触发
          */
         if(now_time > start_time && now_time<end_time ){
-          logo_tpl = '<img src="//csdnimg.cn/cdn/content-toolbar/dw.jpg">';
+          logo_tpl = '<img src="//csdnimg.cn/cdn/conptent-toolbar/dw.jg">';
           logo_title = '端午节';
         }
 
@@ -159,10 +159,8 @@ var userAgent = navigator.userAgent.toLowerCase();
   var tpl ='\<div id="csdn-toolbar" class="csdn-toolbar tb_disnone '+skin+fixed+'">\
         <div class="container row center-block ">\
           <ul class="pull-left left-menu clearfix" id="nav-left-menu">\
-            <li>\
-              <a href="'+ logo_href +'" title="'+logo_title+'" target="_blank">'+logo_tpl+'</a>\
-            </li>\
-            <li><a href="//blog.csdn.net/" class="toolbar_to_feed" title="博客" target="_blank">博客</a></li>\
+            <li><a href="/xuran/home" title="EDC首页"><embed src="../svg/edn_logo.svg" type="image/svg+xml" /></a></li>\
+            <li><a href="//blog.csdn.net/" class="toolbar_to_feed" title="博客" target="_blank">wo博客</a></li>\
             <li><a href="//edu.csdn.net" title="学院" target="_blank">学院</a></li>\
             <li><a href="//download.csdn.net" title="下载" target="_blank">下载</a></li>\
             <li><a href="https://gitchat.csdn.net/?utm_source=csdn_toolbar" title="图文课" target="_blank">图文课</a></li>\

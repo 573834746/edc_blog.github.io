@@ -1,0 +1,20 @@
+<svg width="84" height="28" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <defs>
+  <filter height="200%" width="200%" y="-50%" x="-50%" id="svg_1_blur">
+   <feGaussianBlur stdDeviation="0" in="SourceGraphic"/>
+  </filter>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="30" width="86" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="1" x="1" height="99" width="141"/>
+  </g>
+ </g>
+ <g>
+  <title>EDC首页</title>
+  <text style="cursor: move;" filter="url(#svg_1_blur)" transform="rotate(0.32871076464653015 39.015624999998735,19.73177146911524) " font-style="italic" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="23" id="svg_1" y="27.662652" x="30.272218" stroke-width="0" stroke="#000" fill="#2D6862">E</text>
+  <text font-weight="bold" font-style="italic" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="23" id="svg_2" y="27.808272" x="45.057396" stroke-width="0" stroke="#000" fill="#000000">DC</text>
+ </g>
+</svg>
