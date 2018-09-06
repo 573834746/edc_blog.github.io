@@ -23,11 +23,6 @@ public class BlogController {
 
     @Resource
     BlogInterfaceController blogInterfaceController;
-    //测试保留
-    @GetMapping(value = "/hii")
-    public String sayHi(@RequestParam String name) {
-        return blogInterfaceController.sayHiFromClientOne( name );
-    }
 
     @RequestMapping(value = "/list")
     public @ResponseBody List<BlogsExtends> selectObjects(){
@@ -37,5 +32,10 @@ public class BlogController {
     @RequestMapping(value = "/home")
     public String homePage(){
         return "home";
+    }
+
+    @RequestMapping(value = "/guanggao")
+    public String guanggaoPage(){
+        return "guanggao";
     }
 }
