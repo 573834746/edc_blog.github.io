@@ -191,7 +191,7 @@
 }
 
 .csdn-toolbar h1 a:hover,.csdn-toolbar h2 a:hover,.csdn-toolbar h3 a:hover,.csdn-toolbar h4 a:hover,.csdn-toolbar h5 a:hover,.csdn-toolbar h6 a:hover {
-	color: #c00
+	color: red;
 }
 
 .csdn-toolbar a:focus {
@@ -452,9 +452,11 @@ body .csdn-toolbar .container .left-menu {
 	width: 90px;
 	height: 40px
 }
-
+/*********************
+** 顶栏选项下横线的颜色 **
+ *********************/
 .csdn-toolbar .container .left-menu li .active {
-	border-bottom: 2px solid #CA0C16
+	border-bottom: 2px solid #10cab9
 }
 
 body .csdn-toolbar .container .left-menu li:first-child a svg {
@@ -522,8 +524,11 @@ body .csdn-toolbar .container .left-menu li:first-child a svg {
 	float: inherit
 }
 
+/*********************
+** 顶栏选项滑过的颜色  **
+ *********************/
 .csdn-toolbar .container .left-menu li a:hover,.csdn-toolbar .container .left-menu li a:hover i {
-	color: #c92027
+	color: #10cab9;
 }
 
 .csdn-toolbar .container .left-menu .show-more:hover a i {
@@ -739,9 +744,11 @@ body .csdn-toolbar .container .left-menu li:first-child a svg {
 	margin-left: 14px;
 	text-align: right
 }
-
+/*******************************
+** 顶栏右侧传资源发表chat滑过的颜色 **
+ *******************************/
 .csdn-toolbar .container .pull-right .gitChat a:hover span {
-	color: #CA0C16
+	color: #10cab9
 }
 
 .csdn-toolbar .container .pull-right .gitChat a svg {
@@ -750,7 +757,7 @@ body .csdn-toolbar .container .left-menu li:first-child a svg {
 }
 
 .csdn-toolbar .container .pull-right .upload a svg {
-	fill: #3399EA
+	fill: #0595ea
 }
 
 .csdn-toolbar .container .pull-right .gitChat a span,.csdn-toolbar .container .pull-right .write-bolg-btn a span {
@@ -1032,9 +1039,11 @@ html body .csdn-toolbar .tb_disnone {
 html body .csdn-toolbar .icon {
 	margin: 0
 }
-
+/*******************
+** VIP会员字体的颜色 **
+ *******************/
 .vip-caise a {
-	color: #C03A3A!important
+	color: #c09100 !important
 }
 
 .vip-caise img {

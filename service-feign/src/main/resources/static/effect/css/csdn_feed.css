@@ -328,17 +328,21 @@ nav div div ul li a,nav div div ul li a:link,nav div div ul li a:visited {
   color: #707070;
   margin-bottom: 1px
 }
-
+/***********************
+** 原侧边栏分类滑过背景色 **
+ ***********************/
 nav div div ul li:hover {
-  background-color: #f44444;
+  background-color: #10cab9;
 }
 
 nav div div ul li:hover a {
   color: #fff
 }
-
+/*******************
+** 分类处推荐的背景色 **
+ *******************/
 nav div div ul .active {
-  background-color: #f44444;
+  background-color: #10cab9;
 }
 
 nav div div ul .active a,nav div div ul .active a:link,nav div div ul .active a:visited {
@@ -447,7 +451,7 @@ main .feed-fix-box .scroll-fixbar a {
   width: 100%;
   display: block;
   color: #fff;
-  background: rgba(244,68,68,0.9);
+  background: rgba(16, 202, 185, 0.9);
   cursor: pointer
 }
 
