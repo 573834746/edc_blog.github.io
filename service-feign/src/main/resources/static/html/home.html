@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../effect/js/jquery-1.8.2.min.js"></script>
+    <script src="../effect/js/jquery-1.9.1.min.js"></script>
     <script>
-        $(function () {
-            $.post("list",{},function (data) {
-                if(data){
-                    for (var i = 0; i<data.length;i++ ){
-                        alert(data[i].name);
-                    }
-                }else{
-                    alert("没数据");
-                }
-            },"json");
-        });
+        // $(function () {
+        //     $.post("list",{},function (data) {
+        //         if(data){
+        //             //for (var i = 0; i<data.length;i++ ){
+        //             //    alert(data[i].name);
+        //             //}
+        //         }else{
+        //             alert("没数据");
+        //         }
+        //     },"json");
+        // });
     </script>
-    <link rel="stylesheet" href="../effect/css/index.css">
+    <script src="../effect/js/ab.plus.js"></script>
+    <script src="../effect/js/async.js"></script>
+    <script src="../effect/js/async-1.0.1.js"></script>
+
 </head>
 <body>
-<main>
+<div align="center">
     <ul>
-        <li>测试数据</li>
+        <li class="clearfix" data-type="blog" data-id="82141684" shown-time="1536149289">这是《人人都是极客》第一次送书活动，虽然之前就想过送些礼物给长期关注公众号的小伙伴们，以表感谢。正好这次有 csdn, gitchat 的大力支持就把心念许久的想法实现了...</li>
         <li>又是一个</li>
         <li>我呢</li>
         <li>我呢</li>
     </ul>
-</main>
+</div>
 </body>
 </html>
