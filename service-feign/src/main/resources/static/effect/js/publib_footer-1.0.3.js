@@ -38,7 +38,6 @@
         <p><a href="http://www.12377.cn/" target="_blank"><span>中国互联网举报中心</span></a></p>\
         <p><a href="http://www.bjjubao.org/" target="_blank"><span>北京互联网违法和不良信息举报中心</span></a></p>\
         </div>\
-        <p class="app-text">CSDN APP</p>\
         </div>\
         </div>';
 
@@ -75,10 +74,10 @@
 
 }());
 
-// add QQ customer service
+// QQ客服服务
 $(function(){
     $(".qqcustomer_s").click(function(event){
-        var qqs = [2431299880, 3456678348, 3455921142];
+        var qqs = [2217106032, 2217106032, 2217106032];
         var qq = (new Date().getDay() == 0 || new Date().getDay() == 6) ? qqs[0] : qqs[Math.floor(Math.random() * qqs.length)];
         $(this).attr('href','http://wpa.qq.com/msgrd?v=3&uin='+qq+'&site=qq&menu=yes');
     });
