@@ -24,16 +24,17 @@ public class UrlFilter implements Filter {
         //System.out.println(httpRequest.getRequestURI());
         String path=httpRequest.getRequestURI();
 
-        if(path.contains("/new")){
-            path=path.replace("/new","");
-            request.setAttribute("realpath","new");
-            httpRequest.getRequestDispatcher(path).forward(request,response);
-            //httpResponse.sendRedirect(path);
-            return;
-        }else if(0==1){
+        String type_path = "//new//watchers//news//ai//cloud//blockchain//db//career//game//engineering//web//mobile//iot//ops//fund//lang//arch//avi//sec//other";
 
-        }
-        else {
+        String[] split = path.split("/");
+        String realpath = split[split.length-1];
+
+        if(type_path.contains("/"+realpath)){
+            System.out.print(realpath);
+            path=path.replace("/"+realpath,"");
+            httpRequest.getRequestDispatcher(path).forward(request,response);
+            return;
+        }else {
             chain.doFilter(request,response);
         }
     }

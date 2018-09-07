@@ -24,7 +24,7 @@ public class BlogController {
     public List<BlogsExtends> selectObjects(String realpath){
         List<BlogsExtends> blogs = new ArrayList<>();
         System.out.print("===="+realpath);
-        if("home".equals(realpath)){
+        if("index".equals(realpath)){
             blogs = blogService.selectObjects();
         }
         return blogs;

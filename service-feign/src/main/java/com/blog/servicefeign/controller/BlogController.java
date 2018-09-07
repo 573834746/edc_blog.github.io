@@ -30,7 +30,7 @@ public class BlogController {
         return blogInterfaceController.selectObjects(realpath);
     }
 
-    @RequestMapping(value = "/home")
+    @RequestMapping(value = "/index")
     public String homePage(){
         return "home";
     }
