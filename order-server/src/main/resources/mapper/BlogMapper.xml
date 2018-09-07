@@ -4,12 +4,20 @@
 
     <select id="selectObjects" resultType="com.blog.orderserver.pojo.BlogsExtends">
        	SELECT
+       	u.username,
 		u.`name`,
 		u.home_url,
 		u.photo_url,
-		b.*
+		b.blog_url,
+		b.title,
+		b.content,
+		b.published_date,
+		b.read_num,
+		b.comment_num,
+		bt.*
 		FROM
 		blogs b
 		LEFT JOIN users u ON b.uid = u.uid
+		LEFT JOIN blog_type bt ON bt.btid = b.btid
     </select>
 </mapper>

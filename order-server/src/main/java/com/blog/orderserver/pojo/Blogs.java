@@ -15,7 +15,42 @@ public class Blogs {
     private Integer atid;
     private Integer btid;
     private Integer uid;
+    private Integer data_id;
+    private String blog_url;
+    private Integer read_num;
+    private Integer comment_num;
 
+    public Integer getData_id() {
+        return data_id;
+    }
+
+    public void setData_id(Integer data_id) {
+        this.data_id = data_id;
+    }
+
+    public String getBlog_url() {
+        return blog_url;
+    }
+
+    public void setBlog_url(String blog_url) {
+        this.blog_url = blog_url;
+    }
+
+    public Integer getRead_num() {
+        return read_num;
+    }
+
+    public void setRead_num(Integer read_num) {
+        this.read_num = read_num;
+    }
+
+    public Integer getComment_num() {
+        return comment_num;
+    }
+
+    public void setComment_num(Integer comment_num) {
+        this.comment_num = comment_num;
+    }
 
     public String getTitle() {
         return title;

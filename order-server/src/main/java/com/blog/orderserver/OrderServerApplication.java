@@ -21,7 +21,7 @@ public class OrderServerApplication {
 
     @Value("${server.port}")
     String port;
-    @RequestMapping("/hii")
+    @RequestMapping("/hi")
     public String home(String name){
         return "hi"+name+"i'm from port:"+port;
     }
