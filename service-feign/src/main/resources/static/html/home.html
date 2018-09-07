@@ -5,26 +5,31 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="referrer" content="always">
     <title>EDC博客-专业IT技术发表平台</title>
-    <script src="../effect/js/hm.js"></script>
-    <script src="../effect/js/tingyun-rum-feed.js" type="text/javascript"></script>
+    <script src="http://localhost:8085/effect/js/hm.js"></script>
+    <script src="http://localhost:8085/effect/js/tingyun-rum-feed.js" type="text/javascript"></script>
     <!--EDC博客图标-->
-    <link href="../effect/images/favicon.ico" rel="SHORTCUT ICON">
+    <link href="http://localhost:8085/effect/images/favicon.ico" rel="SHORTCUT ICON">
 
-    <script src="../effect/js/jquery-1.9.1.min.js" type="text/javascript"></script>
-    <script src="../effect/js/main_flume.js"></script>
-    <link rel="stylesheet" href="../effect/css/content_toolbar.css">
-    <link rel="stylesheet" href="../effect/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../effect/css/avatar.css">
-    <link href="../effect/css/csdn_feed.css" rel="stylesheet">
-    <script src="../effect/js/modernizr.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="../effect/css/goTop.min.css">
-    <script type="text/javascript" src="../effect/js/baidu_opensug-1.0.0.js"></script>
-    <script src="../effect/php/get_ads.php" type="text/javascript"></script>
+    <script src="http://localhost:8085/effect/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="http://localhost:8085/effect/js/main_flume.js"></script>
+    <link rel="stylesheet" href="http://localhost:8085/effect/css/content_toolbar.css">
+    <link rel="stylesheet" href="http://localhost:8085/effect/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:8085/effect/css/avatar.css">
+    <link href="http://localhost:8085/effect/css/csdn_feed.css" rel="stylesheet">
+    <script src="http://localhost:8085/effect/js/modernizr.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8085/effect/css/goTop.min.css">
+    <script type="text/javascript" src="http://localhost:8085/effect/js/baidu_opensug-1.0.0.js"></script>
+    <script src="http://localhost:8085/effect/php/get_ads.php" type="text/javascript"></script>
 
     <script>
 
         $(function () {
-            $.post("/xuran/list",{},function (data) {
+
+            var url = document.URL;
+            var split = url.split("/");
+            var realpath = split[split.length-1];
+
+            $.post("/xuran/list",{"realpath":realpath},function (data) {
                 for (var i = 0 ; i<data.length ; i++){
                     $("#feedlist_id").append("<li class='clearfix' data-type='blog' data-id='"+data[i].data_id+"' shown-time='1536152309'>"
                             +"<div class='list_con'>"
@@ -101,7 +106,7 @@
     <div class="container row center-block ">
         <ul class="pull-left left-menu clearfix" id="nav-left-menu">
             <li>
-                <a href="/xuran/home" title="EDC首页"><embed src="../effect/svg/edn_logo.svg" type="image/svg+xml" /></a>
+                <a href="/xuran/home" title="EDC首页"><embed src="http://localhost:8085/effect/svg/edn_logo.svg" type="image/svg+xml" /></a>
             </li>
             <li><a href="#" class="active" title="博客" target="_blank">博客</a></li>
             <li><a href="#" title="下载资源" target="_blank">下载资源</a></li>
@@ -176,7 +181,7 @@
     </div>
 </div>
 <!--不要删除，有一些svg图标需要靠它引入-->
-<script class="toolbar-s" type="text/javascript" src="../effect/js/iconfont.js"></script>
+<script class="toolbar-s" type="text/javascript" src="http://localhost:8085/effect/js/iconfont.js"></script>
 <div class="container clearfix">
     <nav id="nav" class="clearfix">
         <div class="clearfix">
@@ -215,17 +220,17 @@
             <div class="J_adv" data-view="true" data-mod="ad_popu_325" data-mtp="2" data-order="777" data-con="ad_content_3974" style="width: 760px; height: 90px;">
                 <div style="line-height:0px;">
                     <a target="_blank" href="/xuran/guanggao">
-                        <img width="760" height="90" src="../effect/guanggao/201808291315253185.png">
+                        <img width="760" height="90" src="http://localhost:8085/effect/guanggao/201808291315253185.png">
                     </a>
-                    <div style="left: 0px; width: 26px; background: transparent url(../effect/guanggao/guanggao.png) no-repeat scroll right top; height: 16px;z-index: 12; position: relative; bottom: 16px;"></div>
+                    <div style="left: 0px; width: 26px; background: transparent url(http://localhost:8085/effect/guanggao/guanggao.png) no-repeat scroll right top; height: 16px;z-index: 12; position: relative; bottom: 16px;"></div>
                 </div>
             </div>
             <div class="J_adv" data-view="true" data-mod="ad_popu_326" data-mtp="2" data-order="777" data-con="ad_content_3743" style="width: 300px; height: 90px;">
                 <div style="line-height:0px;">
                     <a target="_blank" href="/xuran/guanggao">
-                        <img width="300" height="90" src="../effect/guanggao/201808071034535185.png">
+                        <img width="300" height="90" src="http://localhost:8085/effect/guanggao/201808071034535185.png">
                     </a>
-                    <div style="left: 0px; width: 26px; background: transparent url(../effect/guanggao/guanggao.png) no-repeat scroll right top; height: 16px;z-index: 12; position: relative; bottom: 16px;"></div>
+                    <div style="left: 0px; width: 26px; background: transparent url(http://localhost:8085/effect/guanggao/guanggao.png) no-repeat scroll right top; height: 16px;z-index: 12; position: relative; bottom: 16px;"></div>
                 </div>
             </div>
         </div>
@@ -242,7 +247,7 @@
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item csdn-tracking-statistics active" data-mod="popu_465" data-dsm="post">
                                 <a href="http://gitbook.cn/gitchat/column/5ad70dea9a722231b25ddbf8?utm_source=blog18090301" target="_blank">
-                                    <img src="../effect/guanggao/ad66fcc84187caad5aaa9715f6976507.jpg">
+                                    <img src="http://localhost:8085/effect/guanggao/ad66fcc84187caad5aaa9715f6976507.jpg">
                                 </a>
                                 <a href="http://gitbook.cn/gitchat/column/5ad70dea9a722231b25ddbf8?utm_source=blog18090301" target="_blank">
                                     <div class="carousel-caption">李烨：机器学习极简入门课 限时特价中</div>
@@ -273,7 +278,7 @@
                 <div class="carousel-right">
                     <div class="carousel-right-u csdn-tracking-statistics" data-mod="popu_616" data-dsm="post">
                         <a href="https://www.qiushibaike.com" target="_blank">
-                            <img src="../effect/images/happy.gif">
+                            <img src="http://localhost:8085/effect/guanggao/happy.gif">
                         </a>
                         <a href="https://www.qiushibaike.com" target="_blank">
                             <p class="carousel-right-caption">
@@ -286,22 +291,21 @@
                     </div>
                 </div>
             </div>
-            <div class="feed-loading-box">
-                <div class="loader-inner ball-clip-rotate-pulse">
-                    <div></div>
-                </div>
-                <span class="loading-txt">在奔跑中</span>
-            </div>
             <div>
                 <div class="msg-tooltip">
-                    <div class="update_counts"></div>
                 </div>
             </div>
             <div class="feed-fix-box">
                 <div class="scroll-fixbar clearfix csdn-tracking-statistics" data-mod="popu_463" data-dsm="post" style="left: 0px; width: 760px;">
-                    <a class="txt txt-refrash-new" target="_blank">小哥哥/小姐姐，我给你新推送了一些新的内容，请点击查看</a>
+                    <a class="txt txt-refrash-new" target="_blank">温馨提示</a>
                     <button class="btn btn-nobg-noborder btn-nobg-noborder btn-close-fixbar">
-                        <i class="icon-close"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="feed-fix-box">
+                <div class="scroll-fixbar clearfix csdn-tracking-statistics" data-mod="popu_463" data-dsm="post" style="left: 0px; width: 760px;">
+                    <a class="txt txt-refrash-new" target="_blank">小哥哥/小姐姐，累了就歇歇吧^_^</a>
+                    <button class="btn btn-nobg-noborder btn-nobg-noborder btn-close-fixbar">
                     </button>
                 </div>
             </div>
@@ -356,7 +360,7 @@
                             <!--博主头像位置，点击访问博主主页-->
                             <dt>
                                 <a href="#" target="_blank" class="user_img">
-                                    <img src="../effect/images/favicon.ico" alt="kMD8d5R" title="kMD8d5R">
+                                    <img src="http://localhost:8085/effect/images/favicon.ico" alt="kMD8d5R" title="kMD8d5R">
                                 </a>
                             </dt>
                             <dd class="name">
@@ -422,7 +426,7 @@
                         <!--点击进入专家主页-->
                         <a href="#" target="_blank">
                             <dl class="media_left clearfix">
-                                <dt><img src="../effect/images/favicon.ico" alt="u010255642" title="u010255642"></dt>
+                                <dt><img src="http://localhost:8085/effect/images/favicon.ico" alt="u010255642" title="u010255642"></dt>
                                 <dd>
                                     <p class="name">徐冉</p>
                                     <svg class="icon" aria-hidden="true">
@@ -439,7 +443,7 @@
                     <div class="bottom_con con clearfix">
                         <a href="https://blog.csdn.net/App_12062011" target="_blank">
                             <dl class="media_left clearfix">
-                                <dt><img src="../effect/images/favicon.ico" alt="App_12062011" title="App_12062011"></dt>
+                                <dt><img src="http://localhost:8085/effect/images/favicon.ico" alt="App_12062011" title="App_12062011"></dt>
                                 <dd>
                                     <p class="name">
                                         EasonApp                                  </p>
@@ -511,7 +515,7 @@
                     <ul class="company_list">
                         <!--今日推荐第一篇-->
                         <li>
-                            <div class="img_box"><a href="https://blog.csdn.net/laoyang360/article/details/81589459" target="_blank"><img src="../effect/guanggao/b20232f31aac0bea729bae731de87d3c.png" alt=""></a></div>
+                            <div class="img_box"><a href="https://blog.csdn.net/laoyang360/article/details/81589459" target="_blank"><img src="http://localhost:8085/effect/guanggao/b20232f31aac0bea729bae731de87d3c.png" alt=""></a></div>
                             <div class="content">
                                 <h3 class="company_name"><a href="https://blog.csdn.net/laoyang360/article/details/81589459" target="_blank">Elasticsearch Reindex 性能提</a></h3>
                             </div>
@@ -538,7 +542,7 @@
                         </h3>
                         <div class="contact-box">
                             <div class="img-box">
-                                <img src="../effect/images/kefu.jpg" alt="客服"></div>
+                                <img src="http://localhost:8085/effect/images/kefu.jpg" alt="客服"></div>
                             <div class="contact-info">
                                 <h4>请扫描二维码联系客服</h4>
                                 <p>
@@ -615,15 +619,15 @@
         </aside>
     </div>
 </div>
-<script src="../effect/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../effect/js/async-1.0.1.js"></script>
-<script src="../effect/js/track.js" type="text/javascript"></script>
-<script src="../effect/js/tracking-1.0.1.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="../effect/css/pub_footer_1.0.3.css">
-<script src="../effect/js/csdn_feed.min.js" type="text/javascript"></script>
-<script src="../effect/js/ab.plus.js"></script>
-<script type="text/javascript" src="../effect/js/async.js"></script>
-<script src="../effect/js/publib_footer-1.0.3.js" data-isfootertrack="false"></script>
+<script src="http://localhost:8085/effect/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="http://localhost:8085/effect/js/async-1.0.1.js"></script>
+<script src="http://localhost:8085/effect/js/track.js" type="text/javascript"></script>
+<script src="http://localhost:8085/effect/js/tracking-1.0.1.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="http://localhost:8085/effect/css/pub_footer_1.0.3.css">
+<script src="http://localhost:8085/effect/js/csdn_feed.min.js" type="text/javascript"></script>
+<script src="http://localhost:8085/effect/js/ab.plus.js"></script>
+<script type="text/javascript" src="http://localhost:8085/effect/js/async.js"></script>
+<script src="http://localhost:8085/effect/js/publib_footer-1.0.3.js" data-isfootertrack="false"></script>
 
 <div class="meau-gotop-box" style="right: 8px; bottom: 40px; z-index: 110;">
     <a href="#" id="adContent" class="btn-meau"></a>

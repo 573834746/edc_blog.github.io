@@ -17,5 +17,5 @@ public interface BlogInterfaceController {
     String sayHiFromClientOne(@RequestParam(value = "name") String name);
 
     @RequestMapping(value = "xuran/list",method = RequestMethod.GET)
-    List<BlogsExtends> selectObjects();
+    List<BlogsExtends> selectObjects(@RequestParam(value = "realpath") String realpath);
 }

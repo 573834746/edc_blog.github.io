@@ -4,7 +4,7 @@
 
     <select id="selectObjects" resultType="com.blog.orderserver.pojo.BlogsExtends">
        	SELECT
-       	u.username,
+		u.username,
 		u.`name`,
 		u.home_url,
 		u.photo_url,
@@ -19,5 +19,10 @@
 		blogs b
 		LEFT JOIN users u ON b.uid = u.uid
 		LEFT JOIN blog_type bt ON bt.btid = b.btid
+		WHERE b.bid>=(
+		SELECT floor(RAND()*((
+		SELECT MAX(bid) FROM blogs)-(
+		SELECT MIN(bid) FROM blogs))+(
+		SELECT MIN(bid) FROM blogs))) and b.bid>0 ORDER BY b.bid LIMIT 20;
     </select>
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,8 +21,12 @@ public class BlogController {
     private BlogService blogService;
 
     @RequestMapping("/list")
-    public List<BlogsExtends> selectObjects(){
-        List<BlogsExtends> blogs = blogService.selectObjects();
+    public List<BlogsExtends> selectObjects(String realpath){
+        List<BlogsExtends> blogs = new ArrayList<>();
+        System.out.print("===="+realpath);
+        if("home".equals(realpath)){
+            blogs = blogService.selectObjects();
+        }
         return blogs;
     }
 

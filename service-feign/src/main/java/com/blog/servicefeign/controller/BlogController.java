@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -25,8 +26,8 @@ public class BlogController {
     BlogInterfaceController blogInterfaceController;
 
     @RequestMapping(value = "/list")
-    public @ResponseBody List<BlogsExtends> selectObjects(){
-        return blogInterfaceController.selectObjects();
+    public @ResponseBody List<BlogsExtends> selectObjects(@RequestParam("realpath") String realpath){
+        return blogInterfaceController.selectObjects(realpath);
     }
 
     @RequestMapping(value = "/home")

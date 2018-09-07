@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service("blogService")
+@Service
 public class BlogServiceImpl implements BlogService {
     @Resource
     private BlogMapper blogMapper;
@@ -21,7 +21,6 @@ public class BlogServiceImpl implements BlogService {
                 String content_list = blog.getContent().substring(0, 60)+"...";
                 blog.setContent(content_list);
             }
-            System.out.print(blog.getRead_num()+"@@@@@@@@@@@@@");
         }
         return list;
     }

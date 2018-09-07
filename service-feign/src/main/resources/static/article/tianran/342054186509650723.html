@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://blog.csdn.net/qq_21870555/article/details/81037910 -->
+<html lang="zh-CN">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <meta name="renderer" content="webkit" /> 
+  <meta name="force-rendering" content="webkit" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+  <meta name="referrer" content="always" /> 
+
+  <meta name="keywords" content="string,object" /> 
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+   
+  <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848" />
+     <!--EDC博客图标-->
+     <link href="../../effect/images/favicon.ico" rel="SHORTCUT ICON">
+
+  <title>关于String、==、equlas、final、instanceof、初始化等每个初学者都应该搞懂的问题 - 博客</title>
+
+  <link rel="stylesheet" href="../../effect/css/detail-1285c05898.min.css" />
+  <link rel="stylesheet" href="../../effect/css/skin3-template-9b39979775.min.css" />
+  
+
+  <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script> 
+  <script src="../../effect/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+  
+  <!-- 新版上报end --> 
+  <link rel="stylesheet" href="../../effect/css/sandalstrap.min.css" />
+  
+ </head> 
+ <body>
+  <div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;">
+  </div>
+  <div id="MathJax_Message" style="display: none;"></div>
+  
+
+<!-- 顶栏 -->
+<div id="csdn-toolbar" class="csdn-toolbar tb_disnone  csdn-toolbar-skin-black ">
+    <div class="container row center-block ">
+        <ul class="pull-left left-menu clearfix" id="nav-left-menu">
+            <li>
+                <a href="/xuran/home" title="EDC首页"><embed src="../../effect/svg/edn_logo.svg" type="image/svg+xml" /></a>
+            </li>
+            <li><a href="#" class="active" title="博客" target="_blank">博客</a></li>
+            <li><a href="#" title="下载资源" target="_blank">下载资源</a></li>
+            <li class="app-btn">
+                <a href="#" title="赞助" target="_blank">赞助</a>
+            </li>
+            <li><a href="#" title="问答" target="_blank">问答</a></li>
+            <li><a href="#" title="图书商城" target="_blank">图书商城</a></li>
+            <li class="vip-caise"><a href="#" title="VIP会员" target="_blank">VIP会员</a></li>
+            <li><a href="#" title="公告" target="_blank">公告</a></li>
+            <li><a href="#" title="加入我们" target="_blank">加入我们</a></li>
+        </ul>
+        <div class="pull-right login-wrap unlogin">
+            <ul class="btns">
+                <!--搜索框-->
+                <li>
+                    <div class="search_bar csdn-tracking-statistics tracking-click" data-mod="popu_366">
+                        <input type="text" class="input_search" name="" id="toolber-keyword" placeholder="文章、资源" autocomplete="off">
+                        <a href="/xuran/list" target="_blank" class="btn-nobg-noborder btn-search">
+                            <svg class="toolbar-icon" aria-hidden="true"><use xlink:href="#sousuo"></use></svg>
+                        </a>
+                    </div>
+                </li>
+                <!--写博客-->
+                <li class="write-bolg-btn csdn-tracking-statistics tracking-click" data-mod="popu_370">
+                    <a class="" href="/yizhenyu/edit" target="_blank">
+                        <svg class="toolbar-icon" aria-hidden="true">
+                            <use xlink:href="#xieboke1"></use>
+                        </svg>
+                        <span>写博客</span>
+                    </a>
+                </li>
+                <!--发chat-->
+                <li class="gitChat">
+                    <a class="" href="/yizhenyu/chat" target="_blank">
+                        <svg class="toolbar-icon" aria-hidden="true"><use xlink:href="#gitchat"></use></svg>
+                        <span>发表Chat</span>
+                    </a>
+                </li>
+                <!--上传资源-->
+                <li class="gitChat upload">
+                    <a class="" href="/zhangtianran/upload" target="_blank">
+                        <svg class="toolbar-icon" aria-hidden="true"><use xlink:href="#csdnc-upload"></use></svg>
+                        <span>上传资源</span>
+                    </a>
+                </li>
+                <!--登录注册-->
+                <li class="userinfo">
+                    <a href="/gaoyu/login">登录</a><span></span>
+                    <a href="/gaoyu/register">注册</a>
+                </li>
+                <!--如果已经登录，则显示这些-->
+                <li class="userLogin">
+                    <div class="loginCenter">
+                        <a href="/yizhenyu/me" target="_blank">
+                            <!--头像缩略图-->
+                            <img class="login_img" src="#">
+                            <div class="toolbar-circle"></div>
+                        </a>
+                    </div>
+                    <div class="userControl">
+                        <div><a href="/xuran/blog" target="_blank">我的博客</a></div>
+                        <div><a class="xiaoxi" href="#" target="_blank">消息<span class="toolbar-newsL">(3)</span></a></div>
+                        <div><a href="#" target="_blank">帐号设置</a></div>
+                        <div><a href="#" target="_blank">反馈</a></div>
+                        <div><a href="#" target="_blank">帮助</a></div>
+                        <div><a href="#">退出</a></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+  <!--不要删除，有一些svg图标需要靠它引入-->
+  <script class="toolbar-s" type="text/javascript" src="../../effect/js/iconfont.js"></script>
+
+
+
+
+
+  <link rel="stylesheet" href="../../effect/css/content_toolbar.css" /> 
+ 
+ 
+  <link rel="stylesheet" href="../../effect/css/blog_code-c3a0c33d5c.css" /> 
+  <link rel="stylesheet" href="../../effect/css/paging.css" /> 
+  
+  
+  <link rel="stylesheet" href="../../effect/css/chart-3456820cac.css" /> 
+
+
+   <!-- 关系整个页面，不可动 -->
+  <div class="container clearfix" id="mainBox"> 
+    <!-- ***********************************
+****  这个位置是用来配置freemaker静态页模板的  **********
+   ****************************************** -->
+   <main> 
+    <div class="blog-content-box"> 
+     <div class="article-header-box"> 
+      <div class="article-header"> 
+       <div class="article-title-box"> 
+        <span class="article-type type-1 float-left">原</span> 
+        <h1 class="title-article">关于String、==、equlas、final、instanceof、初始化等每个初学者都应该搞懂的问题</h1> 
+       </div> 
+       <div class="article-info-box"> 
+        <div class="article-bar-top" style="height: 24px;"> 
+         <span class="time">2018年07月13日 21:34:44</span> 
+         <span class="read-count">阅读数：45</span> 
+         <span class="tags-box artic-tag-box"> 
+            <span class="label">标签：</span> 
+            <a data-track-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;con&quot;:&quot;string&quot;}" class="tag-link" href="http://so.csdn.net/so/search/s.do?q=string&amp;t=blog" target="_blank">string </a>
+            <a data-track-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;con&quot;:&quot;object&quot;}" class="tag-link" href="http://so.csdn.net/so/search/s.do?q=object&amp;t=blog" target="_blank">object </a>
+            <a data-track-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;con&quot;:&quot;equals&quot;}" class="tag-link" href="http://so.csdn.net/so/search/s.do?q=equals&amp;t=blog" target="_blank">equals </a>
+            <a data-track-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;con&quot;:&quot;java&quot;}" class="tag-link" href="http://so.csdn.net/so/search/s.do?q=java&amp;t=blog" target="_blank">java </a>
+            <a data-track-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;con&quot;:&quot;class&quot;}" class="tag-link" href="http://so.csdn.net/so/search/s.do?q=class&amp;t=blog" target="_blank">class </a> 
+         <div class="tags-box space"> 
+          
+        
+         </div>
+         </span>
+        </div> 
+        <div class="operating"> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+
+
+     <article> 
+      <div id="article_content" class="article_content clearfix csdn-tracking-statistics" data-pid="blog" data-mod="popu_307" data-dsm="post" style="height: 1504px; overflow: hidden;"> 
+       <div class="article-copyright">
+         版权声明：本文为博主原创文章，未经博主允许不得转载。 https://blog.csdn.net/qq_21870555/article/details/81037910 
+       </div> 
+       <link rel="stylesheet" href="../../effect/css/ck_htmledit_views-e2445db1a8.css" /> 
+       <div class="htmledit_views"> 
+        <span style="font-family:'-apple-system', 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif, SimHei, SimSun;background-color:rgb(255,255,255);">对于这个系列里的问题，每个学Java的人都应该搞懂。当然，如果只是学Java玩玩就无所谓了。如果你认为自己已经超越初学者了，却不很懂这些问题，请将你自己重归初学者行列。内容均来自于CSDN的经典老贴。&nbsp;</span>
+        
+        <span>问题一：我声明了什么！</span>
+        
+        根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较根据前一帖说过，对象变量其实是一个引用，它们的值是指向对象所在的内存地址，而不是对象本身。a和b都使用了new操作符，意味着将在内存中产生两个内 容为&quot;foo&quot;的字符串，既然是“两个”，它们自然位于不同的内存地址。a和b的值其实是两个不同的内存地址的值，所以使用&quot;==&quot;操作符，结果会是 false。诚然，a和b所指的对象，它们的内容都是&quot;foo&quot;，应该是“相等”，但是==操作符并不涉及到对象内容的比较
+
+
+
+
+        
+       </div> 
+      </div> 
+
+
+
+      <div class="hide-article-box text-center"> 
+       <a class="btn" id="btn-readmore">阅读更多</a> 
+      </div> 
+     </article> 
+    </div> 
+
+   
+    
+<!-- 阅读更多展开功能 -->
+    <script>
+    (function(){
+        var btnReadmore = $("#btn-readmore");
+        if(btnReadmore.length>0){
+            var winH = $(window).height();
+            var articleBox = $("div.article_content");
+            var artH = articleBox.height();
+            if(artH > winH*2){
+                articleBox.css({
+                    'height':winH*2+'px',
+                    'overflow':'hidden'
+                })
+                btnReadmore.click(function(){
+                    articleBox.removeAttr("style");
+                    $(this).parent().remove();
+                })
+            }else{
+                btnReadmore.parent().remove();
+            }
+        }
+    })()
+</script> 
+
+
+   
+  <!-- 评论区 -->
+    <a id="commentBox"></a> 
+    <div class="comment-box"> 
+     <div class="unlogin-box text-center">
+       想对作者说点什么？ 
+      <!-- $curl 当前地址 --> 
+      <a href="https://passport.csdn.net/account/login?from=https://blog.csdn.net/qq_21870555/article/details/81037910#commentBox" class="btn btn-sm btn-red">我来说一句</a> 
+     </div> 
+     <div class="comment-list-container"> 
+      <a id="comments"></a> 
+      <div class="comment-list-box"> 
+      </div> 
+      <div id="commentPage" class="pagination-box d-none"></div> 
+     </div> 
+    </div> 
+
+    <div class="recommend-box"> 
+     
+     
+     <div class="recommend-item-box"> 
+      <p class="text-center">
+          没有更多内容了，<a href="http://localhost:8085/xuran/home" class="c-blue c-blue-hover c-blue-focus">返回首页</a>
+      </p>
+     </div> 
+
+    </div> 
+   </main>
+
+
+
+   <aside> 
+    <div id="asideProfile" class="aside-box"> 
+     <h3 class="aside-title">个人资料</h3> 
+     <div class="profile-intro d-flex"> 
+      <div class="avatar-box d-flex justify-content-center flex-column"> 
+       <a href="https://blog.csdn.net/qq_21870555"> 
+        <img src="../../effect/images/favicon.ico" class="avatar_pic" />
+        </a> 
+      </div> 
+      <div class="user-info d-flex justify-content-center flex-column"> 
+       <p class="name csdn-tracking-statistics tracking-click" data-mod="popu_379"> <a href="https://blog.csdn.net/qq_21870555" target="_blank" class="text-truncate" id="uid">Actoral</a> </p> 
+      </div> 
+      <div class="opt-box d-flex justify-content-center flex-column"> 
+       <span class="csdn-tracking-statistics tracking-click" data-mod="popu_379"> <a class="btn btn-sm btn-red-hollow" href="https://passport.csdn.net/account/login?from=https://blog.csdn.net/qq_21870555/article/details/81037910" target="_self">关注</a> </span> 
+      </div> 
+     </div> 
+     <div class="data-info d-flex item-tiling"> 
+      <dl class="text-center" title="40"> 
+       <dt>
+        <a href="https://blog.csdn.net/qq_21870555?t=1">原创</a>
+       </dt> 
+       <dd>
+        <a href="https://blog.csdn.net/qq_21870555?t=1"><span class="count">40</span></a>
+       </dd> 
+      </dl> 
+      <dl class="text-center" title="3"> 
+       <dt>
+        粉丝
+       </dt> 
+       <dd>
+        <span class="count" id="fan">3</span>
+       </dd> 
+      </dl> 
+      <dl class="text-center" title="8"> 
+       <dt>
+        喜欢
+       </dt> 
+       <dd>
+        <span class="count">8</span>
+       </dd> 
+      </dl> 
+      <dl class="text-center" title="3"> 
+       <dt>
+        评论
+       </dt> 
+       <dd>
+        <span class="count">3</span>
+       </dd> 
+      </dl> 
+     </div> 
+     <div class="grade-box clearfix"> 
+      <dl> 
+       <dt>
+        等级：
+       </dt> 
+       <dd> 
+        <a href="https://blog.csdn.net/home/help.html#level" title="3级,点击查看等级说明" target="_blank"> 
+         3
+     </a> 
+       </dd> 
+      </dl> 
+      <dl> 
+       <dt>
+        访问：
+       </dt> 
+       <dd title="12192">
+         1万+ 
+       </dd> 
+      </dl> 
+      <dl> 
+       <dt>
+        积分：
+       </dt> 
+       <dd title="516">
+         516 
+       </dd> 
+      </dl> 
+      <dl title="112805"> 
+       <dt>
+        排名：
+       </dt> 
+       <dd>
+        11万+
+       </dd> 
+      </dl> 
+     </div> 
+     
+    </div> 
+    <div class="csdn-tracking-statistics mb8 box-shadow" data-pid="blog" data-mod="popu_4" style="height:250px;"> 
+     <div class="aside-content text-center" id="cpro_u2734133"> 
+     
+    </div> 
+    <div id="asideNewArticle" class="aside-box"> 
+     <h3 class="aside-title">最新文章</h3> 
+     <div class="aside-content"> 
+      <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382"> 
+       <li class="clearfix"> <a href="https://blog.csdn.net/qq_21870555/article/details/81701424" target="_blank">SpringBoot修改jsp后重启问题解决</a> </li> 
+       <li class="clearfix"> <a href="https://blog.csdn.net/qq_21870555/article/details/81610910" target="_blank">isELignored的作用</a> </li> 
+       <li class="clearfix"> <a href="https://blog.csdn.net/qq_21870555/article/details/81560718" target="_blank">【SpringBoot】项目名设置</a> </li> 
+       <li class="clearfix"> <a href="https://blog.csdn.net/qq_21870555/article/details/81481829" target="_blank">Linux安装Mysql</a> </li> 
+       <li class="clearfix"> <a href="https://blog.csdn.net/qq_21870555/article/details/81225987" target="_blank">购物车-Cookie和Session各自的优缺点</a> </li> 
+      </ul> 
+     </div> 
+    </div> 
+    <div id="asideColumn" class="aside-box"> 
+     <h3 class="aside-title">博主专栏</h3> 
+     <div class="aside-content"> 
+      <ul class="column-box csdn-tracking-statistics tracking-click" data-mod="popu_520"> 
+       <li class="clearfix"> 
+        <div class="img-box float-left"> 
+         <a class="d-flex align-items-center" href="https://blog.csdn.net/column/details/24639.html" target="_blank">
+             <img src="../../effect/images/favicon.ico" alt="" /> </a>
+        </div> 
+        <div class="info"> 
+         <p class="title"><a href="https://blog.csdn.net/column/details/24639.html" target="_blank">徐冉的专栏</a></p> 
+         <div class="data">
+          阅读量：
+          <span>4624</span>
+          <span class="count">2 篇</span>
+         </div> 
+        </div> </li> 
+      </ul> 
+     </div> 
+    </div> 
+    <div id="asideCategory" class="aside-box flexible-box"> 
+     <h3 class="aside-title">个人分类</h3> 
+     <div class="aside-content"> 
+      <ul> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/category/7287190"> error <span class="count float-right">16篇</span> </a> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/category/7377060"> Java <span class="count float-right">27篇</span> </a> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/category/7720851"> 工具 <span class="count float-right">4篇</span> </a> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/category/7745511"> 配置 <span class="count float-right">4篇</span> </a> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/category/7797376"> freemarker <span class="count float-right">1篇</span> </a> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/category/7799229"> mysql <span class="count float-right">2篇</span> </a> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/category/7924755"> springboot <span class="count float-right">2篇</span> </a> </li> 
+      </ul> 
+     </div> 
+     <p class="text-center"> <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a> </p> 
+    </div> 
+    <div id="asideArchive" class="aside-box flexible-box"> 
+     <h3 class="aside-title">归档</h3> 
+     <div class="aside-content"> 
+      <ul class="archive-list"> 
+       <!--归档统计--> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/month/2018/08"> 2018年8月 <span class="count float-right">4篇</span> </a> </li> 
+       <!--归档统计--> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/month/2018/07"> 2018年7月 <span class="count float-right">9篇</span> </a> </li> 
+       <!--归档统计--> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/month/2018/06"> 2018年6月 <span class="count float-right">12篇</span> </a> </li> 
+       <!--归档统计--> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/month/2018/05"> 2018年5月 <span class="count float-right">7篇</span> </a> </li> 
+       <!--归档统计--> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/month/2018/03"> 2018年3月 <span class="count float-right">1篇</span> </a> </li> 
+       <!--归档统计--> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/month/2018/01"> 2018年1月 <span class="count float-right">5篇</span> </a> </li> 
+       <!--归档统计--> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/month/2017/11"> 2017年11月 <span class="count float-right">5篇</span> </a> </li> 
+      </ul> 
+     </div> 
+     <p class="text-center"> <a class="btn btn-link-blue flexible-btn" data-fbox="aside-archive">展开</a> </p> 
+    </div> 
+    <div id="asideHotArticle" class="aside-box"> 
+     <h3 class="aside-title">热门文章</h3> 
+     <div class="aside-content"> 
+      <ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521"> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/details/80675521" target="_blank">【一键破解】MAC office 2016 破解</a> <p class="read">阅读量：<span>3956</span></p> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/details/80711187" target="_blank">JDBC连接MySQL报错Unknown system variable 'query_cache_size'</a> <p class="read">阅读量：<span>1400</span></p> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/details/80923389" target="_blank">Spring事务异常回滚，try catch 捕获异常不回滚</a> <p class="read">阅读量：<span>889</span></p> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/details/80614618" target="_blank">Navicat premium for Mac 12 破解 纯手工</a> <p class="read">阅读量：<span>610</span></p> </li> 
+       <li> <a href="https://blog.csdn.net/qq_21870555/article/details/79040834" target="_blank">java.lang.InstantiationException（实例化异常）</a> <p class="read">阅读量：<span>603</span></p> </li> 
+      </ul> 
+     </div> 
+    </div> 
+    <div id="asideNewComments" class="aside-box"> 
+     <h3 class="aside-title">最新评论</h3> 
+     <div class="aside-content"> 
+      <ul class="newcomment-list"> 
+       <li> <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/qq_21870555/article/details/80744342#comments">Linux安装配置Flume</a> <p class="comment"> <a href="https://my.csdn.net/chenhaiming123" class="user-name" target="_blank">chenhaiming123</a>：谢谢分享精彩的内容，加油。——陈海明 </p> </li> 
+       <li> <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/qq_21870555/article/details/80614618#comments">Navicat premium f...</a> <p class="comment"> <a href="https://my.csdn.net/qq_21870555" class="user-name" target="_blank">qq_21870555</a>：[reply]zd547151424[/reply] 所以推荐使用v12.0.22.0版本，新版的... </p> </li> 
+       <li> <a class="title text-truncate" target="_blank" href="https://blog.csdn.net/qq_21870555/article/details/80614618#comments">Navicat premium f...</a> <p class="comment"> <a href="https://my.csdn.net/zd547151424" class="user-name" target="_blank">zd547151424</a>：没有 rpk 文件怎么破？ </p> </li> 
+      </ul> 
+     </div> 
+    </div> 
+    </div>
+   </aside> 
+
+
+   <link rel="stylesheet" type="text/css" href="../../effect/css/pub_footer_1.0.3.css" /> 
+<!-- 侧边栏展开 -->
+   <script>
+    $("a.flexible-btn").click(function(){
+        $(this).parents('div.aside-box').removeClass('flexible-box');
+        $(this).remove();
+    })
+</script> 
+</div> 
+ 
+ </body>
+</html>
