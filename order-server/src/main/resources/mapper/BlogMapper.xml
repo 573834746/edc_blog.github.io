@@ -23,6 +23,20 @@
 		SELECT floor(RAND()*((
 		SELECT MAX(bid) FROM blogs)-(
 		SELECT MIN(bid) FROM blogs))+(
-		SELECT MIN(bid) FROM blogs))) and b.bid>0 ORDER BY b.bid LIMIT 20;
+		SELECT MIN(bid) FROM blogs)))
+		<if test="blogsVo!=null">
+			<if test="blogsVo.alias!=null and blogsVo.alias!='' and blogsVo.alias!='index' and blogsVo.alias!='new'">
+				and bt.alias=#{blogsVo.alias}
+			</if>
+		</if>
+		ORDER BY
+		<if test="blogsVo.alias!='new'">
+			b.bid
+		</if>
+		<if test="blogsVo.alias!=null and blogsVo.alias!='' and blogsVo.alias=='new'">
+			b.published_date desc
+		</if>
+
+		LIMIT 50;
     </select>
 </mapper>

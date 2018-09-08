@@ -1,6 +1,7 @@
 package com.blog.servicefeign.controller;
 
 import com.blog.servicefeign.pojo.BlogsExtends;
+import com.blog.servicefeign.pojo.BlogsVo;
 import com.blog.servicefeign.service.BlogInterfaceController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,8 @@ public class BlogController {
     BlogInterfaceController blogInterfaceController;
 
     @RequestMapping(value = "/list")
-    public @ResponseBody List<BlogsExtends> selectObjects(@RequestParam("realpath") String realpath){
-        return blogInterfaceController.selectObjects(realpath);
+    public @ResponseBody List<BlogsExtends> selectObjects(String alias){
+        return blogInterfaceController.selectObjects(alias);
     }
 
     @RequestMapping(value = "/index")

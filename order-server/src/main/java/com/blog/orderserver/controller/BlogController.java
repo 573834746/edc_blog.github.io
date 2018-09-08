@@ -1,6 +1,7 @@
 package com.blog.orderserver.controller;
 
 import com.blog.orderserver.pojo.BlogsExtends;
+import com.blog.orderserver.pojo.BlogsVo;
 import com.blog.orderserver.service.BlogService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,12 +22,9 @@ public class BlogController {
     private BlogService blogService;
 
     @RequestMapping("/list")
-    public List<BlogsExtends> selectObjects(String realpath){
-        List<BlogsExtends> blogs = new ArrayList<>();
-        System.out.print("===="+realpath);
-        if("index".equals(realpath)){
-            blogs = blogService.selectObjects();
-        }
+    public List<BlogsExtends> selectObjects(BlogsVo blogsVo){
+        System.out.println("===="+blogsVo.getAlias());
+        List<BlogsExtends> blogs = blogService.selectObjects(blogsVo);
         return blogs;
     }
 
