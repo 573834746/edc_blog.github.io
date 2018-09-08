@@ -1,16 +1,12 @@
 package com.blog.servicefeign.controller;
 
 import com.blog.servicefeign.pojo.BlogsExtends;
-import com.blog.servicefeign.pojo.BlogsVo;
 import com.blog.servicefeign.service.BlogInterfaceController;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
