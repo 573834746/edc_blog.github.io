@@ -1,9 +1,11 @@
 package com.blog.orderserver.controller;
 
+import com.blog.orderserver.pojo.AskExtends;
 import com.blog.orderserver.pojo.BlogsExtends;
 import com.blog.orderserver.pojo.BlogsVo;
 import com.blog.orderserver.service.BlogService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -23,9 +25,15 @@ public class BlogController {
 
     @RequestMapping("/list")
     public List<BlogsExtends> selectObjects(BlogsVo blogsVo){
-        System.out.println("===="+blogsVo.getAlias());
         List<BlogsExtends> blogs = blogService.selectObjects(blogsVo);
         return blogs;
+    }
+
+    @RequestMapping("/ask_list")
+    public List<AskExtends> selectAskObjects(String rules){
+        System.out.println("======="+rules);
+        List<AskExtends> askObjects = blogService.selectAskObjects(rules);
+        return askObjects;
     }
 
 

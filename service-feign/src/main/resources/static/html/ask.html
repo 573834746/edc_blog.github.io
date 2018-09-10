@@ -18,7 +18,75 @@
   <script src="http://localhost:8085/effect/js/iconfont.js"></script>
      <script src="http://localhost:8085/effect/js/jquery-1.9.1.min.js"></script>
      <script>
+         $(function () {
+             var url = document.URL;
+             var split = url.split("/");
+             var real_url = split[split.length-1];
+             var status = false;
+             //导航栏添加选中样式
+             $("#nav-left-menu li a").each(function () {
+                 if($(this).attr("href").indexOf(real_url)>-1){
+                     $(this).addClass("active");
+                     status = true;
+                 }else{
+                     $(this).removeClass("active");
+                 }
+             });
+             if(!status)
+             $("#nav-left-menu li a").eq(0).addClass("active");
 
+             $(".nav-bar a").each(function () {
+                 if($(this).attr("href").indexOf(real_url)>-1){
+                     $(this).addClass("current");
+                 }else{
+                     $(this).removeClass("current");
+                 }
+             });
+             if(!status)
+             $(".nav-bar a").eq(0).addClass("current");
+
+            $.post("http://localhost:8085/xuran/ask_list",{},function (data) {
+                for(var i = 0; i<data.length; i++){
+                    var split = data[i].ask_types.split(",");
+
+                    $("#album_detail_wrap").append("<div class='questions_detail_con'>"
+                        +"<div class='q_time'>"
+                        +"<span>"+data[i].date+" 来自 </span>"
+                        +"<a class='user_name' href='"+data[i].home_url+"' target='_blank'>"+data[i].username+"</a>"
+                        +"<b>悬赏<b style='color: red;'>"+data[i].ask_money+"积分</b></b>"
+                        +"</div>"
+                        +"<dl>"
+                    +"<dt>"
+                    +"<a href='#' target='_blank'>"+data[i].title+"</a>"
+                        +" </dt>"
+                        +" <dd>"
+                        +""+data[i].content+""
+                        +" </dd>"
+                        +" </dl>"
+                        +" <div class='tags'>"
+                        +" <div class='tags"+i+"'></div>"
+                        +" </div>"
+                    +" <a class='answer_num' target='_blank' href='#'> <span>"+data[i].answer_num+"</span> <p>回答</p> </a>"
+                        +" </div>"
+                        +" <div class='share_bar_con'>"
+                    +" <div id='question_699526_vote'>"
+                    +" <em class='focusit'>同问 "+data[i].same_num+"</em>"
+                    +" </div>"
+                    +" <div id='question_699526'>"
+                    +" <span class='interval'>|</span>"
+                    +" <em class='collection'>收藏"+data[i].collect_num+"</em>"
+                    +" </div>"
+                    +" <span class='interval'>|</span>"
+                    +"  <em class='browse'>浏览"+data[i].browse_num+"</em>"
+                    +"  </div>"
+                );
+
+                    for(var j=0; j<split.length ; j++){
+                        $(".tags"+i+"").append(" <a href='#' target='_blank'>"+split[j]+"</a>");
+                    }
+                }
+            },"json");
+        });
      </script>
 
 
@@ -30,15 +98,15 @@
     <div class="container row center-block ">
         <ul class="pull-left left-menu clearfix" id="nav-left-menu">
             <li>
-                <a href="/xuran/index" title="EDC首页"><embed src="http://localhost:8085/effect/svg/edn_logo.svg" type="image/svg+xml" /></a>
+                <embed src="http://localhost:8085/effect/svg/edn_logo.svg" type="image/svg+xml" />
             </li>
-            <li><a href="http://localhost:8085/xuran/index" class="active" title="EDC首页" >首页</a></li>
-            <li><a href="#" class="active" title="博客" >博客</a></li>
+            <li><a href="http://localhost:8085/xuran/index" class="" title="EDC首页" >首页</a></li>
+            <li><a href="#" class="" title="博客" >博客</a></li>
             <li><a href="#" title="下载资源" >下载资源</a></li>
             <li class="app-btn">
                 <a href="#" title="赞助" >赞助</a>
             </li>
-            <li><a href="#" style="color: tomato" title="悬赏问答" onclick="edit(1)">悬赏问答</a></li>
+            <li><a href="http://localhost:8085/xuran/ask" style="color: tomato" title="悬赏问答">悬赏问答</a></li>
             <li><a href="#" title="图书商城" >图书商城</a></li>
             <li class="vip-caise"><a href="#" title="VIP会员" >VIP会员</a></li>
             <li><a href="#" title="公告" >公告</a></li>
@@ -200,8 +268,8 @@
   <div class="news-nav"> 
    <div class="container clearfix"> 
     <div class="nav-bar"> 
-     <a class="current" href="#">问答首页</a> 
-     <a class="" href="#">待回答</a> 
+     <a class="" href="http://localhost:8085/xuran/ask">问答首页</a>
+     <a class="" href="">待回答</a>
      <a class="" href="#">已解决</a> 
      <a class="" href="#">标签</a>
      <a href="#" target="_blank">获取积分</a>
@@ -227,77 +295,14 @@
         <i class="icon-caret-down"></i> 
        </div> 
        <ul> 
-        <a href="https://ask.csdn.net/?sort_by=created_at"> <li>时间</li> </a> 
-        <a href="https://ask.csdn.net/?sort_by=answers_count"> <li>回答数</li> </a> 
+        <a href="http://localhost:8085/xuran/ask_list?rules=date"> <li>时间</li> </a>
+        <a href="http://localhost:8085/xuran/ask_list?rules=answer_num"> <li>回答数</li> </a>
         <li class="arrow"> </li> 
        </ul> 
       </div> 
      </div> 
      <!-- 第一篇 -->
-     <div class="questions_detail_con"> 
-      <div class="q_time"> 
-       <span>2018.09.08 08:07 来自</span> 
-       <a class="user_name" href="http://my.csdn.net/sh04181125" target="_blank">sh04181125</a> 
-       <b>悬赏<b style="color: red;">10C</b></b> 
-      </div> 
-      <dl> 
-       <dt> 
-        <a href="https://ask.csdn.net/questions/699526" target="_blank">标题标题标题标题标题</a> 
-       </dt> 
-       <dd>
-         内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容...
-       </dd> 
-      </dl> 
-      <div class="tags">
-       <a href="#" target="_blank">vue 三级联动</a>
-      </div> 
-      <a class="answer_num " title="暂无满意答案" target="_blank" href="https://ask.csdn.net/questions/699526#answer_form"> <span>2</span> <p>回答</p> </a> 
-     </div> 
-     <div class="share_bar_con"> 
-      <div id="question_699526_vote"> 
-       <em class="focusit">同问0</em> 
-      </div> 
-      <div id="question_699526"> 
-       <span class="interval">|</span> 
-       <em class="collection">收藏0</em> 
-      </div> 
-      <span class="interval">|</span> 
-      <em class="browse">浏览33</em> 
-     </div> 
-<!-- 第二篇 -->
-     <div class="questions_detail_con"> 
-      <div class="q_time"> 
-       <span>2018.09.07 16:41 来自</span> 
-       <a class="user_name" href="http://my.csdn.net/po4kee" target="_blank">po4kee</a> 
-       <b>悬赏 <a href="javascript:;" title="个人悬赏"> 5C </a> </b> 
-      </div> 
-      <dl> 
-       <dt> 
-        <a href="https://ask.csdn.net/questions/699496" target="_blank">代码问题| Vector内数据处理</a> 
-       </dt> 
-       <dd>
-         题目是使用条件运算符将成绩划分为high pass/pass/low pass/fail四种， 成绩用一个容器存储，Finalgrade用另一个容器存储，最后显示。 我使用迭代器遍历容器内数据，但是没有输出，请问... 
-       </dd> 
-      </dl> 
-      <div class="tags"> 
-       <a href="https://ask.csdn.net/%25E8%25BF%25AD%25E4%25BB%25A3%25E5%2599%25A8" target="_blank">迭代器</a> 
-       <a href="https://ask.csdn.net/vector" target="_blank">vector</a> 
-       <a href="https://ask.csdn.net/c++11" target="_blank">c++11</a> 
-      </div> 
-      <a class="answer_num " title="暂无满意答案" target="_blank" href="https://ask.csdn.net/questions/699496#answer_form"> <span>3</span> <p>回答</p> </a> 
-     </div>
 
-     <div class="share_bar_con"> 
-      <div id="question_699496_vote"> 
-       <em class="focusit">同问0</em> 
-      </div> 
-      <div id="question_699496"> 
-       <span class="interval">|</span> 
-       <em class="collection">收藏0</em> 
-      </div> 
-      <span class="interval">|</span> 
-      <em class="browse">浏览35</em> 
-     </div> 
     </div> 
    </div> 
 

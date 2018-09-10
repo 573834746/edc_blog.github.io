@@ -274,7 +274,7 @@ a:hover {
   float: right;
   display: inline-block;
   position: relative;
-  background: url(//csdnimg.cn/release/ask/assets/icon_dot-d0cbbddd2d5c0e2365dfc31b1c3fd096.png) no-repeat; }
+}
 
 .main .persion_article .mod_my_achievement .my_achievement .my_progress .progress .progress-bar .sr .popover {
   display: block;
@@ -535,7 +535,7 @@ a:hover {
   font-weight: normal;
   overflow: hidden;
   border-bottom: 1px solid #f0f0f0;
-  background: url(//csdnimg.cn/release/ask/assets/icon_glory-a39801d0a75de3646fa2dfdebf2c4d44.png) no-repeat 10px; }
+}
 
 .main .persion_article .mod_glory_info .glory_info .info_box {
   padding: 20px;

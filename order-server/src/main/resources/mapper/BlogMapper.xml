@@ -39,4 +39,25 @@
 
 		LIMIT 50;
     </select>
+
+	<select id="selectAskObjects" parameterType="String" resultType="com.blog.orderserver.pojo.AskExtends">
+		SELECT
+		u.username,
+		u.home_url,
+		u.photo_url,
+		a.*,
+		am.ask_money,
+		GROUP_CONCAT( askt.asktid ) asktids,
+		GROUP_CONCAT( askt.ask_type ) ask_types
+		FROM
+		ask a
+		LEFT JOIN ask_money am ON a.amid = am.amid
+		LEFT JOIN users u ON u.uid = a.uid
+		LEFT JOIN ask_type askt ON askt.aid = a.aid
+		AND askt.uid = u.uid
+		GROUP BY
+		a.aid
+		ORDER BY
+		${rules} desc
+	</select>
 </mapper>

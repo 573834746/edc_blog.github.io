@@ -22,6 +22,7 @@ public class UrlFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         HttpServletResponseWrapper httpResponse = new HttpServletResponseWrapper((HttpServletResponse) response);
         //System.out.println(httpRequest.getRequestURI());
+
         String path=httpRequest.getRequestURI();
 
         String type_path = "//new//watchers//news//ai//cloud//blockchain//db//career//game//engineering//web//mobile//iot//ops//fund//lang//arch//avi//sec//other";

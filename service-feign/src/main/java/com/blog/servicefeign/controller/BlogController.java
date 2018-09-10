@@ -1,9 +1,11 @@
 package com.blog.servicefeign.controller;
 
+import com.blog.servicefeign.pojo.AskExtends;
 import com.blog.servicefeign.pojo.BlogsExtends;
 import com.blog.servicefeign.service.BlogInterfaceController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -25,6 +27,11 @@ public class BlogController {
     @RequestMapping(value = "/list")
     public @ResponseBody List<BlogsExtends> selectObjects(String alias){
         return blogInterfaceController.selectObjects(alias);
+    }
+
+    @RequestMapping(value = "/ask_list")
+    public @ResponseBody List<AskExtends> selectAskObjects(@RequestParam(defaultValue = "date",value = "rules") String rules){
+        return blogInterfaceController.selectAskObjects(rules);
     }
 
     @RequestMapping(value = "/index")
