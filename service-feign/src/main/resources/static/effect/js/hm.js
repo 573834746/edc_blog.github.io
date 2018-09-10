@@ -176,77 +176,7 @@
     mt.m.parse = function() {
         return (new Function('return (" + source + ")'))()
     };
-    mt.m.stringify = function() {
-        function a(a) { / ["\\\x00-\x1f]/.test(a)&&(a=a.replace(/["\\\x00 - \x1f] / g,
-            function(a) {
-                var b = d[a];
-                if (b) return b;
-                b = a.charCodeAt();
-                return "\\u00" + Math.floor(b / 16).toString(16) + (b % 16).toString(16)
-            }));
-            return '"' + a + '"'
-        }
-        function b(a) {
-            return 10 > a ? "0" + a: a
-        }
-        var d = {
-            "\b": "\\b",
-            "\t": "\\t",
-            "\n": "\\n",
-            "\f": "\\f",
-            "\r": "\\r",
-            '"': '\\"',
-            "\\": "\\\\"
-        };
-        return function(d) {
-            switch (typeof d) {
-            case "undefined":
-                return "undefined";
-            case "number":
-                return isFinite(d) ? String(d) : "null";
-            case "string":
-                return a(d);
-            case "boolean":
-                return String(d);
-            default:
-                if (d === t) return "null";
-                if (d instanceof Array) {
-                    var g = ["["],
-                    n = d.length,
-                    l,
-                    p,
-                    e;
-                    for (p = 0; p < n; p++) switch (e = d[p], typeof e) {
-                    case "undefined":
-                    case "function":
-                    case "unknown":
-                        break;
-                    default:
-                        l && g.push(","),
-                        g.push(mt.m.stringify(e)),
-                        l = 1
-                    }
-                    g.push("]");
-                    return g.join("")
-                }
-                if (d instanceof Date) return '"' + d.getFullYear() + "-" + b(d.getMonth() + 1) + "-" + b(d.getDate()) + "T" + b(d.getHours()) + ":" + b(d.getMinutes()) + ":" + b(d.getSeconds()) + '"';
-                l = ["{"];
-                p = mt.m.stringify;
-                for (n in d) if (Object.prototype.hasOwnProperty.call(d, n)) switch (e = d[n], typeof e) {
-                case "undefined":
-                case "unknown":
-                case "function":
-                    break;
-                default:
-                    g && l.push(","),
-                    g = 1,
-                    l.push(p(n) + ":" + p(e))
-                }
-                l.push("}");
-                return l.join("")
-            }
-        }
-    } ();
+
     mt.lang = {};
     mt.lang.d = function(a, b) {
         return "[object " + b + "]" === {}.toString.call(a)

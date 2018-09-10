@@ -31,6 +31,10 @@ public class BlogController {
     public String homePage(){
         return "home";
     }
+    @RequestMapping(value = "/ask")
+    public String askPage(){
+        return "ask";
+    }
 
     @RequestMapping(value = "/guanggao")
     public String guanggaoPage(){

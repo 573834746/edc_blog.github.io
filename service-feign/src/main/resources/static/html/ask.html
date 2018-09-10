@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://ask.csdn.net/?sort_by=created_at -->
+<html lang="zh-CN">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ 
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" /> 
+  <meta name="referrer" content="always" /> 
+  <title>悬赏问答-EDC问答</title>
+     <!--EDC博客图标-->
+     <link href="http://localhost:8085/effect/images/favicon.png" rel="SHORTCUT ICON">
+
+
+  <link href="http://localhost:8085/effect/css/bootstrap.min.css" media="all" rel="stylesheet" />
+  <link href="http://localhost:8085/effect/css/avatar.css" media="all" rel="stylesheet" />
+
+  <link href="http://localhost:8085/effect/css/content_toolbar.css" media="all" rel="stylesheet" />
+  <script src="http://localhost:8085/effect/js/iconfont.js"></script>
+     <script src="http://localhost:8085/effect/js/jquery-1.9.1.min.js"></script>
+     <script>
+
+     </script>
+
+
+ </head> 
+ <body id="questions-index" style="">
+  
+
+  <div id="csdn-toolbar" class="csdn-toolbar tb_disnone  csdn-toolbar-skin-black ">
+    <div class="container row center-block ">
+        <ul class="pull-left left-menu clearfix" id="nav-left-menu">
+            <li>
+                <a href="/xuran/index" title="EDC首页"><embed src="http://localhost:8085/effect/svg/edn_logo.svg" type="image/svg+xml" /></a>
+            </li>
+            <li><a href="http://localhost:8085/xuran/index" class="active" title="EDC首页" >首页</a></li>
+            <li><a href="#" class="active" title="博客" >博客</a></li>
+            <li><a href="#" title="下载资源" >下载资源</a></li>
+            <li class="app-btn">
+                <a href="#" title="赞助" >赞助</a>
+            </li>
+            <li><a href="#" style="color: tomato" title="悬赏问答" onclick="edit(1)">悬赏问答</a></li>
+            <li><a href="#" title="图书商城" >图书商城</a></li>
+            <li class="vip-caise"><a href="#" title="VIP会员" >VIP会员</a></li>
+            <li><a href="#" title="公告" >公告</a></li>
+            <li><a href="#" title="加入我们" >加入我们</a></li>
+        </ul>
+        <div class="pull-right login-wrap unlogin">
+            <ul class="btns">
+                <!--搜索框-->
+                <li>
+                    <div class="search_bar csdn-tracking-statistics tracking-click" data-mod="popu_366">
+                        <input type="text" class="input_search" name="" id="toolber-keyword" placeholder="文章、资源" autocomplete="off">
+                        <a href="/xuran/list"  class="btn-nobg-noborder btn-search">
+                            <svg class="toolbar-icon" aria-hidden="true"><use xlink:href="#sousuo"></use></svg>
+                        </a>
+                    </div>
+                </li>
+                <!--写博客-->
+                <li class="write-bolg-btn csdn-tracking-statistics tracking-click" data-mod="popu_370">
+                    <a class="" href="/yizhenyu/edit" >
+                        <svg class="toolbar-icon" aria-hidden="true">
+                            <use xlink:href="#xieboke1"></use>
+                        </svg>
+                        <span>写博客</span>
+                    </a>
+                </li>
+                <!--发chat-->
+                <li class="gitChat">
+                    <a class="" href="/yizhenyu/chat" >
+                        <svg class="toolbar-icon" aria-hidden="true"><use xlink:href="#gitchat"></use></svg>
+                        <span>发表Chat</span>
+                    </a>
+                </li>
+                <!--上传资源-->
+                <li class="gitChat upload">
+                    <a class="" href="/zhangtianran/upload" >
+                        <svg class="toolbar-icon" aria-hidden="true"><use xlink:href="#csdnc-upload"></use></svg>
+                        <span>上传资源</span>
+                    </a>
+                </li>
+                <!--登录注册-->
+                <li class="userinfo">
+                    <a href="/gaoyu/login">登录</a><span></span>
+                    <a href="/gaoyu/register">注册</a>
+                </li>
+                <!--如果已经登录，则显示这些-->
+                <li class="userLogin">
+                    <div class="loginCenter">
+                        <a href="/yizhenyu/me" >
+                            <!--头像缩略图-->
+                            <img class="login_img" src="#">
+                            <div class="toolbar-circle"></div>
+                        </a>
+                    </div>
+                    <div class="userControl">
+                        <div><a href="/xuran/blog" >我的博客</a></div>
+                        <div><a class="xiaoxi" href="#" >消息<span class="toolbar-newsL">(3)</span></a></div>
+                        <div><a href="#" >帐号设置</a></div>
+                        <div><a href="#" >反馈</a></div>
+                        <div><a href="#" >帮助</a></div>
+                        <div><a href="#">退出</a></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+  <!-- 顶栏下方分类的样式 -->
+  <style>
+  .news-nav {
+    background: #eaebec;
+    MARGIN-BOTTOM: 10px;
+    HEIGHT: 44px;
+    CLEAR: both;
+    OVERFLOW: visible;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+    color: #4f4f4f;
+    line-height: 20px;
+  }
+  .news-nav .container {
+    MARGIN: 0px auto;width:1200px; FONT-FAMILY: "Microsoft YaHei";
+    padding:0;
+  }
+  .nav-bar{
+    font-size :16px;
+    color:#fff;
+    float:left;
+  }
+  .nav-bar a{
+    padding: 0;
+    display: inline-block;
+    line-height: 44px;
+    margin-right: 32px;
+    color: #4f4f4f;
+    text-decoration: none;
+    font-family: "Microsoft YaHei";
+  }
+  .nav-bar .current, .nav-bar .active, .nav-bar a:hover {
+    position: relative;
+    border:none;
+  }
+  .nav-bar .current::after,
+  .nav-bar .active::after,
+  .nav-bar a:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    left: 0;
+    right: 0;
+    background-color: #10cab9;
+  }
+
+
+  .search-download{
+    float:right;
+    margin-top:11px;
+  }
+  .search-download form{
+    float:left;
+    border: 1px solid #ddd;
+  }
+  .search-download input{
+    /* border:solid 1px #ddd;
+    border-right:none; */
+    border:none;
+    height: 26px;
+    line-height:22px;
+    padding:0 10px;
+    margin-right:-5px;
+    width: 229px;
+  }
+
+  .search-download .help{
+    float:left;
+    margin:3px 0 0 20px;
+    font-size: 15px;
+    color: #4f4f4f;
+    line-height: 20px;
+  }
+  .search-download .help .fa{
+    margin-right:5px;
+  }
+
+  .nav-bar a{
+    text-decoration:none;
+  }
+  .nav-bar a:hover{
+    text-decoration:none;
+    color: #4f4f4f;
+  }
+
+</style> 
+
+
+  <div class="news-nav"> 
+   <div class="container clearfix"> 
+    <div class="nav-bar"> 
+     <a class="current" href="#">问答首页</a> 
+     <a class="" href="#">待回答</a> 
+     <a class="" href="#">已解决</a> 
+     <a class="" href="#">标签</a>
+     <a href="#" target="_blank">获取积分</a>
+     <a href="#" class="ask_tips_box" id="float_ask_img1">我要提问</a>
+    </div> 
+    <div class="search-download"> 
+     <a class="help" href="https://ask.csdn.net/help" target="_blank"> <i class="fa fa-question-circle"></i>问答帮助 </a> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="main clearfix"> 
+   
+   <link href="http://localhost:8085/effect/css/ask_index_A-51f2a0860c760bd71985fe6b61d975d4.css" media="screen" rel="stylesheet" />
+
+
+   <div class="persion_section"> 
+    <div class="common_con clearfix" id="album_detail_wrap"> 
+
+     <div class="questions_tab_con"> 
+      <div class="sort"> 
+       <div class="sort_list_label">
+         按时间排序 
+        <i class="icon-caret-down"></i> 
+       </div> 
+       <ul> 
+        <a href="https://ask.csdn.net/?sort_by=created_at"> <li>时间</li> </a> 
+        <a href="https://ask.csdn.net/?sort_by=answers_count"> <li>回答数</li> </a> 
+        <li class="arrow"> </li> 
+       </ul> 
+      </div> 
+     </div> 
+     <!-- 第一篇 -->
+     <div class="questions_detail_con"> 
+      <div class="q_time"> 
+       <span>2018.09.08 08:07 来自</span> 
+       <a class="user_name" href="http://my.csdn.net/sh04181125" target="_blank">sh04181125</a> 
+       <b>悬赏<b style="color: red;">10C</b></b> 
+      </div> 
+      <dl> 
+       <dt> 
+        <a href="https://ask.csdn.net/questions/699526" target="_blank">标题标题标题标题标题</a> 
+       </dt> 
+       <dd>
+         内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容...
+       </dd> 
+      </dl> 
+      <div class="tags">
+       <a href="#" target="_blank">vue 三级联动</a>
+      </div> 
+      <a class="answer_num " title="暂无满意答案" target="_blank" href="https://ask.csdn.net/questions/699526#answer_form"> <span>2</span> <p>回答</p> </a> 
+     </div> 
+     <div class="share_bar_con"> 
+      <div id="question_699526_vote"> 
+       <em class="focusit">同问0</em> 
+      </div> 
+      <div id="question_699526"> 
+       <span class="interval">|</span> 
+       <em class="collection">收藏0</em> 
+      </div> 
+      <span class="interval">|</span> 
+      <em class="browse">浏览33</em> 
+     </div> 
+<!-- 第二篇 -->
+     <div class="questions_detail_con"> 
+      <div class="q_time"> 
+       <span>2018.09.07 16:41 来自</span> 
+       <a class="user_name" href="http://my.csdn.net/po4kee" target="_blank">po4kee</a> 
+       <b>悬赏 <a href="javascript:;" title="个人悬赏"> 5C </a> </b> 
+      </div> 
+      <dl> 
+       <dt> 
+        <a href="https://ask.csdn.net/questions/699496" target="_blank">代码问题| Vector内数据处理</a> 
+       </dt> 
+       <dd>
+         题目是使用条件运算符将成绩划分为high pass/pass/low pass/fail四种， 成绩用一个容器存储，Finalgrade用另一个容器存储，最后显示。 我使用迭代器遍历容器内数据，但是没有输出，请问... 
+       </dd> 
+      </dl> 
+      <div class="tags"> 
+       <a href="https://ask.csdn.net/%25E8%25BF%25AD%25E4%25BB%25A3%25E5%2599%25A8" target="_blank">迭代器</a> 
+       <a href="https://ask.csdn.net/vector" target="_blank">vector</a> 
+       <a href="https://ask.csdn.net/c++11" target="_blank">c++11</a> 
+      </div> 
+      <a class="answer_num " title="暂无满意答案" target="_blank" href="https://ask.csdn.net/questions/699496#answer_form"> <span>3</span> <p>回答</p> </a> 
+     </div>
+
+     <div class="share_bar_con"> 
+      <div id="question_699496_vote"> 
+       <em class="focusit">同问0</em> 
+      </div> 
+      <div id="question_699496"> 
+       <span class="interval">|</span> 
+       <em class="collection">收藏0</em> 
+      </div> 
+      <span class="interval">|</span> 
+      <em class="browse">浏览35</em> 
+     </div> 
+    </div> 
+   </div> 
+
+
+
+
+<!-- 右侧栏父级div盒子 -->
+ <div class="persion_article"> 
+
+<!-- 我的问答 -->
+<div class="mod_my_achievement"> 
+     <div class="my_achievement clearfix"> 
+      <div class="achievement"> 
+       <h3><a href="https://ask.csdn.net/my" target="_blank">我的问答</a></h3> 
+      </div> 
+      <dl class="my_info clearfix"> 
+       <div class="img"> 
+        <a class="user_name" href="http://my.csdn.net/qq_21870555" target="_blank"> <img alt="3 qq 21870555" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" title="qq_21870555" username="qq_21870555" /> </a>
+       </div> 
+       <dt>
+        <a class="user_name" href="http://my.csdn.net/qq_21870555" target="_blank">qq_21870555</a>
+       </dt> 
+       <dd>
+         你的经验值在技术同行中排名 
+        <span> 0 </span>，
+        <br />升级还需 
+        <span> 9 </span> 分 
+       </dd> 
+      </dl> 
+      <div class="my_progress"> 
+       <div class="tips_Tips"> 
+        <div class="left_first">
+         V1
+        </div> 
+        <div class="right_last">
+         V2
+        </div> 
+       </div> 
+       <div class="progress"> 
+        <div role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 10%" class="progress-bar progress-bar-info"> 
+         <span class="sr"> 
+          <div class="popover bottom danger"> 
+           <div class="arrow"></div> 
+           <div class="popover-content"> 
+            <p>1</p> 
+           </div> 
+          </div> </span> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="my_ask_info"> 
+       <div class="icon-A">
+        问
+       </div> 
+       <div class="ask_answer">
+        提了 
+        <span> <a href="https://ask.csdn.net/my" target="_blank">0</a> </span>个问题， 
+        <span> <a href="https://ask.csdn.net/my" target="_blank">0</a> </span>人进行了回答
+       </div> 
+       <div class="br"></div> 
+       <div class="icon-B">
+        答
+       </div> 
+       <div class="ask_answer">
+        回答了
+        <span> <a href="https://ask.csdn.net/my?type=answer_questions" target="_blank">1</a> </span>个问题
+       </div> 
+       <div class="br"></div> 
+       <div class="icon-C">
+        同
+       </div> 
+       <div class="ask_answer">
+        有
+        <span> <a href="https://ask.csdn.net/my?type=vote_questions" target="_blank">0</a> </span>个同问
+       </div> 
+      </div> 
+      <div class="my_specialty"> 
+       <h5><a href="https://ask.csdn.net/users/subscribes" target="_blank">我的订阅标签</a></h5> 
+       <span>java(<a href="https://ask.csdn.net/java" target="_blank">16492</a>)</span> 
+       <span>数据库(<a href="https://ask.csdn.net/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593" target="_blank">5780</a>)</span> 
+       <span>c语言(<a href="https://ask.csdn.net/c%25E8%25AF%25AD%25E8%25A8%2580" target="_blank">5586</a>)</span> 
+      </div> 
+     </div> 
+    </div>
+<!-- 公告栏 -->
+    <div class="mod_about_teacher"> 
+     <h3>最新公告</h3> 
+     <div class="answer_list"> 
+      <ul> 
+       <li><span></span> <a href="http://bbs.csdn.net/topics/390623576" target="_blank">【新手提问导读】提问的艺术</a> </li>        
+      </ul> 
+     </div> 
+    </div> 
+
+
+
+
+<!-- 标签被用了多少次 -->
+    <div class="mod_answer_ing"> 
+     <div class="mod_answer"> 
+      <h3> 热门标签 <a href="https://ask.csdn.net/tags?type=category" class="apply_teacher" target="_blank">更多</a> </h3> 
+      <div class="mod_dl_box" style="padding:10px"> 
+       <div class="hot_tags_list"> 
+        <a target="_blank" href="https://ask.csdn.net/java">java<em>16492</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/android">android<em>12379</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/c++">c++<em>6331</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/%E6%95%B0%E6%8D%AE%E5%BA%93">数据库<em>5780</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/c%E8%AF%AD%E8%A8%80">c语言<em>5586</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/c%23">c#<em>5339</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/javascript">javascript<em>4726</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/%E6%95%B0%E6%8D%AE">数据<em>4543</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/%E5%9B%BE%E7%89%87">图片<em>4210</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/mysql">mysql<em>3425</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/sql">sql<em>3061</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/linux">linux<em>2977</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/python">python<em>2947</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/%E6%9C%8D%E5%8A%A1%E5%99%A8">服务器<em>2815</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/php">php<em>2692</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/html">html<em>2692</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/jsp">jsp<em>2649</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/each">each<em>2627</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/ios">ios<em>2582</em></a> 
+        <a target="_blank" href="https://ask.csdn.net/tomcat">tomcat<em>2290</em></a> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+
+     
+    <!-- 最新回答，ajax展示最新5条 -->
+    <div class="mod_answer_ing"> 
+     <div class="mod_answer"> 
+      <h3>最新回答</h3> 
+      <div id="scrolldiv" class="mod_dl_box"> 
+       <div class="scrollcontent"> 
+<!-- 第一条 -->
+        <dl class="info_box clearfix"> 
+         <dt> 
+          <a href="http://my.csdn.net/LRXmrlirixing" target="_blank"><img alt="2 lrxmrlirixing" class="img csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" title="LRXmrlirixing" username="LRXmrlirixing" /></a>
+         </dt> 
+         <dd class="mod_dl_dd_01"> 
+          <a class="user_name" href="http://my.csdn.net/LRXmrlirixing" target="_blank">LRXmrlirixing</a> 
+          <span>回答了：</span> 
+          <a class="mod_dl_a" href="https://ask.csdn.net/questions/699466" target="_blank">Springboot服务启动停止</a> 
+         </dd> 
+        </dl> 
+
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+
+    <!-- 光荣榜展示10位用户 -->
+    <div class="mod_glory_info"> 
+     <div class="glory_info"> 
+      <h3><a href="https://ask.csdn.net/scores" target="_blank">光荣榜</a></h3> 
+      <div class="info_box"> 
+       <div class="info_text">
+        以下同志在上周积极为他人答疑解惑。体现专业的技术素养，崇高的助人精神。特此表扬！
+       </div> 
+       <div class="info_info"> 
+        <div class="row"> 
+         <a href="http://my.csdn.net/caozhy" target="_blank"><img alt="caozhy" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="caozhy" /></a>
+         <a href="http://my.csdn.net/devmiao" target="_blank"><img alt="devmiao" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="devmiao" /></a>
+         <a href="http://my.csdn.net/showbo" target="_blank"><img alt="showbo" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="showbo" /></a>
+         <a href="http://my.csdn.net/dabocaiqq" target="_blank"><img alt="dabocaiqq" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="dabocaiqq" /></a>
+         <a href="http://my.csdn.net/zqbnqsdsmd" target="_blank"><img alt="zqbnqsdsmd" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="zqbnqsdsmd" /></a>
+         <a href="http://my.csdn.net/xingjianfengaa" target="_blank"><img alt="xingjianfengaa" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="xingjianfengaa" /></a>
+         <a href="http://my.csdn.net/phenix2009" target="_blank"><img alt="phenix2009" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="phenix2009" /></a>
+         <a href="http://my.csdn.net/zhaomin_g" target="_blank"><img alt="zhaomin_g" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="zhaomin_g" /></a>
+         <a href="http://my.csdn.net/oyljerry" target="_blank"><img alt="oyljerry" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="oyljerry" /></a>
+         <a href="http://my.csdn.net/zhangpan_soft" target="_blank"><img alt="zhangpan_soft" class="csdn-avatar50" src="http://localhost:8085/effect/images/favicon.png" username="zhangpan_soft" /></a>
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+   
+
+    <div class="fixed24">
+                <div class="persion_article">
+                    <div class="right_box footer_box csdn-tracking-statistics" data-mod="popu_475" data-dsm="post">
+                        <h3 class="feed_new_tit">
+                            <span class="line"></span>
+                            <span class="txt">联系我们</span>
+                        </h3>
+                        <div class="contact-box">
+                            <div class="img-box">
+                                <img src="http://localhost:8085/effect/images/kefu.jpg" alt="客服"></div>
+                            <div class="contact-info">
+                                <h4>请扫描二维码联系客服</h4>
+                                <p>
+                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.167 2h11.666C14.478 2 15 2.576 15 3.286v9.428c0 .71-.522 1.286-1.167 1.286H2.167C1.522 14 1 13.424 1 12.714V3.286C1 2.576 1.522 2 2.167 2zm-.164 3v1L8 10l6-4V5L8 9 2.003 5z" fill="#B3B3B3" fill-rule="evenodd"></path>
+                                    </svg>
+                                    <a href="mailto:2217106032@qq.com" >
+                                        <span class="txt">2217106032@qq.com</span>
+                                    </a>
+                                </p>
+                                <p>
+                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.999 13.355a.603.603 0 0 1-.609.645H1.61a.603.603 0 0 1-.609-.645l.139-1.47c.021-.355.25-.845.51-1.088 0 0 3.107-2.827 3.343-2.909 0 0-.029-2.46 1.2-2.46h3.635c1.112 0 1.202 2.469 1.202 2.469l3.32 2.9c.26.243.489.733.51 1.088l.139 1.47zM7 10a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2H7zm7.806-5.674c.105.135.191.384.19.554l-.003 2.811c0 .17-.133.26-.295.2l-2.462-.999a.478.478 0 0 1-.296-.416V5.445c0-2.07-7.878-2.225-7.878 0v1.21c0 .17-.135.352-.3.404L1.3 7.904c-.165.052-.3-.044-.3-.213V4.88c0-.17.086-.42.191-.554C1.191 4.326 2.131 2 8 2s6.807 2.326 6.807 2.326z" fill="#B3B3B3"></path>
+                                    </svg><span class="txt">&nbsp;173-1082-6945</span>
+                                </p>
+                                <p>
+                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.496 10.35c-.301-1.705-1.565-2.822-1.565-2.822.18-1.548-.481-1.823-.481-1.823C12.31.915 8.089.998 8 1 7.91.998 3.689.915 3.55 5.705c0 0-.662.275-.481 1.823 0 0-1.264 1.117-1.565 2.822 0 0-.16 2.882 1.445.353 0 0 .36.96 1.022 1.823 0 0-1.183.392-1.083 1.412 0 0-.04 1.136 2.527 1.058 0 0 1.805-.137 2.347-.882h.476c.542.745 2.347.882 2.347.882 2.566.078 2.527-1.058 2.527-1.058.1-1.02-1.083-1.412-1.083-1.412a7.986 7.986 0 0 0 1.022-1.823c1.604 2.529 1.445-.353 1.445-.353z" fill="#B3B3B3" fill-rule="evenodd"></path>
+                                    </svg>
+                                    <a href="javascript:void(0);" class="qqcustomer_s" >
+                                        <span class="txt">QQ客服</span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-gray">
+                            <div class="feed_copyright">
+                                <p>
+                                    <a class="right-dotte" href="#" >关于</a>
+                                    <a href="#"  class="right-dotte">招聘</a>
+                                    <a href="#"  class="right-dotte">广告服务</a>
+                                    <a href="#"  class="footer_baidu">网站地图</a>
+                                </p>
+                                <p class="fz12">©2018 EDC版权所有
+                                    <a href="#"  class="ml14">京ICP证090023**号</a>
+                                </p>
+                                <p class="fz12 fz12_baidu">
+                                    <a href="https://zn.baidu.com/cse/home/index" >
+                                        <svg width="13" height="14" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.392 7.013c1.014 1.454 2.753 2.8 2.753 2.8s1.303 1.017.47 2.98c-.833 1.962-3.876.942-3.876.942s-1.122-.36-2.424-.072c-1.303.291-2.426.181-2.426.181s-1.523.037-1.957-1.888c-.434-1.927 1.52-2.982 1.666-3.161.145-.183 1.159-.873 1.81-1.963.653-1.09 2.608-1.962 3.984.181zm1.23 5.706V9.346H8.64v2.534h-.937s-.3-.044-.356-.285V9.33l-.925.015v2.518s.042.627.925.855h2.277zm-3.685.013V7.951l-.896-.014v1.295H3.987s-1.054.086-1.422 1.28c-.129.798.114 1.266.156 1.368.043.099.383.682 1.238.852h1.978zm-2.433-1.45c-.087-.286.013-.613.057-.741.042-.128.228-.427.61-.54h.855v1.948h-.797s-.555-.029-.725-.668zm6.877-8.775c-.143.909-.865 2.108-1.99 1.962-1.121-.144-1.375-1.16-1.267-2.179C7.214 1.458 8.21.18 9.007.364c.796.18 1.52 1.235 1.374 2.143zm-4.09-.345c0 1.197-.68 2.164-1.52 2.164S3.25 3.36 3.25 2.162C3.25.967 3.932 0 4.77 0c.842 0 1.52.967 1.52 2.162zm4.854 2.09c1.34 0 1.701 1.309 1.701 1.743 0 .438.182 2.29-1.485 2.326-1.667.037-1.737-1.126-1.737-1.96 0-.874.179-2.11 1.52-2.11zm-7.93.581c.045.398.253 2.217-1.27 2.544C.427 7.704-.14 5.947.028 5.124c0 0 .18-1.78 1.412-1.89.98-.085 1.7.986 1.774 1.6z" fill="#999" fill-rule="evenodd"></path>
+                                        </svg>
+                                        <em>百度提供搜索支持</em>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="app-box" style="margin-top: 15px;">
+                            <div class="allow-info-box" style="font-size: 13px;">
+                                <p>
+                                    <a href="#" >
+                                        <span>经营性网站备案信息</span>
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href="http://www.cyberpolice.cn/" >
+                                        <span>网络110报警服务</span>
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href="http://www.12377.cn/" >
+                                        <span>中国互联网举报中心</span>
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href="http://www.bjjubao.org/" >
+                                        <span>北京互联网违法和不良信息举报中心</span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+  <link rel="stylesheet" type="text/css" href="http://localhost:8085/effect/css/pub_footer_1.0.3.css" />
+ </body>
+</html>
