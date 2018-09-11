@@ -1,5 +1,6 @@
 package com.blog.servicefeign.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.blog.servicefeign.pojo.AskExtends;
 import com.blog.servicefeign.pojo.BlogsExtends;
 import com.blog.servicefeign.service.BlogInterfaceController;
@@ -46,5 +47,20 @@ public class BlogController {
     @RequestMapping(value = "/guanggao")
     public String guanggaoPage(){
         return "guanggao";
+    }
+
+    @RequestMapping("/ask_money_list")
+    @ResponseBody
+    public List<AskExtends> selectAskMoneyObjects(){
+        List<AskExtends> askMoneyObjects = blogInterfaceController.selectAskMoneyObjects();
+        return askMoneyObjects;
+    }
+
+    @RequestMapping("/insertAsk")
+    @ResponseBody
+    public Boolean insertAsk(AskExtends askExtends){
+        //对象转json
+        String json = JSONObject.toJSONString(askExtends);
+        return blogInterfaceController.insertAsk(json);
     }
 }

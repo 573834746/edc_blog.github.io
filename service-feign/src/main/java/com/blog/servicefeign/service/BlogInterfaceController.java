@@ -2,7 +2,6 @@ package com.blog.servicefeign.service;
 
 import com.blog.servicefeign.pojo.AskExtends;
 import com.blog.servicefeign.pojo.BlogsExtends;
-import feign.Param;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +14,7 @@ import java.util.List;
  */
 @FeignClient(value = "order")
 public interface BlogInterfaceController {
+
     /**
      * 主页列表查询
      * @param alias
@@ -29,4 +29,16 @@ public interface BlogInterfaceController {
      */
     @RequestMapping(value = "xuran/ask_list",method = RequestMethod.POST)
     List<AskExtends> selectAskObjects(@RequestParam(value = "rules",defaultValue = "date") String rules);
+    /**
+     * 查询积分对照表
+     * @return
+     */
+    @RequestMapping(value = "xuran/ask_money_list",method = RequestMethod.POST)
+    List<AskExtends> selectAskMoneyObjects();
+
+    /**
+     * 添加悬赏问题
+     */
+    @RequestMapping(value = "xuran/insertAsk",method = RequestMethod.POST)
+    Boolean insertAsk(@RequestParam(value = "json") String json);
 }

@@ -829,7 +829,7 @@ a:hover {
 .main .persion_article .mod_relevant_data .relevant_data .mod_dl_box .info_box dt .hotBtn {
   width: 25px;
   height: 16px;
-  background: url(//csdnimg.cn/release/ask/assets/icon-relevant-44fffcae8e60d00d3b83c81d507b362a.png) no-repeat; }
+}
 
 .main .persion_article .mod_relevant_data .relevant_data .mod_dl_box .info_box dd {
   height: 18px;
@@ -978,7 +978,6 @@ a:hover {
   display: block;
   width: 15px;
   height: 14px;
-  background: url(//csdnimg.cn/release/ask/assets/shutoff_icon2-9b336bd0c925132c0529521036c7269c.png) center center no-repeat;
   float: right;
   margin-top: 24px; }
 
@@ -1120,7 +1119,6 @@ a:hover {
   position: absolute;
   width: 15px;
   height: 9px;
-  background: url(//csdnimg.cn/release/ask/assets/arrow-686b26766925813bb1e79fb500b382da.png);
   top: -8px;
   left: 65px;
   border: 0px; }
@@ -1185,7 +1183,6 @@ a:hover {
   position: absolute;
   width: 15px;
   height: 9px;
-  background: url(//csdnimg.cn/release/ask/assets/arrow-686b26766925813bb1e79fb500b382da.png);
   top: -8px;
   left: 65px;
   border: 0px; }
@@ -1214,7 +1211,6 @@ a:hover {
   width: 43px;
   height: 18px;
   line-height: 18px;
-  background: url(//csdnimg.cn/release/ask/assets/reward_bg-ac98bf141a86e1af92bf035e0c76a64d.png);
   text-align: center;
   color: #fff;
   font-size: 15px;
@@ -1307,7 +1303,6 @@ a:hover {
   line-height: 30px;
   margin-left: 13px;
   padding-left: 15px;
-  background: url(//csdnimg.cn/release/ask/assets/han_icon-c0c775772492a8866c5ab3b47f56bb09.png) left center no-repeat;
   color: #999;
   float: left; }
 

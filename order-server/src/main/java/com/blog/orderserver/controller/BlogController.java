@@ -1,15 +1,15 @@
 package com.blog.orderserver.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.blog.orderserver.pojo.AskExtends;
 import com.blog.orderserver.pojo.BlogsExtends;
 import com.blog.orderserver.pojo.BlogsVo;
 import com.blog.orderserver.service.BlogService;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,10 +31,28 @@ public class BlogController {
 
     @RequestMapping("/ask_list")
     public List<AskExtends> selectAskObjects(String rules){
-        System.out.println("======="+rules);
         List<AskExtends> askObjects = blogService.selectAskObjects(rules);
         return askObjects;
     }
 
+    @RequestMapping("/ask_money_list")
+    public List<AskExtends> selectAskMoneyObjects(){
+        List<AskExtends> askMoneyObjects = blogService.selectAskMoneyObjects();
+        return askMoneyObjects;
+    }
+
+    @PostMapping("/insertAsk")
+    public Boolean insertAsk(String json){
+        Boolean flag = true;
+        //json转对象
+        AskExtends askExtends = JSONObject.parseObject(json, AskExtends.class);
+        try {
+            blogService.insertAsk(askExtends);
+        } catch (Exception e) {
+            flag = false;
+            e.printStackTrace();
+        }
+        return flag;
+    }
 
 }

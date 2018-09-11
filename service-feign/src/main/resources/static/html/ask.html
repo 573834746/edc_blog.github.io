@@ -13,11 +13,72 @@
 
   <link href="http://localhost:8085/effect/css/bootstrap.min.css" media="all" rel="stylesheet" />
   <link href="http://localhost:8085/effect/css/avatar.css" media="all" rel="stylesheet" />
+  <link rel="stylesheet" href="http://localhost:8085/effect/css/style.css">
 
   <link href="http://localhost:8085/effect/css/content_toolbar.css" media="all" rel="stylesheet" />
   <script src="http://localhost:8085/effect/js/iconfont.js"></script>
      <script src="http://localhost:8085/effect/js/jquery-1.9.1.min.js"></script>
      <script>
+
+         function list_info(){
+             $.post("http://localhost:8085/xuran/ask_list",{"rules":"answer_num"},function (data) {
+                 $("#album_detail_wrap").text("");
+                 $("#album_detail_wrap").append("<div class=\"questions_tab_con\"> \n" +
+                     "      <div class=\"sort\"> \n" +
+                     "       <div class=\"sort_list_label\">\n" +
+                     "         按时间排序 \n" +
+                     "        <i class=\"icon-caret-down\"></i> \n" +
+                     "       </div> \n" +
+                     "       <ul> \n" +
+                     "        <a href=\"http://localhost:8085/xuran/ask\"> <li>时间</li> </a>\n" +
+                     "        <a onclick=\"list_info()\"> <li>回答数</li> </a>\n" +
+                     "        <li class=\"arrow\"> </li> \n" +
+                     "       </ul> \n" +
+                     "      </div> \n" +
+                     "     </div> ");
+
+                 for(var i = 0; i<data.length; i++){
+                     var split = data[i].ask_types.split(",");
+
+                     $("#album_detail_wrap").append("<div class='questions_detail_con'>"
+                         +"<div class='q_time'>"
+                         +"<span>"+data[i].date+" 来自 </span>"
+                         +"<a class='user_name' href='"+data[i].home_url+"' target='_blank'>"+data[i].username+"</a>"
+                         +"<b>悬赏<b style='color: red;'>"+data[i].ask_money+"积分</b></b>"
+                         +"</div>"
+                         +"<dl>"
+                         +"<dt>"
+                         +"<a href='#' target='_blank'>"+data[i].title+"</a>"
+                         +" </dt>"
+                         +" <dd>"
+                         +""+data[i].content+""
+                         +" </dd>"
+                         +" </dl>"
+                         +" <div class='tags'>"
+                         +" <div class='tags"+i+"'></div>"
+                         +" </div>"
+                         +" <a class='answer_num' target='_blank' href='#'> <span>"+data[i].answer_num+"</span> <p>回答</p> </a>"
+                         +" </div>"
+                         +" <div class='share_bar_con'>"
+                         +" <div id='question_699526_vote'>"
+                         +" <em class='focusit'>同问 "+data[i].same_num+"</em>"
+                         +" </div>"
+                         +" <div id='question_699526'>"
+                         +" <span class='interval'>|</span>"
+                         +" <em class='collection'>收藏"+data[i].collect_num+"</em>"
+                         +" </div>"
+                         +" <span class='interval'>|</span>"
+                         +"  <em class='browse'>浏览"+data[i].browse_num+"</em>"
+                         +"  </div>"
+                     );
+
+                     for(var j=0; j<split.length ; j++){
+                         $(".tags"+i+"").append(" <a href='#' target='_blank'>"+split[j]+"</a>");
+                     }
+                 }
+             },"json");
+         };
+
          $(function () {
              var url = document.URL;
              var split = url.split("/");
@@ -86,13 +147,20 @@
                     }
                 }
             },"json");
+
+            $.post("http://localhost:8085/xuran/ask_money_list",{},function (data) {
+                for(var i=0 ; i<data.length ; i++){
+                    $("#asktidArray").append("<option value='"+data[i].amid+"'>"+data[i].ask_money+"</option>");
+                }
+            },"json");
         });
      </script>
 
 
+
  </head> 
  <body id="questions-index" style="">
-  
+
 
   <div id="csdn-toolbar" class="csdn-toolbar tb_disnone  csdn-toolbar-skin-black ">
     <div class="container row center-block ">
@@ -273,9 +341,9 @@
      <a class="" href="#">已解决</a> 
      <a class="" href="#">标签</a>
      <a href="#" target="_blank">获取积分</a>
-     <a href="#" class="ask_tips_box" id="float_ask_img1">我要提问</a>
-    </div> 
-    <div class="search-download"> 
+     <input type="button" onclick="start_tc()" style="color: #10cab9;border: none;background-color: rgba(0,0,0,0);" value="我要提问">
+    </div>
+    <div class="search-download">
      <a class="help" href="https://ask.csdn.net/help" target="_blank"> <i class="fa fa-question-circle"></i>问答帮助 </a> 
     </div> 
    </div> 
@@ -295,8 +363,8 @@
         <i class="icon-caret-down"></i> 
        </div> 
        <ul> 
-        <a href="http://localhost:8085/xuran/ask_list?rules=date"> <li>时间</li> </a>
-        <a href="http://localhost:8085/xuran/ask_list?rules=answer_num"> <li>回答数</li> </a>
+        <a href="http://localhost:8085/xuran/ask"> <li>时间</li> </a>
+        <a onclick="list_info()"> <li>回答数</li> </a>
         <li class="arrow"> </li> 
        </ul> 
       </div> 
@@ -568,5 +636,104 @@
         </div>
   </div>
   <link rel="stylesheet" type="text/css" href="http://localhost:8085/effect/css/pub_footer_1.0.3.css" />
+
+<!--弹出层-->
+  <div id="gray"></div>
+  <div class="popup" id="popup">
+      <div class="top_nav" id='top_nav'>
+          <div align="center">
+              <span style="margin-left: -35px;">提问</span>
+              <a class="guanbi"></a>
+          </div>
+      </div>
+      <div style="width: 100%">
+          <div class="tc_login" style="width:530px;">
+
+              <form>
+                  <div align="center">
+                      <input type="text" name="title" required="required" placeholder="问题标题" style="width: 95%;margin-top: 6px;margin-bottom: 6px;">
+                      <textarea name="content" required="required" style="width: 95%;margin-top: 6px;margin-bottom: 6px;height: 250px;"></textarea>
+                      <input type="text" name="ask_types" required="required" placeholder="问题分类，以'空格'分割" style="width: 95%;margin-top: 6px;margin-bottom: 6px;">
+                  </div>
+                  <span style="margin-left: 10px;">悬赏</span>
+                  <select id="asktidArray" name="amid">
+
+                  </select>
+                  <input type="button" onclick="insertAsk()" style="background-color: #10cab9;color: white;margin-left: 30%;width: 60px;" value="发布">
+                  <input type="hidden" name="uid" value="1">
+              </form>
+
+          </div>
+      </div>
+  </div>
+
+
+  <script>
+      function insertAsk() {
+          $.post(
+              "http://localhost:8085/xuran/insertAsk",
+              $("form").serialize(),
+              function (data) {
+                  if(data){
+                      alert("悬赏发布成功");
+                      location.href="http://localhost:8085/xuran/ask";
+                  }else {
+                      alert("悬赏发布失败");
+                  }
+              },"json"
+          );
+      };
+  </script>
+
+  <script>
+      function start_tc() {
+          $("#gray").show();
+          $("#popup").show();//查找ID为popup的DIV show()显示#gray
+          tc_center();
+      };
+      //点击关闭按钮
+      $("a.guanbi").click(function(){
+          $("#gray").hide();
+          $("#popup").hide();//查找ID为popup的DIV hide()隐藏
+      })
+
+      //窗口水平居中
+      $(window).resize(function(){
+          tc_center();
+      });
+
+      function tc_center(){
+          var _top=($(window).height()-$(".popup").height())/2;
+          var _left=($(window).width()-$(".popup").width())/2;
+
+          $(".popup").css({top:_top,left:_left});
+      }
+  </script>
+  <script type="text/javascript">
+      $(document).ready(function(){
+
+          $(".top_nav").mousedown(function(e){
+              $(this).css("cursor","move");//改变鼠标指针的形状
+              var offset = $(this).offset();//DIV在页面的位置
+              var x = e.pageX - offset.left;//获得鼠标指针离DIV元素左边界的距离
+              var y = e.pageY - offset.top;//获得鼠标指针离DIV元素上边界的距离
+              $(document).bind("mousemove",function(ev){ //绑定鼠标的移动事件，因为光标在DIV元素外面也要有效果，所以要用doucment的事件，而不用DIV元素的事件
+
+                  $(".popup").stop();//加上这个之后
+
+                  var _x = ev.pageX - x;//获得X轴方向移动的值
+                  var _y = ev.pageY - y;//获得Y轴方向移动的值
+
+                  $(".popup").animate({left:_x+"px",top:_y+"px"},10);
+              });
+
+          });
+
+          $(document).mouseup(function() {
+              $(".popup").css("cursor","default");
+              $(this).unbind("mousemove");
+          });
+      })
+  </script>
  </body>
 </html>

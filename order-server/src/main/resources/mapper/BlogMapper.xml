@@ -60,4 +60,15 @@
 		ORDER BY
 		${rules} desc
 	</select>
+
+	<insert id="insertAsk" parameterType="com.blog.orderserver.pojo.AskExtends" useGeneratedKeys="true" keyProperty="aid">
+		insert into ask(title,`date`,content,amid,uid) values(#{title},#{date},#{content},#{amid},#{uid})
+	</insert>
+
+	<insert id="insertAsk_type" parameterType="com.blog.orderserver.pojo.AskExtends">
+		insert into ask_type(ask_type,uid,aid) values
+		<foreach collection="ask_typesArray" item="ask_type" separator=",">
+			(#{ask_type},#{uid},#{aid})
+		</foreach>
+	</insert>
 </mapper>

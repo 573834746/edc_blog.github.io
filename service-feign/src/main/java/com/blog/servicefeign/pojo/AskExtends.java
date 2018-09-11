@@ -1,6 +1,10 @@
 package com.blog.servicefeign.pojo;
 
-public class AskExtends {
+import java.io.Serializable;
+
+public class AskExtends implements Serializable {
+
+    static final long serialVersionUID = 42L;
 
     private Integer aid;
     private String title;
@@ -13,12 +17,30 @@ public class AskExtends {
     private Integer accept_status;
     private String asktids;
     private String ask_types;
+    private String[] ask_typesArray;
     private Integer amid;
     private Integer uid;
     private Integer ask_money;
     private String username;
     private String home_url;
     private String photo_url;
+    private Integer[] asktidArray;
+
+    public String[] getAsk_typesArray() {
+        return ask_typesArray;
+    }
+
+    public void setAsk_typesArray(String[] ask_typesArray) {
+        this.ask_typesArray = ask_typesArray;
+    }
+
+    public Integer[] getAsktidArray() {
+        return asktidArray;
+    }
+
+    public void setAsktidArray(Integer[] asktidArray) {
+        this.asktidArray = asktidArray;
+    }
 
     public Integer getAsk_money() {
         return ask_money;

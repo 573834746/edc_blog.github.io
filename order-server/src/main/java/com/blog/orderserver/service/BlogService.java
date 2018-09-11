@@ -19,4 +19,14 @@ public interface BlogService {
      * @return
      */
     List<AskExtends> selectAskObjects(String rules);
+    /**
+     * 查询积分对照表
+     * @return
+     */
+    List<AskExtends> selectAskMoneyObjects();
+
+    /**
+     * 添加悬赏问题
+     */
+    void insertAsk(AskExtends askExtends) throws Exception;
 }
