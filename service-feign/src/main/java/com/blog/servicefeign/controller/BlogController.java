@@ -5,11 +5,8 @@ import com.blog.servicefeign.pojo.AskExtends;
 import com.blog.servicefeign.pojo.AskVo;
 import com.blog.servicefeign.pojo.BlogsExtends;
 import com.blog.servicefeign.service.BlogInterfaceController;
-import feign.Headers;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;

@@ -31,13 +31,11 @@ public class UrlFilter implements Filter {
 
         if(type_path.contains("/"+realpath)){
             if(path.indexOf("index")>-1){
-                System.out.println(realpath+"@@@@@@@@@@@@@@@@@@@@@@@");
                 path=path.replace("/"+realpath,"");
             }
             httpRequest.getRequestDispatcher(path).forward(request,response);
             return;
         }else {
-            System.out.println(realpath+"=======================");
             chain.doFilter(request,response);
         }
     }

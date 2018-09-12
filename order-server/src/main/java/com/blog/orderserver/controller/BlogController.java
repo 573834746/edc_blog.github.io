@@ -34,7 +34,6 @@ public class BlogController {
     @RequestMapping("/ask_list")
     public List<AskExtends> selectAskObjects(@RequestBody AskVo askVo){
         //AskVo askVo = JSONObject.parseObject(json, AskVo.class);
-        System.out.println(askVo.getRules()+"==================================");
         List<AskExtends> askObjects = blogService.selectAskObjects(askVo);
         return askObjects;
     }
