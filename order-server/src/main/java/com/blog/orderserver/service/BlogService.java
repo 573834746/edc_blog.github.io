@@ -1,6 +1,7 @@
 package com.blog.orderserver.service;
 
 import com.blog.orderserver.pojo.AskExtends;
+import com.blog.orderserver.pojo.AskVo;
 import com.blog.orderserver.pojo.BlogsExtends;
 import com.blog.orderserver.pojo.BlogsVo;
 
@@ -15,10 +16,10 @@ public interface BlogService {
     List<BlogsExtends> selectObjects(BlogsVo blogsVo);
     /**
      * 悬赏列表查询
-     * @param rules
+     * @param askVo
      * @return
      */
-    List<AskExtends> selectAskObjects(String rules);
+    List<AskExtends> selectAskObjects(AskVo askVo);
     /**
      * 查询积分对照表
      * @return

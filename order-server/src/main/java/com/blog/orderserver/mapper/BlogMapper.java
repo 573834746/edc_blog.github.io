@@ -1,6 +1,7 @@
 package com.blog.orderserver.mapper;
 
 import com.blog.orderserver.pojo.AskExtends;
+import com.blog.orderserver.pojo.AskVo;
 import com.blog.orderserver.pojo.BlogsExtends;
 import com.blog.orderserver.pojo.BlogsVo;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,7 +24,7 @@ public interface BlogMapper {
      * @param rules
      * @return
      */
-    List<AskExtends> selectAskObjects(@Param("rules") String rules);
+    List<AskExtends> selectAskObjects(AskVo askVo);
 
     /**
      * 查询积分对照表

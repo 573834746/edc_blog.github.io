@@ -2,6 +2,7 @@ package com.blog.orderserver.service.impl;
 
 import com.blog.orderserver.mapper.BlogMapper;
 import com.blog.orderserver.pojo.AskExtends;
+import com.blog.orderserver.pojo.AskVo;
 import com.blog.orderserver.pojo.BlogsExtends;
 import com.blog.orderserver.pojo.BlogsVo;
 import com.blog.orderserver.service.BlogService;
@@ -32,8 +33,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<AskExtends> selectAskObjects(String rules) {
-        return blogMapper.selectAskObjects(rules);
+    public List<AskExtends> selectAskObjects(AskVo askVo) {
+        return blogMapper.selectAskObjects(askVo);
     }
 
     @Override

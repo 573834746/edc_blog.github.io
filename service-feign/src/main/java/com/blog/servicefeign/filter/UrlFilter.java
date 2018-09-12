@@ -21,7 +21,6 @@ public class UrlFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         HttpServletResponseWrapper httpResponse = new HttpServletResponseWrapper((HttpServletResponse) response);
-        //System.out.println(httpRequest.getRequestURI());
 
         String path=httpRequest.getRequestURI();
 
@@ -31,11 +30,14 @@ public class UrlFilter implements Filter {
         String realpath = split[split.length-1];
 
         if(type_path.contains("/"+realpath)){
-            System.out.print(realpath);
-            path=path.replace("/"+realpath,"");
+            if(path.indexOf("index")>-1){
+                System.out.println(realpath+"@@@@@@@@@@@@@@@@@@@@@@@");
+                path=path.replace("/"+realpath,"");
+            }
             httpRequest.getRequestDispatcher(path).forward(request,response);
             return;
         }else {
+            System.out.println(realpath+"=======================");
             chain.doFilter(request,response);
         }
     }

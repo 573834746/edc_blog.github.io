@@ -2,9 +2,12 @@ package com.blog.servicefeign.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.blog.servicefeign.pojo.AskExtends;
+import com.blog.servicefeign.pojo.AskVo;
 import com.blog.servicefeign.pojo.BlogsExtends;
 import com.blog.servicefeign.service.BlogInterfaceController;
+import feign.Headers;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,8 +34,8 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/ask_list")
-    public @ResponseBody List<AskExtends> selectAskObjects(@RequestParam(defaultValue = "date",value = "rules") String rules){
-        return blogInterfaceController.selectAskObjects(rules);
+    public @ResponseBody List<AskExtends> selectAskObjects(AskVo askVo){
+        return blogInterfaceController.selectAskObjects(askVo);
     }
 
     @RequestMapping(value = "/index")
@@ -42,11 +45,6 @@ public class BlogController {
     @RequestMapping(value = "/ask")
     public String askPage(){
         return "ask";
-    }
-
-    @RequestMapping(value = "/guanggao")
-    public String guanggaoPage(){
-        return "guanggao";
     }
 
     @RequestMapping("/ask_money_list")

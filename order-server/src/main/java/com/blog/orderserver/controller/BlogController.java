@@ -2,10 +2,12 @@ package com.blog.orderserver.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.blog.orderserver.pojo.AskExtends;
+import com.blog.orderserver.pojo.AskVo;
 import com.blog.orderserver.pojo.BlogsExtends;
 import com.blog.orderserver.pojo.BlogsVo;
 import com.blog.orderserver.service.BlogService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,8 +32,10 @@ public class BlogController {
     }
 
     @RequestMapping("/ask_list")
-    public List<AskExtends> selectAskObjects(String rules){
-        List<AskExtends> askObjects = blogService.selectAskObjects(rules);
+    public List<AskExtends> selectAskObjects(@RequestBody AskVo askVo){
+        //AskVo askVo = JSONObject.parseObject(json, AskVo.class);
+        System.out.println(askVo.getRules()+"==================================");
+        List<AskExtends> askObjects = blogService.selectAskObjects(askVo);
         return askObjects;
     }
 

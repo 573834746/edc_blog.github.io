@@ -1,8 +1,11 @@
 package com.blog.servicefeign.service;
 
 import com.blog.servicefeign.pojo.AskExtends;
+import com.blog.servicefeign.pojo.AskVo;
 import com.blog.servicefeign.pojo.BlogsExtends;
+import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +30,8 @@ public interface BlogInterfaceController {
      * @param rules
      * @return
      */
-    @RequestMapping(value = "xuran/ask_list",method = RequestMethod.POST)
-    List<AskExtends> selectAskObjects(@RequestParam(value = "rules",defaultValue = "date") String rules);
+    @RequestMapping(value = "xuran/ask_list",method = RequestMethod.POST,consumes = "application/json")
+    List<AskExtends> selectAskObjects(@RequestBody AskVo askVo);
     /**
      * 查询积分对照表
      * @return

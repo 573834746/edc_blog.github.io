@@ -20,18 +20,19 @@
      <script src="http://localhost:8085/effect/js/jquery-1.9.1.min.js"></script>
      <script>
 
-         function list_info(){
-             $.post("http://localhost:8085/xuran/ask_list",{"rules":"answer_num"},function (data) {
+         function list_info(rules,answer_num,accept_status){
+
+             $.post("http://localhost:8085/xuran/ask_list",{"rules":rules,"answer_num":answer_num,"accept_status":accept_status},function (data) {
                  $("#album_detail_wrap").text("");
                  $("#album_detail_wrap").append("<div class=\"questions_tab_con\"> \n" +
                      "      <div class=\"sort\"> \n" +
                      "       <div class=\"sort_list_label\">\n" +
-                     "         按时间排序 \n" +
+                     "         排序 \n" +
                      "        <i class=\"icon-caret-down\"></i> \n" +
                      "       </div> \n" +
                      "       <ul> \n" +
-                     "        <a href=\"http://localhost:8085/xuran/ask\"> <li>时间</li> </a>\n" +
-                     "        <a onclick=\"list_info()\"> <li>回答数</li> </a>\n" +
+                     "        <a onclick=\"list_info('date',-1,-1)\"> <li>时间</li> </a>\n" +
+                     "        <a onclick=\"list_info('answer_num',-1,-1)\"> <li>回答数</li> </a>\n" +
                      "        <li class=\"arrow\"> </li> \n" +
                      "       </ul> \n" +
                      "      </div> \n" +
@@ -96,17 +97,8 @@
              if(!status)
              $("#nav-left-menu li a").eq(0).addClass("active");
 
-             $(".nav-bar a").each(function () {
-                 if($(this).attr("href").indexOf(real_url)>-1){
-                     $(this).addClass("current");
-                 }else{
-                     $(this).removeClass("current");
-                 }
-             });
-             if(!status)
-             $(".nav-bar a").eq(0).addClass("current");
 
-            $.post("http://localhost:8085/xuran/ask_list",{},function (data) {
+            $.post("http://localhost:8085/xuran/ask_list",{"rules":"date","answer_num":-1,"accept_status":-1},function (data) {
                 for(var i = 0; i<data.length; i++){
                     var split = data[i].ask_types.split(",");
 
@@ -333,13 +325,12 @@
 </style> 
 
 
-  <div class="news-nav"> 
-   <div class="container clearfix"> 
+  <div class="news-nav">
+   <div class="container clearfix">
     <div class="nav-bar"> 
      <a class="" href="http://localhost:8085/xuran/ask">问答首页</a>
-     <a class="" href="">待回答</a>
-     <a class="" href="#">已解决</a> 
-     <a class="" href="#">标签</a>
+     <a class="" onclick="list_info('date',0,-1)">待回答</a>
+     <a class="" onclick="list_info('date',-1,1)">已解决</a>
      <a href="#" target="_blank">获取积分</a>
      <input type="button" onclick="start_tc()" style="color: #10cab9;border: none;background-color: rgba(0,0,0,0);" value="我要提问">
     </div>
@@ -359,12 +350,12 @@
      <div class="questions_tab_con"> 
       <div class="sort"> 
        <div class="sort_list_label">
-         按时间排序 
+         排序
         <i class="icon-caret-down"></i> 
        </div> 
        <ul> 
-        <a href="http://localhost:8085/xuran/ask"> <li>时间</li> </a>
-        <a onclick="list_info()"> <li>回答数</li> </a>
+        <a onclick="list_info('date',-1,-1)"> <li>时间</li> </a>
+        <a onclick="list_info('answer_num',-1,-1)"> <li>回答数</li> </a>
         <li class="arrow"> </li> 
        </ul> 
       </div> 
