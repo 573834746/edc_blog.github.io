@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.orderserver02.mapper.BlogMapper" >
+
+    <select id="selectObjects" resultType="com.blog.orderserver02.pojo.BlogsExtends">
+       	SELECT
+		u.username,
+		u.`name`,
+		u.home_url,
+		u.photo_url,
+		b.blog_url,
+		b.title,
+		b.content,
+		b.published_date,
+		b.read_num,
+		b.comment_num,
+		bt.*
+		FROM
+		blogs b
+		LEFT JOIN users u ON b.uid = u.uid
+		LEFT JOIN blog_type bt ON bt.btid = b.btid
+		WHERE b.bid>=(
+		SELECT floor(RAND()*((
+		SELECT MAX(bid) FROM blogs)-(
+		SELECT MIN(bid) FROM blogs))+(
+		SELECT MIN(bid) FROM blogs)))
+		<if test="blogsVo!=null">
+			<if test="blogsVo.alias!=null and blogsVo.alias!='' and blogsVo.alias!='index' and blogsVo.alias!='new'">
+				and bt.alias=#{blogsVo.alias}
+			</if>
+		</if>
+		ORDER BY
+		<if test="blogsVo.alias!='new'">
+			b.bid
+		</if>
+		<if test="blogsVo.alias!=null and blogsVo.alias!='' and blogsVo.alias=='new'">
+			b.published_date desc
+		</if>
+
+		LIMIT 50;
+    </select>
+
+	<select id="selectAskObjects" parameterType="com.blog.orderserver02.pojo.AskVo" resultType="com.blog.orderserver02.pojo.AskExtends">
+		SELECT
+		u.username,
+		u.home_url,
+		u.photo_url,
+		a.*,
+		am.ask_money,
+		GROUP_CONCAT( askt.asktid ) asktids,
+		GROUP_CONCAT( askt.ask_type ) ask_types
+		FROM
+		ask a
+		LEFT JOIN ask_money am ON a.amid = am.amid
+		LEFT JOIN users u ON u.uid = a.uid
+		LEFT JOIN ask_type askt ON askt.aid = a.aid
+		AND askt.uid = u.uid
+		<where>
+		  	<if test="answer_num!=-1 and answer_num==0">
+	  			and a.answer_num=#{answer_num}
+  			</if>
+  			<if test="accept_status!=-1 and accept_status==1">
+  				and a.accept_status=#{accept_status}
+  			</if>
+  		</where>
+		GROUP BY
+		a.aid
+		ORDER BY
+		${rules} desc
+	</select>
+
+	<insert id="insertAsk" parameterType="com.blog.orderserver02.pojo.AskExtends" useGeneratedKeys="true" keyProperty="aid">
+		insert into ask(title,`date`,content,amid,uid) values(#{title},#{date},#{content},#{amid},#{uid})
+	</insert>
+
+	<insert id="insertAsk_type" parameterType="com.blog.orderserver02.pojo.AskExtends">
+		insert into ask_type(ask_type,uid,aid) values
+		<foreach collection="ask_typesArray" item="ask_type" separator=",">
+			(#{ask_type},#{uid},#{aid})
+		</foreach>
+	</insert>
+</mapper>
