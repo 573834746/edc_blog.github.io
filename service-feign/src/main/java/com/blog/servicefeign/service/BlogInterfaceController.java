@@ -44,4 +44,7 @@ public interface BlogInterfaceController {
      */
     @RequestMapping(value = "xuran/insertAsk",method = RequestMethod.POST)
     Boolean insertAsk(@RequestParam(value = "json") String json);
+
+    @RequestMapping(value = "/hi")
+    String hello();
 }

@@ -25,6 +25,11 @@ public class BlogController {
     @Resource
     BlogInterfaceController blogInterfaceController;
 
+    @RequestMapping("/hi")
+    public String hello(){
+        return blogInterfaceController.hello();
+    }
+
     @RequestMapping(value = "/list")
     public @ResponseBody List<BlogsExtends> selectObjects(String alias){
         return blogInterfaceController.selectObjects(alias);
