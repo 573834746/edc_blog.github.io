@@ -35,7 +35,7 @@
             if(!status)
             $("#nav-left-menu li a").eq(0).addClass("active");
 
-            $.post("/xuran/list",{"alias":realpath},function (data) {
+            $.post("http://localhost:8085/xuran/list",{"alias":realpath},function (data) {
                 for (var i = 0 ; i<data.length ; i++){
                     $("#feedlist_id").append("<li class='clearfix' data-type='blog' data-id='"+data[i].data_id+"' shown-time='1536152309'>"
                             +"<div class='list_con'>"

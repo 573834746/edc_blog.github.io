@@ -1,7 +1,5 @@
 /*-----------------------------------------------------------------------------
 * @Description: 验证码 
-* @author: 	xuyihong(xuyihong@163.com)
-* @date		2015.09.24
 * ---------------------------------------------------------------------------*/
 function showCheck(a){/* 显示验证码图片 */
 	var c = document.getElementById("myCanvas");
@@ -33,13 +31,13 @@ function validate () {
     var codeToUp=code.toUpperCase();
     if(inputCode.length <=0) {
       document.getElementById("J_codetext").value="";
-      document.getElementById("J_codetext").setAttribute("placeholder","验证码未输入");
+      document.getElementById("J_codetext").setAttribute("placeholder","验证码未被输入");
       createCode();
       return false;
     }
     else if(inputCode != codeToUp ){
       document.getElementById("J_codetext").value="";
-      document.getElementById("J_codetext").setAttribute("placeholder","验证码有误");
+      document.getElementById("J_codetext").setAttribute("placeholder","验证码填写错误");
       createCode();
       return false;
     }
@@ -63,10 +61,3 @@ $(document).ready(function(){
     $(".J_before").show(200);
   });
 })
-//为确定按钮添加回车事件
-// document.onkeydown=function(event){
-//     var e = event || window.event || arguments.callee.caller.arguments[0];
-//     if(e && e.keyCode==13){ // enter 键
-//         validate();
-//     }
-// }; 
