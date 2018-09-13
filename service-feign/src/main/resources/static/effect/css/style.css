@@ -29,7 +29,6 @@ a{text-decoration:none;}
 	position:relative;
 	cursor:move;
 }
-.popup .top_nav i{width:35px;height:35px;background:url(../images/sucai_tubiao.png) -314px -5px;position:absolute;top:6px;left:8px;display:block; }
 .popup .top_nav span{font:18px/18px 'microsoft yahei';color:#707070;display:block;position:absolute;top:13px;left:50px;}
 
 .popup .top_nav a.guanbi { background:url(../images/popup_guanbi.png) repeat 0px 0px; width:35px; height: 35px; display: block; position:absolute;top:8px;right:10px;cursor:pointer;}

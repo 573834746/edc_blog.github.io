@@ -37,7 +37,7 @@ public class BlogController {
 
     @RequestMapping(value = "/index")
     public String homePage(){
-        return "home";
+        return "index";
     }
     @RequestMapping(value = "/ask")
     public String askPage(){

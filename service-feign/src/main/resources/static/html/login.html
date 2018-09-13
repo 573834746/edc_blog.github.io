@@ -1,0 +1,93 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title>帐号登录</title>
+
+  <!--EDC博客图标-->
+  <link href="http://localhost:8085/effect/images/favicon.png" rel="SHORTCUT ICON">
+
+  <link href="http://localhost:8085/effect/css/bootstrap.min.css" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="http://localhost:8085/effect/css/login.css"/>
+  <link rel="stylesheet" href="http://localhost:8085/effect/css/verification_details.css">
+
+  <script src="http://localhost:8085/effect/js/jquery-1.9.1.min.js"></script>
+  <script src="http://localhost:8085/effect/js/verification_code.js"></script>
+
+ </head> 
+ <body>
+
+  <div class="main"> 
+   <div class="container container-custom"> 
+    <div class="row wrap-login"> 
+
+     <div class="login-banner col-sm-6 col-md-7 col-lg-7 hidden-xs"> 
+      <div id="_huisz7uv2jk">
+       <img src="http://localhost:8085/effect/images/0f000QEGnV3WqOjq4W2fZs.jpg" width="540" height="460" align="center,center">
+      </div> 
+     </div> 
+     
+     <div class="login-user col-xs-12 col-sm-6 col-md-5 col-lg-5 js_login_user"> 
+      <div class="login-part"> 
+       <h3>帐号登录</h3> 
+       <!-- 整个form表单开始 -->
+       <div class="user-info">
+        <div class="user-pass">
+         <form>
+          <input id="username" name="username"  placeholder="输入用户名/邮箱/手机号" class="user-name" type="text" value="" /> 
+          <input id="password" name="password"  placeholder="输入密码" class="pass-word" type="password" value="" autocomplete="off" />
+          <!--验证码位置-->
+          <div class="checkcode">
+           <input type="text" id="J_codetext" placeholder="输入验证码" maxlength="4">
+           <canvas class="J_codeimg" id="myCanvas" onclick="createCode()"/>
+          </div>
+
+          <!-- 验证信息有误时显示 -->
+          <div class="error-mess" style="display:none;"> 
+           <span id="error-message">输入信息有误</span> 
+          </div> 
+          <div class="row forget-password"> 
+           <span class="col-xs-6 col-sm-6 col-md-6 col-lg-6"> 
+            <input type="checkbox" name="rememberMe" id="rememberMe" value="true" checked="checked" class="auto-login"/> 
+            <label for="rememberMe">记住账号密码</label> 
+          </span> 
+           <span class="col-xs-6 col-sm-6 col-md-6 col-lg-6 forget tracking-ad" data-mod="popu_26"> 
+            <a href="http://localhost/xuran/html/forget.html" target="_blank">忘记密码</a> 
+          </span> 
+          </div> 
+          <input class="logging" value="登 录" type="button" onClick="submit()"/>
+         </form> 
+        </div>
+       </div>
+
+      
+        <div class="line"></div> 
+       <div class="third-part tracking-ad">
+        <span style="width: 257px;">第三方帐号登录</span> 
+        <span><font color="red"> </font></span> 
+        <a href="#">暂不支持第三方账号服务</a> 
+        
+        <div class="register-now">
+         <span>小主儿还没有EDC帐号？</span> 
+         <span class="register tracking-ad" data-mod="popu_28"> 
+          <a href="#" target="_blank">马上注册</a> 
+        </span> 
+       </div> 
+      </div> 
+     </div> 
+    </div>
+
+   </div> 
+  </div> 
+  </div>
+ </body>
+<script>
+    $(function () {
+        createCode();
+    });
+    function submit(){
+        var flag = validate();
+        alert(flag);
+    };
+</script>
+
+</html>
