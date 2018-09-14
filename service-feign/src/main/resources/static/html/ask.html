@@ -22,7 +22,7 @@
 
          function list_info(rules,answer_num,accept_status){
 
-             $.post("http://localhost:8085/xuran/ask_list",{"rules":rules,"answer_num":answer_num,"accept_status":accept_status},function (data) {
+             $.post("/api-a/xuran/ask_list",{"rules":rules,"answer_num":answer_num,"accept_status":accept_status},function (data) {
                  $("#album_detail_wrap").text("");
                  $("#album_detail_wrap").append("<div class=\"questions_tab_con\"> \n" +
                      "      <div class=\"sort\"> \n" +
@@ -98,7 +98,7 @@
              $("#nav-left-menu li a").eq(0).addClass("active");
 
 
-            $.post("http://localhost:8085/xuran/ask_list",{"rules":"date","answer_num":-1,"accept_status":-1},function (data) {
+            $.post("/api-a/xuran/ask_list",{"rules":"date","answer_num":-1,"accept_status":-1},function (data) {
                 for(var i = 0; i<data.length; i++){
                     var split = data[i].ask_types.split(",");
 
@@ -140,7 +140,7 @@
                 }
             },"json");
 
-            $.post("http://localhost:8085/xuran/ask_money_list",{},function (data) {
+            $.post("/api-a/xuran/ask_money_list",{},function (data) {
                 for(var i=0 ; i<data.length ; i++){
                     $("#asktidArray").append("<option value='"+data[i].amid+"'>"+data[i].ask_money+"</option>");
                 }
@@ -160,7 +160,7 @@
             <li>
                 <embed src="http://localhost:8085/effect/svg/edn_logo.svg" type="image/svg+xml" />
             </li>
-            <li><a href="http://localhost:8085/xuran/index" class="" title="EDC首页" >首页</a></li>
+            <li><a href="/api-a/xuran/index" class="" title="EDC首页" >首页</a></li>
             <li><a href="#" class="" title="博客" >博客</a></li>
             <li><a href="#" title="下载资源" >下载资源</a></li>
             <li class="app-btn">
@@ -178,7 +178,7 @@
                 <li>
                     <div class="search_bar csdn-tracking-statistics tracking-click" data-mod="popu_366">
                         <input type="text" class="input_search" name="" id="toolber-keyword" placeholder="文章、资源" autocomplete="off">
-                        <a href="/xuran/list"  class="btn-nobg-noborder btn-search">
+                        <a href="/api-a/xuran/list"  class="btn-nobg-noborder btn-search">
                             <svg class="toolbar-icon" aria-hidden="true"><use xlink:href="#sousuo"></use></svg>
                         </a>
                     </div>
@@ -221,7 +221,7 @@
                         </a>
                     </div>
                     <div class="userControl">
-                        <div><a href="/xuran/blog" >我的博客</a></div>
+                        <div><a href="/api-a/xuran/blog" >我的博客</a></div>
                         <div><a class="xiaoxi" href="#" >消息<span class="toolbar-newsL">(3)</span></a></div>
                         <div><a href="#" >帐号设置</a></div>
                         <div><a href="#" >反馈</a></div>
@@ -328,7 +328,7 @@
   <div class="news-nav">
    <div class="container clearfix">
     <div class="nav-bar"> 
-     <a class="" href="http://localhost:8085/xuran/ask">问答首页</a>
+     <a class="" href="/api-a/xuran/ask">问答首页</a>
      <a class="" onclick="list_info('date',0,-1)">待回答</a>
      <a class="" onclick="list_info('date',-1,1)">已解决</a>
      <a href="#" target="_blank">获取积分</a>
@@ -662,12 +662,12 @@
   <script>
       function insertAsk() {
           $.post(
-              "http://localhost:8085/xuran/insertAsk",
+              "/api-a/xuran/insertAsk",
               $("form").serialize(),
               function (data) {
                   if(data){
                       alert("悬赏发布成功");
-                      location.href="http://localhost:8085/xuran/ask";
+                      location.href="/api-a/xuran/ask";
                   }else {
                       alert("悬赏发布失败");
                   }

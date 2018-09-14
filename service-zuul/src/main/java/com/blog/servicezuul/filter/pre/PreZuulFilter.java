@@ -70,7 +70,7 @@ public class PreZuulFilter extends ZuulFilter {
      * @return
      */
 
-    String arr[] = {"insert"};//填写需要拦截的请求字段
+    String arr[] = {"ask","insert","ask_list","insertAsk","delete","update"};//填写需要拦截的请求字段
     List<String> list =  Arrays.asList(arr);
 
     @Override
