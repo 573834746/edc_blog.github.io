@@ -54,6 +54,12 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional><!-- 表示依赖不会传递 -->
         </dependency>
+        <!--引入断路器依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>

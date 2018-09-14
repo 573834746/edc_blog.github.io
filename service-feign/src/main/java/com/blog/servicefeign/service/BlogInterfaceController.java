@@ -15,8 +15,11 @@ import java.util.List;
 /**
  * 该接口内的 @RequestMapping内须填写自己的路径   如： @RequestMapping(value = "xuran/list"）
  */
-@FeignClient(value = "order")
+@FeignClient(value = "order",fallback = SchedualServiceHystric.class)
 public interface BlogInterfaceController {
+
+    @RequestMapping(value = "/hi")
+    String sayHiFromClientOne();
 
     /**
      * 主页列表查询
@@ -45,6 +48,4 @@ public interface BlogInterfaceController {
     @RequestMapping(value = "xuran/insertAsk",method = RequestMethod.POST)
     Boolean insertAsk(@RequestParam(value = "json") String json);
 
-    @RequestMapping(value = "/hi")
-    String hello();
 }

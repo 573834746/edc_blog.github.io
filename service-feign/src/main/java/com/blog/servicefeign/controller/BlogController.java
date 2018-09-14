@@ -26,8 +26,9 @@ public class BlogController {
     BlogInterfaceController blogInterfaceController;
 
     @RequestMapping("/hi")
+    @ResponseBody
     public String hello(){
-        return blogInterfaceController.hello();
+        return blogInterfaceController.sayHiFromClientOne();
     }
 
     @RequestMapping(value = "/list")

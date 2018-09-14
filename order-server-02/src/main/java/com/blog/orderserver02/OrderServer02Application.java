@@ -22,6 +22,6 @@ public class OrderServer02Application {
     String port;
     @RequestMapping("/hi")
     public String home(){
-        return "=======================\n"+"i'm from port:"+port+"\n=======================";
+        return "======================="+"来自:"+port+"端口=======================";
     }
 }
