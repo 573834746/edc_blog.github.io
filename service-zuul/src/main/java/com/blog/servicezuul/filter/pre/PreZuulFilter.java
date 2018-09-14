@@ -70,7 +70,8 @@ public class PreZuulFilter extends ZuulFilter {
      * @return
      */
 
-    List<String> list =  Arrays.asList("/login");
+    String arr[] = {"insert"};//填写需要拦截的请求字段
+    List<String> list =  Arrays.asList(arr);
 
     @Override
     public Object run() {
@@ -81,27 +82,32 @@ public class PreZuulFilter extends ZuulFilter {
 
 
         StringBuffer requestURL = request.getRequestURL();
-        System.out.println("========================\n"+requestURL);
-        if(requestURL.toString().contains("login")){
-            return null;
+        String[] split = requestURL.toString().split("/");
+        String compare = split[split.length - 1];
+
+        //满足条件的被拦截，否则放行
+        if(list.contains(compare)){
+            log.info("======= "+compare+" 请求被拦截");
+            Object user = request.getSession().getAttribute("user");
+            if(user!=null){
+                ctx.setSendZuulResponse(true);// 对该请求进行路由
+                ctx.setResponseStatusCode(200);
+                ctx.set("isSuccess", true);// 设值，让下一个Filter看到上一个Filter的状态
+                return null;
+            }else{
+                ctx.setSendZuulResponse(false);// 过滤该请求，不对其进行路由
+                ctx.setResponseStatusCode(401);// 返回错误码
+                try {
+                    response.sendRedirect("/api-a/xuran/login");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                ctx.set("isSuccess", false);
+                return null;
+            }
+        }else{
+                return null;
         }
 
-        Object user = request.getSession().getAttribute("user");
-        if(user!=null){
-            ctx.setSendZuulResponse(true);// 对该请求进行路由
-            ctx.setResponseStatusCode(200);
-            ctx.set("isSuccess", true);// 设值，让下一个Filter看到上一个Filter的状态
-            return null;
-        }else{
-            ctx.setSendZuulResponse(false);// 过滤该请求，不对其进行路由
-            ctx.setResponseStatusCode(401);// 返回错误码
-            try {
-                response.sendRedirect("/api-a/xuran/login");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            ctx.set("isSuccess", false);
-            return null;
-        }
     }
 }
