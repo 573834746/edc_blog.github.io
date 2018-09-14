@@ -49,6 +49,10 @@ public class BlogController {
     public String askPage(){
         return "ask";
     }
+    @RequestMapping(value = "/login")
+    public String loginPage(){
+        return "login";
+    }
 
     @RequestMapping("/ask_money_list")
     @ResponseBody

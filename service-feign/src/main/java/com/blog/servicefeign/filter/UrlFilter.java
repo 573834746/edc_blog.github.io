@@ -29,6 +29,13 @@ public class UrlFilter implements Filter {
         String[] split = path.split("/");
         String realpath = split[split.length-1];
 
+        /**
+         * 解决跨域访问问题
+         * 如果服务器端可以确定是要被哪些域名访问，
+         * 最好是能把以上代码中的“*”代替为具体的域名，这样做可以相应的增强安全性。
+         */
+        httpResponse.setHeader("Access-Control-Allow-Origin", "*");
+
         if(type_path.contains("/"+realpath)){
             if(path.indexOf("index")>-1){
                 path=path.replace("/"+realpath,"");
