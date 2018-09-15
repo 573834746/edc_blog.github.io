@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="http://localhost:8085/effect/css/jquery.slider.css" />
 
     <script type="text/javascript" src="http://localhost:8085/effect/js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="../effect/js/jquery.slider.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/effect/js/jquery.slider.min.js"></script>
     <link rel="stylesheet" type="text/css" href="http://localhost:8085/effect/css/login.css">
     <link rel="stylesheet" type="text/css" href="http://localhost:8085/effect/css/content_toolbar.css">
+    <link rel="stylesheet" href="http://localhost:8085/effect/css/style.css">
+    <script src="http://localhost:8085/effect/js/pop-layer.js"></script>
 
 </head>
 <body>
@@ -20,7 +22,7 @@
     <div class="container row center-block ">
         <div class="head">
             <ul class="pull-left left-menu clearfix" id="nav-left-menu">
-                <li style="margin-left: 150px;margin-right: 150px;"><a class="active">❶设置手机号</a></li>
+                <li style="margin-left: 150px;margin-right: 150px;"><a class="active"><span style="color: #0e887a;">❶</span>设置手机号</a></li>
                 <li style="margin-left: 150px;margin-right: 150px;"><a class="">❷设置用户信息</a></li>
                 <li style="margin-left: 150px;margin-right: 150px;"><a class="">❸注册成功</a></li>
             </ul>
@@ -31,18 +33,37 @@
 
 <div class="main">
     <div class="row wrap-login" style="height: 1000px;width: 290px;">
-
         <form>
 
             <input id="phone_num" name="phone_num"  placeholder="请输入手机号" class="user-name" type="text"/>
-
             <div id="slider" class="slider" style="height: 44px;"></div>
-
-
-
             <input type="button" class="register_style" id="oneNext" value="下一步" disabled="disabled" onclick="tijiao()"/>
 
+
+
+
         </form>
+
+
+        <!--弹出层表单，校验手机号真实性-->
+        <div class="popup" id="popup">
+            <div class="top_nav" id='top_nav'>
+                <div align="center">
+                    <span style="margin-left: -35px;">验证手机</span>
+                    <a class="guanbi" onclick="guanbi()"></a>
+                </div>
+            </div>
+            <div style="width: 100%">
+                <div class="tc_login" style="width:530px;">
+
+                    <form>
+                        <span class="span">校验码已发送到你的手机，15分钟内输入有效，请勿泄漏</span>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </div>
@@ -58,6 +79,7 @@
                 var phoneReg = /^1[34578]\d{9}$/.test(phone_num);//手机号校验
 
                 if(phoneReg){
+                    //使button按钮可点按
                     $("#oneNext").attr("disabled",false);
                     var co = document.getElementById("oneNext");
                     co.style.background="#10cab9";
@@ -67,11 +89,9 @@
                     $("#phone_num").val("");
                     var error = document.getElementById("phone_num");
                     error.placeholder="请输入正确的手机号";
-                    $("#slider").slider("restore");
+                    $("#oneNext").attr("disabled","disabled");
+                    $("#slider").slider("restore");//还原拉动条
                 }
-
-
-
 
             }
         }
@@ -81,22 +101,21 @@
         var phone_num = $("#phone_num").val(); //获取手机号
         var phoneReg = /^1[34578]\d{9}$/.test(phone_num);//手机号校验
         if(phoneReg){
-            alert("可进行下一步");
+            alert("次此步骤应当是弹框发送短信验证码，校验手机号真实性");
+            start_tc();
         }else{
             $("#phone_num").val("");
             var error = document.getElementById("phone_num");
             error.placeholder="请输入正确的手机号";
+            $("#oneNext").attr("disabled","disabled");
+            $("#slider").slider("restore");//还原拉动条
         }
 
     };
 
-
-    // 还原
-    $("#reset").click(function() {
-        $("#slider").slider("restore");
-    });
-
 </script>
+
+
 
 
 </body>
