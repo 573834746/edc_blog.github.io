@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
@@ -13,12 +14,17 @@
   <script src="http://localhost:8085/effect/js/jquery-1.9.1.min.js"></script>
 
   <script src="http://localhost:8085/effect/js/verification_code.js"></script>
+  <script src="http://localhost:8085/effect/js/md5.js"></script>
+
 
  </head> 
  <body>
 
-  <div class="main"> 
-   <div class="container container-custom"> 
+
+  <div class="main">
+   <div class="container container-custom">
+
+
     <div class="row wrap-login" style="height: 568px;">
 
      <div class="login-banner col-sm-6 col-md-7 col-lg-7 hidden-xs"> 
@@ -31,6 +37,8 @@
        <!-- 整个form表单开始 -->
        <div class="user-info">
         <div class="user-pass">
+
+
          <form id="login_info">
           <input id="username" name="username"  placeholder="输入用户名/邮箱/手机号" class="user-name" type="text" value="" /> 
           <input id="password" name="password"  placeholder="输入密码" class="user-name" type="password" value="" autocomplete="off" />
@@ -55,6 +63,7 @@
           </div>
           <input class="logging" value="登 录" type="button" onClick="toSubmit()"/>
          </form>
+
         </div>
        </div>
 
@@ -69,7 +78,7 @@
       <div class="register-now">
        <span>小主儿还没有EDC帐号？</span>
        <span class="register tracking-ad" data-mod="popu_28">
-          <a href="#" target="_blank">马上注册</a>
+          <a href="/api-a/xuran/register" target="_blank">马上注册</a>
         </span>
       </div>
      </div>
@@ -88,11 +97,14 @@
     function toSubmit(){
         var flag = validate();
         if(flag){
-            alert("验证通过");
             var msg_status = document.getElementById("error-mess");
             msg_status.style.display="none";
 
-            $.post("/api-a/xuran/check",$("#login_info").serialize(),function (data) {
+            var uname = $("#username").val();
+            var pwd = $("#password").val();
+            var hexMd5 = hex_md5(pwd);
+
+            $.post("/api-a/xuran/check",{"username":uname,"password":hexMd5},function (data) {
                if(data){
                    location.href="/api-a/xuran/index";
                }else{

@@ -1,11 +1,9 @@
 package com.blog.orderserver01.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.blog.orderserver01.pojo.AskExtends;
-import com.blog.orderserver01.pojo.AskVo;
-import com.blog.orderserver01.pojo.BlogsExtends;
-import com.blog.orderserver01.pojo.BlogsVo;
+import com.blog.orderserver01.pojo.*;
 import com.blog.orderserver01.service.BlogService;
+import com.blog.orderserver01.utils.Md5Util;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +54,11 @@ public class BlogController {
             e.printStackTrace();
         }
         return flag;
+    }
+
+    @RequestMapping("/check")
+    public Boolean checkInfo(@RequestBody UsersVo usersVo){
+        return blogService.checkInfo(usersVo);
     }
 
 }

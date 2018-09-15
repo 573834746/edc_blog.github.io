@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>账户注册-EDC</title>
+
+    <!--EDC博客图标-->
+    <link href="http://localhost:8085/effect/images/favicon.png" rel="SHORTCUT ICON">
+
+    <link rel="stylesheet" href="http://localhost:8085/effect/css/jquery.slider.css" />
+
+    <script type="text/javascript" src="http://localhost:8085/effect/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../effect/js/jquery.slider.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8085/effect/css/login.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8085/effect/css/content_toolbar.css">
+
+</head>
+<body>
+<div  class="csdn-toolbar tb_disnone  csdn-toolbar-skin-black ">
+    <div class="container row center-block ">
+        <div class="head">
+            <ul class="pull-left left-menu clearfix" id="nav-left-menu">
+                <li style="margin-left: 150px;margin-right: 150px;"><a class="active">❶设置手机号</a></li>
+                <li style="margin-left: 150px;margin-right: 150px;"><a class="">❷设置用户信息</a></li>
+                <li style="margin-left: 150px;margin-right: 150px;"><a class="">❸注册成功</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="main">
+    <div class="row wrap-login" style="height: 1000px;width: 290px;">
+
+        <form>
+
+            <input id="phone_num" name="phone_num"  placeholder="请输入手机号" class="user-name" type="text"/>
+
+            <div id="slider" class="slider" style="height: 44px;"></div>
+
+
+
+            <input type="button" class="register_style" id="oneNext" value="下一步" disabled="disabled" onclick="tijiao()"/>
+
+        </form>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $("#slider").slider({
+        callback: function(result) {
+            if (result) {
+
+                var phone_num = $("#phone_num").val(); //获取手机号
+                var phoneReg = /^1[34578]\d{9}$/.test(phone_num);//手机号校验
+
+                if(phoneReg){
+                    $("#oneNext").attr("disabled",false);
+                    var co = document.getElementById("oneNext");
+                    co.style.background="#10cab9";
+                    co.style.border="solid 1px #0e887a";
+                    co.style.color="#fff";
+                }else{
+                    $("#phone_num").val("");
+                    var error = document.getElementById("phone_num");
+                    error.placeholder="请输入正确的手机号";
+                    $("#slider").slider("restore");
+                }
+
+
+
+
+            }
+        }
+    });
+
+    function tijiao(){
+        var phone_num = $("#phone_num").val(); //获取手机号
+        var phoneReg = /^1[34578]\d{9}$/.test(phone_num);//手机号校验
+        if(phoneReg){
+            alert("可进行下一步");
+        }else{
+            $("#phone_num").val("");
+            var error = document.getElementById("phone_num");
+            error.placeholder="请输入正确的手机号";
+        }
+
+    };
+
+
+    // 还原
+    $("#reset").click(function() {
+        $("#slider").slider("restore");
+    });
+
+</script>
+
+
+</body>
+</html>

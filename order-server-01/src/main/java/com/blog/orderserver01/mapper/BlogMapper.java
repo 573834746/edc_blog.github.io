@@ -1,9 +1,6 @@
 package com.blog.orderserver01.mapper;
 
-import com.blog.orderserver01.pojo.AskExtends;
-import com.blog.orderserver01.pojo.AskVo;
-import com.blog.orderserver01.pojo.BlogsExtends;
-import com.blog.orderserver01.pojo.BlogsVo;
+import com.blog.orderserver01.pojo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -44,5 +41,15 @@ public interface BlogMapper {
      * @param askExtends
      */
     void insertAsk_type(AskExtends askExtends);
+
+    //##########################################################
+
+    /**
+     *
+     * @param usersVo
+     * @return
+     */
+    @Select("select password from users where username=#{username}")
+    String selectPwdByName(UsersVo usersVo);
 
 }

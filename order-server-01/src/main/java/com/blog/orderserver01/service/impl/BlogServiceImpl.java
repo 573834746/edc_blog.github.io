@@ -1,12 +1,10 @@
 package com.blog.orderserver01.service.impl;
 
-import com.blog.orderserver01.pojo.BlogsExtends;
+import com.blog.orderserver01.pojo.*;
 import com.blog.orderserver01.mapper.BlogMapper;
-import com.blog.orderserver01.pojo.AskExtends;
-import com.blog.orderserver01.pojo.AskVo;
 import com.blog.orderserver01.pojo.BlogsExtends;
-import com.blog.orderserver01.pojo.BlogsVo;
 import com.blog.orderserver01.service.BlogService;
+import com.blog.orderserver01.utils.Md5Util;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -58,5 +56,40 @@ public class BlogServiceImpl implements BlogService {
         askExtends.setAsk_typesArray(realTypesArray);
         blogMapper.insertAsk(askExtends);
         blogMapper.insertAsk_type(askExtends);
+    }
+
+    @Override
+    public Boolean checkInfo(UsersVo usersVo) {
+
+        System.out.println(">>>>>>>>>>>>前台MD5加密后的字符串>>>>>>>>>>>>\n"+usersVo.getPassword());
+        int hashCode = usersVo.getPassword().hashCode();
+        System.out.println(">>>>>>>>>>>>取MD5字符串的hashCode值>>>>>>>>>>>>\n"+hashCode);
+        //转成字符串
+        String hashPwd = String.valueOf(hashCode);
+        //把hashCode值再一次进行普通MD5加密
+        String userMd5 = Md5Util.MD5(hashPwd);
+
+//        注册时用
+//        //动态盐加密MD5，存入数据库
+//        String dynamicSaltMd5 = Md5Util.generateDynamicSaltMd5(userMd5);
+//        System.out.println(">>>>>>>>>>>>hashCode值进行动态盐加密>>>>>>>>>>>>\n"+dynamicSaltMd5);
+
+        String userDynamicSaltMd5 = blogMapper.selectPwdByName(usersVo);
+        System.out.println(">>>>>>>>>>>>用户动态盐MD5>>>>>>>>>>>>>>>>>\n"+userDynamicSaltMd5);
+
+        if(userDynamicSaltMd5!=null){
+            //校验密码，md5追溯到最开始是用户输入的密码，dynamicSaltMd5从数据库查取
+            boolean verify = Md5Util.verify(userMd5, userDynamicSaltMd5);
+            System.out.println(">>>>>>>>>>>>校验密码true为正确>>>>>>>>>>>>\n"+verify);
+            return verify;
+        }else{
+            return false;
+        }
+
+    }
+
+    @Override
+    public String selectPwdByName(UsersVo usersVo) {
+        return blogMapper.selectPwdByName(usersVo);
     }
 }

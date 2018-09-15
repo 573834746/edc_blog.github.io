@@ -3,6 +3,7 @@ package com.blog.servicefeign.service;
 import com.blog.servicefeign.pojo.AskExtends;
 import com.blog.servicefeign.pojo.AskVo;
 import com.blog.servicefeign.pojo.BlogsExtends;
+import com.blog.servicefeign.pojo.UsersVo;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,11 +16,8 @@ import java.util.List;
 /**
  * 该接口内的 @RequestMapping内须填写自己的路径   如： @RequestMapping(value = "xuran/list"）
  */
-@FeignClient(value = "order",fallback = SchedualServiceHystric.class)
+@FeignClient(value = "order")
 public interface BlogInterfaceController {
-
-    @RequestMapping(value = "/hi")
-    String sayHiFromClientOne();
 
     /**
      * 主页列表查询
@@ -48,4 +46,11 @@ public interface BlogInterfaceController {
     @RequestMapping(value = "xuran/insertAsk",method = RequestMethod.POST)
     Boolean insertAsk(@RequestParam(value = "json") String json);
 
+    /**
+     * 核查用户信息
+     * @param usersVo
+     * @return
+     */
+    @RequestMapping(value = "xuran/check",method = RequestMethod.POST,consumes = "application/json")
+    Boolean checkInfo(@RequestBody UsersVo usersVo);
 }

@@ -1,9 +1,6 @@
 package com.blog.orderserver01.service;
 
-import com.blog.orderserver01.pojo.AskExtends;
-import com.blog.orderserver01.pojo.AskVo;
-import com.blog.orderserver01.pojo.BlogsExtends;
-import com.blog.orderserver01.pojo.BlogsVo;
+import com.blog.orderserver01.pojo.*;
 
 import java.util.List;
 
@@ -30,4 +27,13 @@ public interface BlogService {
      * 添加悬赏问题
      */
     void insertAsk(AskExtends askExtends) throws Exception;
+
+    /**
+     * 核查用户信息
+     * @param usersVo
+     * @return
+     */
+    Boolean checkInfo(UsersVo usersVo);
+
+    String selectPwdByName(UsersVo usersVo);
 }

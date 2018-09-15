@@ -137,7 +137,6 @@
 }
 .error-mess .error-icon {
   display: inline-block;
-  background: url("../images/login-logic-icons.png") no-repeat 0 0;
   width: 16px;
   height: 16px;
   vertical-align: middle;
@@ -179,6 +178,22 @@
   clear: both;
   width: 100%;
   border: solid 1px #0e887a;
+  border-radius:3px;
+  box-shadow:0 0 3px #fff inset;
+  /*box-shadow:0 0 30px #e3766b inset;*/
+}
+.register_style {
+  background: #c4c4c4;
+  display: block;
+  height: 44px;
+  line-height: 44px;
+  color: #3c403d;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.5em;
+  text-decoration: none;
+  clear: both;
+  width: 100%;
   border-radius:3px;
   box-shadow:0 0 3px #fff inset;
   /*box-shadow:0 0 30px #e3766b inset;*/

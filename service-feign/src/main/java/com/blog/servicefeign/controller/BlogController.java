@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.blog.servicefeign.pojo.AskExtends;
 import com.blog.servicefeign.pojo.AskVo;
 import com.blog.servicefeign.pojo.BlogsExtends;
+import com.blog.servicefeign.pojo.UsersVo;
 import com.blog.servicefeign.service.BlogInterfaceController;
+import com.blog.servicefeign.service.SchedualServiceHystricHi;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,11 +26,13 @@ public class BlogController {
 
     @Resource
     BlogInterfaceController blogInterfaceController;
+    @Resource
+    SchedualServiceHystricHi schedualServiceHystricHi;
 
     @RequestMapping("/hi")
     @ResponseBody
     public String hello(){
-        return blogInterfaceController.sayHiFromClientOne();
+        return schedualServiceHystricHi.sayHiFromClientOne();
     }
 
     @RequestMapping(value = "/list")
@@ -53,6 +57,10 @@ public class BlogController {
     public String loginPage(){
         return "login";
     }
+    @RequestMapping(value = "/register")
+    public String registerPage(){
+        return "register";
+    }
 
     @RequestMapping("/ask_money_list")
     @ResponseBody
@@ -67,5 +75,11 @@ public class BlogController {
         //对象转json
         String json = JSONObject.toJSONString(askExtends);
         return blogInterfaceController.insertAsk(json);
+    }
+
+    @RequestMapping("/check")
+    @ResponseBody
+    public Boolean checkInfo(UsersVo usersVo){
+        return blogInterfaceController.checkInfo(usersVo);
     }
 }
