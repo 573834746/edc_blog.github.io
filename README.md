@@ -6,5 +6,8 @@
 
 ## 搭建
 
-Idea、jdk1.8、SpringCloud、集群部署、路由网关、负载均衡。
+**框架：**Spring Cloud、Mybatis、Jquery
+**缓存：**Redis（日志系统等）
+**数据库：**MySQL
+
 [项目地址](https://github.com/573834746/spring_cloud_parent)
