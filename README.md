@@ -1,6 +1,6 @@
 **＃欢迎来到EDC博客项目！**
 ![csdn](https://github.com/guodongxiaren/README/raw/master/img/csdn.png "csdn")
-[:fa-qq:](http://www.baidu.com ":fa-qq:")
+
 如果你想了解EDC博客系统，你可以读我。
 
 ## 搭建
