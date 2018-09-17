@@ -7,7 +7,9 @@
 ## 搭建
 
 框架：Spring Cloud、Mybatis、Jquery
+
 缓存：Redis（日志系统等）
+
 数据库：MySQL
 
 [项目地址](https://github.com/573834746/spring_cloud_parent)
