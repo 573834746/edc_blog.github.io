@@ -1,6 +1,7 @@
 package com.blog.orderserver01.mapper;
 
 import com.blog.orderserver01.pojo.*;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -51,5 +52,14 @@ public interface BlogMapper {
      */
     @Select("select password from users where username=#{username}")
     String selectPwdByName(UsersVo usersVo);
+
+    /**
+     * 注册用户
+     * @param users
+     * @return
+     */
+    @Insert("insert into users(username,password,phone_num,name,nickname,mail) " +
+            "values(#{username},#{password},#{phone_num},#{name},#{nickname},#{mail})")
+    void registerUser(Users users) throws Exception;
 
 }

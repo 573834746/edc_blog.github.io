@@ -1,10 +1,7 @@
 package com.blog.servicefeign.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.blog.servicefeign.pojo.AskExtends;
-import com.blog.servicefeign.pojo.AskVo;
-import com.blog.servicefeign.pojo.BlogsExtends;
-import com.blog.servicefeign.pojo.UsersVo;
+import com.blog.servicefeign.pojo.*;
 import com.blog.servicefeign.service.BlogInterfaceController;
 import com.blog.servicefeign.service.SchedualServiceHystricHi;
 import org.springframework.stereotype.Controller;
@@ -81,5 +78,11 @@ public class BlogController {
     @ResponseBody
     public Boolean checkInfo(UsersVo usersVo){
         return blogInterfaceController.checkInfo(usersVo);
+    }
+
+    @RequestMapping("/registerUser")
+    @ResponseBody
+    public Boolean registerUser(Users users){
+        return blogInterfaceController.registerUser(users);
     }
 }

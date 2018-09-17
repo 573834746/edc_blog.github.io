@@ -21,6 +21,17 @@ a{text-decoration:none;}
 	top:96px;
 	display:none;
 }
+.two_box{
+	width:532px;
+	height:auto;
+	background-color:#fff;
+	position:absolute;
+	z-index:100;
+	border:1px solid #ebeaea;
+	left:400px;
+	top:96px;
+	display:none;
+}
 .popup .top_nav{
 	width:532px;
 	height:46px;

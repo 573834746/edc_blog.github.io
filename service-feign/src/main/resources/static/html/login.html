@@ -102,9 +102,8 @@
 
             var uname = $("#username").val();
             var pwd = $("#password").val();
-            var hexMd5 = hex_md5(pwd);
 
-            $.post("/api-a/xuran/check",{"username":uname,"password":hexMd5},function (data) {
+            $.post("/api-a/xuran/check",{"username":uname,"password":pwd},function (data) {
                if(data){
                    location.href="/api-a/xuran/index";
                }else{

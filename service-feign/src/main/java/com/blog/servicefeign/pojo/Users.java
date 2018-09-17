@@ -10,6 +10,16 @@ public class Users {
     private String password;
     private String phone_num;
     private String name;
+    private String nickname;
+
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
     private String mail;
     private String sex;
     private String birthday;

@@ -61,18 +61,20 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Boolean checkInfo(UsersVo usersVo) {
 
-        System.out.println(">>>>>>>>>>>>前台MD5加密后的字符串>>>>>>>>>>>>\n"+usersVo.getPassword());
+        String pwd = usersVo.getUsername()+usersVo.getPassword();
+
+        System.out.println(">>>>>>>>>>>>前台字符串>>>>>>>>>>>>\n"+usersVo.getPassword());
         int hashCode = usersVo.getPassword().hashCode();
-        System.out.println(">>>>>>>>>>>>取MD5字符串的hashCode值>>>>>>>>>>>>\n"+hashCode);
+        System.out.println(">>>>>>>>>>>>取字符串的hashCode值>>>>>>>>>>>>\n"+hashCode);
         //转成字符串
         String hashPwd = String.valueOf(hashCode);
         //把hashCode值再一次进行普通MD5加密
         String userMd5 = Md5Util.MD5(hashPwd);
 
-//        注册时用
-//        //动态盐加密MD5，存入数据库
-//        String dynamicSaltMd5 = Md5Util.generateDynamicSaltMd5(userMd5);
-//        System.out.println(">>>>>>>>>>>>hashCode值进行动态盐加密>>>>>>>>>>>>\n"+dynamicSaltMd5);
+        //注册时用
+        //动态盐加密MD5，存入数据库
+        String dynamicSaltMd5 = Md5Util.generateDynamicSaltMd5(userMd5);
+        System.out.println(">>>>>>>>>>>>hashCode值进行动态盐加密>>>>>>>>>>>>\n"+dynamicSaltMd5);
 
         String userDynamicSaltMd5 = blogMapper.selectPwdByName(usersVo);
         System.out.println(">>>>>>>>>>>>用户动态盐MD5>>>>>>>>>>>>>>>>>\n"+userDynamicSaltMd5);
@@ -81,6 +83,12 @@ public class BlogServiceImpl implements BlogService {
             //校验密码，md5追溯到最开始是用户输入的密码，dynamicSaltMd5从数据库查取
             boolean verify = Md5Util.verify(userMd5, userDynamicSaltMd5);
             System.out.println(">>>>>>>>>>>>校验密码true为正确>>>>>>>>>>>>\n"+verify);
+
+            if(verify){
+                //把用户信息放入session
+
+            }
+
             return verify;
         }else{
             return false;
@@ -91,5 +99,33 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public String selectPwdByName(UsersVo usersVo) {
         return blogMapper.selectPwdByName(usersVo);
+    }
+
+    @Override
+    public Boolean registerUser(Users users) {
+        Boolean flag = true;
+        try {
+
+            String pwd = users.getUsername()+users.getPassword();
+
+            System.out.println(">>>>>>>>>>>>前台字符串>>>>>>>>>>>>\n"+users.getPassword());
+            int hashCode = pwd.hashCode();
+            System.out.println(">>>>>>>>>>>>取字符串的hashCode值>>>>>>>>>>>>\n"+hashCode);
+            //转成字符串
+            String hashPwd = String.valueOf(hashCode);
+            //把hashCode值再一次进行普通MD5加密
+            String userMd5 = Md5Util.MD5(hashPwd);
+
+            //动态盐加密MD5，存入数据库
+            String dynamicSaltMd5 = Md5Util.generateDynamicSaltMd5(userMd5);
+            System.out.println(">>>>>>>>>>>>hashCode值进行动态盐加密>>>>>>>>>>>>\n"+dynamicSaltMd5);
+            users.setPassword(dynamicSaltMd5);
+
+            blogMapper.registerUser(users);
+        } catch (Exception e) {
+            flag = false;
+            e.printStackTrace();
+        }
+        return flag;
     }
 }

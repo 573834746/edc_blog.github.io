@@ -36,4 +36,11 @@ public interface BlogService {
     Boolean checkInfo(UsersVo usersVo);
 
     String selectPwdByName(UsersVo usersVo);
+
+    /**
+     * 注册用户
+     * @param users
+     * @return
+     */
+    Boolean registerUser(Users users);
 }

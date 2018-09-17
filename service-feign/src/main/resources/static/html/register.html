@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="http://localhost:8085/effect/css/content_toolbar.css">
     <link rel="stylesheet" href="http://localhost:8085/effect/css/style.css">
     <script src="http://localhost:8085/effect/js/pop-layer.js"></script>
+    <script src="http://localhost:8085/effect/js/md5.js"></script>
 
 </head>
 <body>
@@ -34,16 +35,13 @@
 <div class="main">
     <div id="gray"></div>
     <div class="row wrap-login">
+
         <form>
-
-            <input id="phone_num" name="phone_num"  placeholder="请输入手机号" class="user-name" type="text"/>
-            <div id="slider" class="slider" style="height: 44px;"></div>
-            <input type="button" class="register_style" id="oneNext" value="下一步" disabled="disabled" onclick="tijiao()"/>
-
-
-
-
-        </form>
+            <div id="one_box">
+                <input id="phone_num" name="phone_num"  placeholder="请输入手机号" class="user-name" type="text"/>
+                <div id="slider" class="slider" style="height: 44px;"></div>
+                <input type="button" class="register_style" id="oneNext" value="下一步" disabled="disabled" onclick="tijiao()"/>
+            </div>
 
 
         <!--弹出层表单，校验手机号真实性-->
@@ -57,7 +55,8 @@
             <div style="width: 100%;border-top: white;height: 279px;">
                 <div class="tc_login" style="width:100%;border-top: white;height: 279px;">
 
-                    <form>
+
+
                         <span style="margin-left: 10px;">❗ 校验码已发送到你的手机，15分钟内输入有效，请勿泄漏</span>
 
                         <div class="wrap-login" style="font-size: 14px;margin-top: 30px;width: 300px;">
@@ -77,20 +76,60 @@
                                 <input class="yanzheng2" onclick="checkSmsCode()" style="width: 120px;" type="button" value="确 认">
                             </div>
                         </div>
-                    </form>
+
+
+
 
                 </div>
+
             </div>
         </div>
 
+            <div id="two_box" style="display: none;width: 290px;" align="center">
+
+                <input type="text" name="username" class="user-name" placeholder="设置唯一用户名">
+                <input id="password1" type="password" class="user-name" placeholder="设置安全密码">
+                <input type="hidden" name="password">
+                <input type="text" name="mail" class="user-name" placeholder="设置您的邮箱">
+                <input type="text" name="name" class="user-name" placeholder="您的真实姓名">
+                <input type="text" name="nickname" class="user-name" placeholder="期望别人对您的尊称">
+
+                <input type="button" class="logging" value="完 成" onclick="done()">
+            </div>
+
+            <div id="three_box" style="display: none;width: 290px;" align="center">
+                <span style="color: red;font-weight: bold;font-size: 20px;">注册成功</span>
+                <a href="/api-a/xuran/login"><input type="button" class="logging" value="前往EDC登录页"></a>
+            </div>
+
+
+
+        </form>
 
     </div>
 </div>
 
 
 <script type="text/javascript">
+    function done(){
+        $("#password").val($("#password1").val());
+        $.post("/api-a/xuran/registerUser",$("form").serialize(),function(data){
+            if(data){
+                $("#two_box").hide();
+                $("#three_box").show();
+            }else{
+                alert("注册异常");
+            }
+        },"json");
+    };
+
+</script>
+
+
+<script type="text/javascript">
 
     var countdown=60;
+    var codeSms = "";
 
     function getSmsCode(val){
 
@@ -101,6 +140,7 @@
                     if(data.code=="200"){
                         $("#smsCode").val(data.yz);
                     }else{
+                        codeSms = data.code;
                         $("#error-msg").text("");
                         $("#error-msg").text("短信验证码获取错误，状态码："+data.code);
                     }
@@ -132,11 +172,16 @@
     function checkSmsCode(){
         var userSmsCode = $("#userSmsCode").val();
         var smsCode = $("#smsCode").val();
-        if(userSmsCode==smsCode){
+        if(userSmsCode==smsCode && codeSms=="200"){
             //下一步
-            alert("下一步");
+            //关闭弹出层，隐藏第一项表单
+            guanbi();
+            $("#one_box").hide();
+            //开启隐藏的第二项
+            $("#two_box").show();
+
+
         }else{
-            alert(userSmsCode+":"+smsCode);
             $("#error-msg").text("");
             $("#error-msg").text("短信验证码填写错误");
         }
@@ -175,10 +220,18 @@
         if(phoneReg){
 
             $("#span_phone_num").text($("#phone_num").val());
+            //*******************************************************************************************************
+            // 短信包用完了
+            //*******************************************************************************************************
             //显示弹出层
-            start_tc();
-            var val = document.getElementById("getSmsCode1");
-            getSmsCode(val);
+            // start_tc();
+            // var val = document.getElementById("getSmsCode1");
+            // getSmsCode(val);
+
+            //*******************************************************************************************************
+            $("#one_box").hide();
+            $("#two_box").show();
+
 
         }else{
             $("#phone_num").val("");

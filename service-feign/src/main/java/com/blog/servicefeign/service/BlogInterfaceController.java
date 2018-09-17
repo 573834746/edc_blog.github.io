@@ -1,9 +1,6 @@
 package com.blog.servicefeign.service;
 
-import com.blog.servicefeign.pojo.AskExtends;
-import com.blog.servicefeign.pojo.AskVo;
-import com.blog.servicefeign.pojo.BlogsExtends;
-import com.blog.servicefeign.pojo.UsersVo;
+import com.blog.servicefeign.pojo.*;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,4 +50,12 @@ public interface BlogInterfaceController {
      */
     @RequestMapping(value = "xuran/check",method = RequestMethod.POST,consumes = "application/json")
     Boolean checkInfo(@RequestBody UsersVo usersVo);
+
+    /**
+     * 注册用户
+     * @param users
+     * @return
+     */
+    @RequestMapping(value = "xuran/registerUser",method = RequestMethod.POST,consumes = "application/json")
+    Boolean registerUser(Users users);
 }

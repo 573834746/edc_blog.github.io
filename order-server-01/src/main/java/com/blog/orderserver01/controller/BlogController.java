@@ -61,4 +61,11 @@ public class BlogController {
         return blogService.checkInfo(usersVo);
     }
 
+    @RequestMapping("/registerUser")
+    public Boolean registerUser(@RequestBody Users users){
+        return blogService.registerUser(users);
+    }
+
+
+
 }
