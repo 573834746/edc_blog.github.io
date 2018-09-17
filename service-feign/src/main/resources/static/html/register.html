@@ -32,7 +32,8 @@
 
 
 <div class="main">
-    <div class="row wrap-login" style="height: 1000px;width: 290px;">
+    <div id="gray"></div>
+    <div class="row wrap-login">
         <form>
 
             <input id="phone_num" name="phone_num"  placeholder="请输入手机号" class="user-name" type="text"/>
@@ -46,18 +47,36 @@
 
 
         <!--弹出层表单，校验手机号真实性-->
-        <div class="popup" id="popup">
-            <div class="top_nav" id='top_nav'>
+        <div class="popup" id="popup" style="border-top: 2px solid #0e887a;width: 724px;height: 322px; ">
+            <div class="top_nav" id="top_nav" style="background: white;width: 100%;border-bottom: white">
                 <div align="center">
-                    <span style="margin-left: -35px;">验证手机</span>
+                    <span style="margin-left: -35px;color: #3d3d3d">验证手机</span>
                     <a class="guanbi" onclick="guanbi()"></a>
                 </div>
             </div>
-            <div style="width: 100%">
-                <div class="tc_login" style="width:530px;">
+            <div style="width: 100%;border-top: white;height: 279px;">
+                <div class="tc_login" style="width:100%;border-top: white;height: 279px;">
 
                     <form>
-                        <span class="span">校验码已发送到你的手机，15分钟内输入有效，请勿泄漏</span>
+                        <span style="margin-left: 10px;">❗ 校验码已发送到你的手机，15分钟内输入有效，请勿泄漏</span>
+
+                        <div class="wrap-login" style="font-size: 14px;margin-top: 30px;width: 300px;">
+                            <div>
+                                <span>手机号 </span><span id="span_phone_num"></span>
+                            </div>
+                            <div style="margin-top: 25px;height: 39px;">
+                                <span>验证码 </span>
+                                <input id="userSmsCode" class="yanzheng" type="text">
+                                <input id="smsCode" type="hidden">
+                                <input id="getSmsCode1" class="yanzheng1" value="免费获取验证码" onclick="getSmsCode(this)" type="button">
+                            </div>
+                            <div style="margin-top: 6px;">
+                                <span id="error-msg" style="font-size: 12px;margin-left: 45px;">✅ 校验码已发送至你的手机，请查收</span>
+                            </div>
+                            <div style="margin-top: 20px;" align="center">
+                                <input class="yanzheng2" onclick="checkSmsCode()" style="width: 120px;" type="button" value="确 认">
+                            </div>
+                        </div>
                     </form>
 
                 </div>
@@ -70,6 +89,59 @@
 
 
 <script type="text/javascript">
+
+    var countdown=60;
+
+    function getSmsCode(val){
+
+        if(countdown == 60){
+            var phone_num = $("#phone_num").val(); //获取手机号
+            $.post("/api-c/checkPhoneNum",{"mobile":phone_num},function(data){
+                if(data!=null){
+                    if(data.code=="200"){
+                        $("#smsCode").val(data.yz);
+                    }else{
+                        $("#error-msg").text("");
+                        $("#error-msg").text("短信验证码获取错误，状态码："+data.code);
+                    }
+                }
+            },"json");
+        }
+
+        if (countdown == 0) {
+            val.removeAttribute("disabled");
+            val.value="免费获取验证码";
+            countdown = 60;
+
+            return;
+
+        } else {
+            val.setAttribute("disabled", true);
+            val.value="重新发送(" + countdown + ")";
+            countdown--;
+        }
+        setTimeout(function() {
+            getSmsCode(val);
+        },1000)
+
+
+
+
+    };
+
+    function checkSmsCode(){
+        var userSmsCode = $("#userSmsCode").val();
+        var smsCode = $("#smsCode").val();
+        if(userSmsCode==smsCode){
+            //下一步
+            alert("下一步");
+        }else{
+            alert(userSmsCode+":"+smsCode);
+            $("#error-msg").text("");
+            $("#error-msg").text("短信验证码填写错误");
+        }
+    }
+
 
     $("#slider").slider({
         callback: function(result) {
@@ -101,8 +173,13 @@
         var phone_num = $("#phone_num").val(); //获取手机号
         var phoneReg = /^1[34578]\d{9}$/.test(phone_num);//手机号校验
         if(phoneReg){
-            alert("次此步骤应当是弹框发送短信验证码，校验手机号真实性");
+
+            $("#span_phone_num").text($("#phone_num").val());
+            //显示弹出层
             start_tc();
+            var val = document.getElementById("getSmsCode1");
+            getSmsCode(val);
+
         }else{
             $("#phone_num").val("");
             var error = document.getElementById("phone_num");

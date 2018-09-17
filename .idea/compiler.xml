@@ -9,6 +9,7 @@
         <module name="eureka" />
         <module name="order-server-01" />
         <module name="order-server-02" />
+        <module name="order-server-03-sms" />
         <module name="service-feign" />
         <module name="service-zuul" />
       </profile>

@@ -47,6 +47,38 @@
   *line-height: 20px;
   border-radius:3px;
 }
+.yanzheng {
+  background: #fff;
+  display: inline-block;
+  width: 102px;
+  height: 11px;
+  padding: 12px 0;
+  border: 1px solid #d5dce5;
+  margin-bottom: 20px;
+}
+.yanzheng1{
+  background: #f1f1f1;
+  display: inline-block;
+  width: 102px;
+  height: 36px;
+  font-size: 14px;
+  border: 1px solid #d5dce5;
+}
+.yanzheng2{
+  background: #15c6b1;
+  color: #fff;
+  font-weight: bold;
+  display: inline-block;
+  width: 102px;
+  height: 36px;
+  font-size: 14px;
+  border: 1px solid #d5dce5;
+}
+.yanzheng1:hover {
+  background: #a0a0a0;
+  color: #fff;
+  text-decoration: none;
+}
 .auth-word{
   width:50%;
   float:left;
