@@ -12,4 +12,4 @@
 
 数据库：MySQL
 
-[项目地址](https://github.com/isxuran/edc_blog.github.io)
+[项目地址](https://isxuran.github.io/edc_blog.github.io/)
