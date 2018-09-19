@@ -8,5 +8,13 @@
     <artifactId>spring_cloud_parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>eureka</module>
+        <module>order-server-01</module>
+        <module>order-server-02</module>
+        <module>order-server-03-sms</module>
+        <module>service-feign</module>
+        <module>service-zuul</module>
+    </modules>
 
 </project>
