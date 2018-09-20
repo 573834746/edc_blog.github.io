@@ -1,11 +1,15 @@
 package com.blog.servicezuul.filter.pre;
 
+import com.blog.servicefeign.pojo.UsersVo;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.util.WebUtils;
 
-import javax.servlet.ServletException;
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,6 +21,9 @@ import java.util.List;
  *  Zuul 的前置过滤器
  */
 public class PreZuulFilter extends ZuulFilter {
+    
+    @Resource
+    RedisTemplate redisTemplate;
 
     private static Logger log = LoggerFactory.getLogger(PreZuulFilter.class);
 
@@ -85,14 +92,36 @@ public class PreZuulFilter extends ZuulFilter {
         String[] split = requestURL.toString().split("/");
         String compare = split[split.length - 1];
 
+        Cookie cookie = WebUtils.getCookie(request, "user_name");
+
         //满足条件的被拦截，否则放行
-        if(list.contains(compare)){
-            log.info("======= "+compare+" 请求被拦截");
-            Object user = request.getSession().getAttribute("user");
-            if(user!=null){
-                ctx.setSendZuulResponse(true);// 对该请求进行路由
-                ctx.setResponseStatusCode(200);
-                ctx.set("isSuccess", true);// 设值，让下一个Filter看到上一个Filter的状态
+        if (list.contains(compare)) {
+            log.info("—————————————————————————— " + compare + " 请求被拦截 ——————————————————————————");
+            if (cookie != null) {
+                String uuid = cookie.getValue();
+                System.out.println("—————————————————————————— 拦截器中从cookie里获取的uuid ——————————————————————————");
+                System.out.println(uuid);
+                Object o = redisTemplate.opsForValue().get(uuid);
+                UsersVo usersVo;
+                if(o!=null){
+                    usersVo = (UsersVo) o;
+                }else{
+                    usersVo = null;
+                }
+                if (usersVo != null) {
+                    ctx.setSendZuulResponse(true);// 对该请求进行路由
+                    ctx.setResponseStatusCode(200);
+                    ctx.set("isSuccess", true);// 设值，让下一个Filter看到上一个Filter的状态
+                    return null;
+                }
+                ctx.setSendZuulResponse(false);// 过滤该请求，不对其进行路由
+                ctx.setResponseStatusCode(401);// 返回错误码
+                try {
+                    response.sendRedirect("/api-a/xuran/login");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                ctx.set("isSuccess", false);
                 return null;
             }else{
                 ctx.setSendZuulResponse(false);// 过滤该请求，不对其进行路由
@@ -105,9 +134,8 @@ public class PreZuulFilter extends ZuulFilter {
                 ctx.set("isSuccess", false);
                 return null;
             }
-        }else{
-                return null;
+        }else {
+            return null;
         }
-
     }
 }

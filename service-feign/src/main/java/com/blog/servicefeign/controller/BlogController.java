@@ -4,12 +4,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.blog.servicefeign.pojo.*;
 import com.blog.servicefeign.service.BlogInterfaceController;
 import com.blog.servicefeign.service.SchedualServiceHystricHi;
+import com.blog.servicefeign.utils.WebUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 控制层类RequestMapping填写自己的路径地址   如：第一个@RequestMapping("/xuran")
@@ -20,7 +25,8 @@ import java.util.List;
 @Controller
 public class BlogController {
 
-
+    @Resource
+    RedisTemplate redisTemplate;
     @Resource
     BlogInterfaceController blogInterfaceController;
     @Resource
@@ -76,8 +82,23 @@ public class BlogController {
 
     @RequestMapping("/check")
     @ResponseBody
-    public Boolean checkInfo(UsersVo usersVo){
-        return blogInterfaceController.checkInfo(usersVo);
+    public Boolean checkInfo(UsersVo usersVo, HttpServletResponse response){
+        Boolean flag = blogInterfaceController.checkInfo(usersVo);
+        if(flag){
+            //随机生成uuid
+            String uuid = UUID.randomUUID().toString();
+            System.out.println("—————————————————————————— 随机生成的uuid ——————————————————————————");
+            System.out.println(uuid);
+
+            //把用户信息放入cookie
+            WebUtils.setCookie(response,"user_name",uuid,-1);
+
+            //将用户信息存入redis
+            redisTemplate.expire(uuid,1, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(uuid,usersVo);
+
+        }
+        return flag;
     }
 
     @RequestMapping("/registerUser")
