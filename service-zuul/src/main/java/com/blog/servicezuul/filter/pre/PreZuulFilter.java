@@ -99,8 +99,6 @@ public class PreZuulFilter extends ZuulFilter {
             log.info("—————————————————————————— " + compare + " 请求被拦截 ——————————————————————————");
             if (cookie != null) {
                 String uuid = cookie.getValue();
-                System.out.println("—————————————————————————— 拦截器中从cookie里获取的uuid ——————————————————————————");
-                System.out.println(uuid);
                 Object o = redisTemplate.opsForValue().get(uuid);
                 UsersVo usersVo;
                 if(o!=null){
@@ -109,6 +107,9 @@ public class PreZuulFilter extends ZuulFilter {
                     usersVo = null;
                 }
                 if (usersVo != null) {
+                    System.out.println("—————————————————————————— 用户已登录 ——————————————————————————");
+                    System.out.println("账号："+usersVo.getUsername());
+
                     ctx.setSendZuulResponse(true);// 对该请求进行路由
                     ctx.setResponseStatusCode(200);
                     ctx.set("isSuccess", true);// 设值，让下一个Filter看到上一个Filter的状态

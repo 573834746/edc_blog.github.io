@@ -61,29 +61,32 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Boolean checkInfo(UsersVo usersVo) {
-
+        //前台传过来的字符进行拼接
         String pwd = usersVo.getUsername()+usersVo.getPassword();
-
-        System.out.println("—————————————————————————— 前台字符串 ——————————————————————————\n"+usersVo.getPassword());
-        int hashCode = usersVo.getPassword().hashCode();
-        System.out.println("—————————————————————————— 取字符串的hashCode值 ——————————————————————————\n"+hashCode);
+        System.out.println("ooo+++—————————————————————————— 前台的字符串值 ——————————————————————————\n"+pwd);
+        //把hashCode值进行普通MD5加密
+        String pwdMd5 = Md5Util.MD5(pwd);
+        System.out.println("ooo+++—————————————————————————— 字符串的Md5值 ——————————————————————————\n"+pwdMd5);
+        int hashCode = pwdMd5.hashCode();
+        System.out.println("ooo+++—————————————————————————— 取字符串的hashCode值 ——————————————————————————\n"+hashCode);
         //转成字符串
         String hashPwd = String.valueOf(hashCode);
         //把hashCode值再一次进行普通MD5加密
         String userMd5 = Md5Util.MD5(hashPwd);
+        System.out.println("ooo+++—————————————————————————— 再次Md5加密 ——————————————————————————\n"+userMd5);
 
         //注册时用
         //动态盐加密MD5，存入数据库
         String dynamicSaltMd5 = Md5Util.generateDynamicSaltMd5(userMd5);
-        System.out.println("—————————————————————————— hashCode值进行动态盐加密 ——————————————————————————\n"+dynamicSaltMd5);
+        System.out.println("ooo+++—————————————————————————— hashCode值进行动态盐加密 ——————————————————————————\n"+dynamicSaltMd5);
 
         String userDynamicSaltMd5 = blogMapper.selectPwdByName(usersVo);
-        System.out.println("—————————————————————————— 用户动态盐MD5 ——————————————————————————\n"+userDynamicSaltMd5);
+        System.out.println("ooo+++—————————————————————————— 用户动态盐MD5 ——————————————————————————\n"+userDynamicSaltMd5);
 
         if(userDynamicSaltMd5!=null){
             //校验密码，md5追溯到最开始是用户输入的密码，dynamicSaltMd5从数据库查取
             boolean verify = Md5Util.verify(userMd5, userDynamicSaltMd5);
-            System.out.println("—————————————————————————— 校验密码true为正确 ——————————————————————————\n"+verify);
+            System.out.println("ooo+++—————————————————————————— 校验密码true为正确 ——————————————————————————\n"+verify);
 
             return verify;
         }else{
@@ -102,20 +105,23 @@ public class BlogServiceImpl implements BlogService {
 
         Boolean flag = true;
         try {
-
+            //前台传过来的字符进行拼接
             String pwd = users.getUsername()+users.getPassword();
-
-            System.out.println("—————————————————————————— 前台字符串 ——————————————————————————\n"+users.getPassword());
-            int hashCode = pwd.hashCode();
-            System.out.println("—————————————————————————— 取字符串的hashCode值 ——————————————————————————\n"+hashCode);
+            System.out.println("<<<+++—————————————————————————— 前台的字符串值 ——————————————————————————\n"+pwd);
+            //把hashCode值进行普通MD5加密
+            String pwdMd5 = Md5Util.MD5(pwd);
+            System.out.println("<<<+++—————————————————————————— 字符串的Md5值 ——————————————————————————\n"+pwdMd5);
+            int hashCode = pwdMd5.hashCode();
+            System.out.println("<<<+++—————————————————————————— 取字符串的hashCode值 ——————————————————————————\n"+hashCode);
             //转成字符串
             String hashPwd = String.valueOf(hashCode);
             //把hashCode值再一次进行普通MD5加密
             String userMd5 = Md5Util.MD5(hashPwd);
+            System.out.println("<<<+++—————————————————————————— 再次Md5加密 ——————————————————————————\n"+userMd5);
 
             //动态盐加密MD5，存入数据库
             String dynamicSaltMd5 = Md5Util.generateDynamicSaltMd5(userMd5);
-            System.out.println("—————————————————————————— hashCode值进行动态盐加密 ——————————————————————————\n"+dynamicSaltMd5);
+            System.out.println("<<<+++—————————————————————————— hashCode值进行动态盐加密 ——————————————————————————\n"+dynamicSaltMd5);
             users.setPassword(dynamicSaltMd5);
 
             blogMapper.registerUser(users);

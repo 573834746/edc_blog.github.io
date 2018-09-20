@@ -88,8 +88,7 @@
             <div id="two_box" style="display: none;width: 290px;" align="center">
 
                 <input type="text" name="username" class="user-name" placeholder="设置唯一用户名">
-                <input id="password1" type="password" class="user-name" placeholder="设置安全密码">
-                <input type="hidden" name="password">
+                <input id="password" name="password" type="password" class="user-name" placeholder="设置安全密码">
                 <input type="text" name="mail" class="user-name" placeholder="设置您的邮箱">
                 <input type="text" name="name" class="user-name" placeholder="您的真实姓名">
                 <input type="text" name="nickname" class="user-name" placeholder="期望别人对您的尊称">
@@ -112,7 +111,6 @@
 
 <script type="text/javascript">
     function done(){
-        $("#password").val($("#password1").val());
         $.post("/api-a/xuran/registerUser",$("form").serialize(),function(data){
             if(data){
                 $("#two_box").hide();
