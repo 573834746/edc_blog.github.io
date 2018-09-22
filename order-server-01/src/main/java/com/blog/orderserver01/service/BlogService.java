@@ -1,6 +1,8 @@
 package com.blog.orderserver01.service;
 
 import com.blog.orderserver01.pojo.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -43,4 +45,11 @@ public interface BlogService {
      * @return
      */
     Boolean registerUser(Users users);
+
+    /**
+     * 根据uuid获取redis信息再去获取对象信息
+     * @param user_uuid
+     * @return
+     */
+    Users selectUser(String user_uuid);
 }

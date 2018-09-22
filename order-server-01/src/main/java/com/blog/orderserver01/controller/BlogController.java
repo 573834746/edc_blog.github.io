@@ -66,6 +66,15 @@ public class BlogController {
         return blogService.registerUser(users);
     }
 
+    /**
+     * 根据uuid获取redis信息再去获取对象信息
+     * @param user_uuid
+     * @return
+     */
+    @RequestMapping("/selectUser")
+    public Users selectUser(String user_uuid){
+        return blogService.selectUser(user_uuid);
+    }
 
 
 }

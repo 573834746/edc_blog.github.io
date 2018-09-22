@@ -6,6 +6,9 @@ import com.blog.servicefeign.service.BlogInterfaceController;
 import com.blog.servicefeign.service.SchedualServiceHystricHi;
 import com.blog.servicefeign.utils.WebUtils;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +29,8 @@ import java.util.concurrent.TimeUnit;
 public class BlogController {
 
     @Resource
-    RedisTemplate redisTemplate;
+    RedisTemplate<String,UsersVo> redisTemplate;
+
     @Resource
     BlogInterfaceController blogInterfaceController;
     @Resource
@@ -72,6 +76,12 @@ public class BlogController {
         return askMoneyObjects;
     }
 
+    @RequestMapping("/selectUser")
+    @ResponseBody
+    public Users selectUser(String user_uuid){
+        return blogInterfaceController.selectUser(user_uuid);
+    }
+
     @RequestMapping("/insertAsk")
     @ResponseBody
     public Boolean insertAsk(AskExtends askExtends){
@@ -93,9 +103,15 @@ public class BlogController {
             //把用户信息放入cookie
             WebUtils.setCookie(response,"user_name",uuid,-1);
 
-            //将用户信息存入redis
-            redisTemplate.expire(uuid,1, TimeUnit.MINUTES);
-            redisTemplate.opsForValue().set(uuid,usersVo);
+//            //将用户信息存入redis
+            redisTemplate.setKeySerializer(new StringRedisSerializer());
+            redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(UsersVo.class));
+            redisTemplate.opsForValue().set(uuid,usersVo,2L,TimeUnit.HOURS);
+//            redisTemplate.expire(uuid,1, TimeUnit.MINUTES);
+//            redisTemplate.opsForValue().set(uuid,usersVo);
+//
+//            redisTemplate.expire("testinfo",1, TimeUnit.MINUTES);
+//            redisTemplate.opsForValue().set("testinfo","123wo是测试数据");
 
         }
         return flag;

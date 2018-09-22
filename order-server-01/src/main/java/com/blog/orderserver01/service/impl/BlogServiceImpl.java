@@ -1,10 +1,13 @@
 package com.blog.orderserver01.service.impl;
 
-import com.blog.orderserver01.pojo.*;
 import com.blog.orderserver01.mapper.BlogMapper;
-import com.blog.orderserver01.pojo.BlogsExtends;
+import com.blog.orderserver01.pojo.*;
 import com.blog.orderserver01.service.BlogService;
 import com.blog.orderserver01.utils.Md5Util;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,8 +17,13 @@ import java.util.List;
 
 @Service
 public class BlogServiceImpl implements BlogService {
+
     @Resource
     private BlogMapper blogMapper;
+
+    @Resource
+    RedisTemplate<String,UsersVo> redisTemplate;
+
     @Override
     public List<BlogsExtends> selectObjects(BlogsVo blogsVo) {
         List<BlogsExtends> list = blogMapper.selectObjects(blogsVo);
@@ -131,5 +139,22 @@ public class BlogServiceImpl implements BlogService {
         }
 
         return flag;
+    }
+
+    @Override
+    public Users selectUser(String user_uuid) {
+        if(user_uuid==null){
+            return null;
+        }
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(UsersVo.class));
+        UsersVo usersVo = redisTemplate.opsForValue().get(user_uuid);
+//        if(o==null){
+//            return null;
+//        }
+//        Users user = (Users) o;
+
+
+        return null;
     }
 }

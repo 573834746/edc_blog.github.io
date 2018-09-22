@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -58,4 +59,12 @@ public interface BlogInterfaceController {
      */
     @RequestMapping(value = "xuran/registerUser",method = RequestMethod.POST,consumes = "application/json")
     Boolean registerUser(Users users);
+
+    /**
+     * 根据uuid获取redis信息再去获取对象信息
+     * @param user_uuid
+     * @return
+     */
+    @RequestMapping(value = "xuran/selectUser",method = RequestMethod.POST)
+    Users selectUser(@RequestParam(value = "user_uuid") String user_uuid);
 }

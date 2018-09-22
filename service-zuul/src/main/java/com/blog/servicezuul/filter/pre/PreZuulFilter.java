@@ -1,11 +1,14 @@
 package com.blog.servicezuul.filter.pre;
 
-import com.blog.servicefeign.pojo.UsersVo;
+import com.blog.servicezuul.pojo.UsersVo;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.web.util.WebUtils;
 
 import javax.annotation.Resource;
@@ -21,9 +24,10 @@ import java.util.List;
  *  Zuul 的前置过滤器
  */
 public class PreZuulFilter extends ZuulFilter {
-    
+
     @Resource
-    RedisTemplate redisTemplate;
+    RedisTemplate<String,UsersVo> redisTemplate;
+    
 
     private static Logger log = LoggerFactory.getLogger(PreZuulFilter.class);
 
@@ -80,6 +84,7 @@ public class PreZuulFilter extends ZuulFilter {
     String arr[] = {"ask","insert","ask_list","insertAsk","delete","update"};//填写需要拦截的请求字段
     List<String> list =  Arrays.asList(arr);
 
+    @SuppressWarnings("unchecked")
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
@@ -99,6 +104,8 @@ public class PreZuulFilter extends ZuulFilter {
             log.info("—————————————————————————— " + compare + " 请求被拦截 ——————————————————————————");
             if (cookie != null) {
                 String uuid = cookie.getValue();
+                redisTemplate.setKeySerializer(new StringRedisSerializer());
+                redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(UsersVo.class));
                 Object o = redisTemplate.opsForValue().get(uuid);
                 UsersVo usersVo;
                 if(o!=null){

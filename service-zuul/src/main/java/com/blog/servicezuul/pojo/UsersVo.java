@@ -1,4 +1,4 @@
-package com.blog.servicefeign.pojo;
+package com.blog.servicezuul.pojo;
 
 import java.io.Serializable;
 
