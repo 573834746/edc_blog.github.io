@@ -62,4 +62,11 @@ public interface BlogMapper {
             "values(#{username},#{password},#{phone_num},#{name},#{nickname},#{mail})")
     void registerUser(Users users) throws Exception;
 
+    /**
+     * 根据用户名和加密密码索引用户信息
+     * @param usersVo
+     * @return
+     */
+    @Select("select * from users where username=#{username} and password=#{password}")
+    Users selectUserByNameAndPwd(UsersVo usersVo);
 }

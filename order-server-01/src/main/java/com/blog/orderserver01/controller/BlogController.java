@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -56,9 +57,9 @@ public class BlogController {
     }
 
     @RequestMapping("/check")
-    public Boolean checkInfo(@RequestBody UsersVo usersVo){
-        Boolean flag = blogService.checkInfo(usersVo);
-        return flag;
+    public UsersVo checkInfo(@RequestBody UsersVo usersVo){
+        usersVo = blogService.checkInfo(usersVo);
+        return usersVo;
     }
 
     @RequestMapping("/registerUser")

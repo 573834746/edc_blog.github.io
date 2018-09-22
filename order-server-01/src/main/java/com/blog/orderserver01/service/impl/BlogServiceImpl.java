@@ -6,7 +6,6 @@ import com.blog.orderserver01.service.BlogService;
 import com.blog.orderserver01.utils.Md5Util;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +67,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Boolean checkInfo(UsersVo usersVo) {
+    public UsersVo checkInfo(UsersVo usersVo) {
         //前台传过来的字符进行拼接
         String pwd = usersVo.getUsername()+usersVo.getPassword();
         System.out.println("ooo+++—————————————————————————— 前台的字符串值 ——————————————————————————\n"+pwd);
@@ -95,10 +94,13 @@ public class BlogServiceImpl implements BlogService {
             //校验密码，md5追溯到最开始是用户输入的密码，dynamicSaltMd5从数据库查取
             boolean verify = Md5Util.verify(userMd5, userDynamicSaltMd5);
             System.out.println("ooo+++—————————————————————————— 校验密码true为正确 ——————————————————————————\n"+verify);
-
-            return verify;
+            if(verify){
+                usersVo.setPassword(userDynamicSaltMd5);
+                return usersVo;
+            }
+            return null;
         }else{
-            return false;
+            return null;
         }
 
     }
@@ -149,11 +151,11 @@ public class BlogServiceImpl implements BlogService {
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(UsersVo.class));
         UsersVo usersVo = redisTemplate.opsForValue().get(user_uuid);
-//        if(o==null){
-//            return null;
-//        }
-//        Users user = (Users) o;
 
+        if(usersVo!=null){
+            Users users = blogMapper.selectUserByNameAndPwd(usersVo);
+            return users;
+        }
 
         return null;
     }

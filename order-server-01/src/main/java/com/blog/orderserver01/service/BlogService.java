@@ -1,8 +1,6 @@
 package com.blog.orderserver01.service;
 
 import com.blog.orderserver01.pojo.*;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -35,7 +33,7 @@ public interface BlogService {
      * @param usersVo
      * @return
      */
-    Boolean checkInfo(UsersVo usersVo);
+    UsersVo checkInfo(UsersVo usersVo);
 
     String selectPwdByName(UsersVo usersVo);
 

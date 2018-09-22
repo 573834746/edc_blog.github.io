@@ -50,7 +50,7 @@ public interface BlogInterfaceController {
      * @return
      */
     @RequestMapping(value = "xuran/check",method = RequestMethod.POST,consumes = "application/json")
-    Boolean checkInfo(@RequestBody UsersVo usersVo);
+    UsersVo checkInfo(@RequestBody UsersVo usersVo);
 
     /**
      * 注册用户

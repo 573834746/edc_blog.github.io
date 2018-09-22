@@ -79,7 +79,8 @@ public class BlogController {
     @RequestMapping("/selectUser")
     @ResponseBody
     public Users selectUser(String user_uuid){
-        return blogInterfaceController.selectUser(user_uuid);
+        Users users = blogInterfaceController.selectUser(user_uuid);
+        return users;
     }
 
     @RequestMapping("/insertAsk")
@@ -93,8 +94,8 @@ public class BlogController {
     @RequestMapping("/check")
     @ResponseBody
     public Boolean checkInfo(UsersVo usersVo, HttpServletResponse response){
-        Boolean flag = blogInterfaceController.checkInfo(usersVo);
-        if(flag){
+        usersVo = blogInterfaceController.checkInfo(usersVo);
+        if(usersVo!=null){
             //随机生成uuid
             String uuid = UUID.randomUUID().toString();
             System.out.println("—————————————————————————— 随机生成的uuid ——————————————————————————");
@@ -103,18 +104,13 @@ public class BlogController {
             //把用户信息放入cookie
             WebUtils.setCookie(response,"user_name",uuid,-1);
 
-//            //将用户信息存入redis
+            //将用户信息存入redis
             redisTemplate.setKeySerializer(new StringRedisSerializer());
             redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(UsersVo.class));
             redisTemplate.opsForValue().set(uuid,usersVo,2L,TimeUnit.HOURS);
-//            redisTemplate.expire(uuid,1, TimeUnit.MINUTES);
-//            redisTemplate.opsForValue().set(uuid,usersVo);
-//
-//            redisTemplate.expire("testinfo",1, TimeUnit.MINUTES);
-//            redisTemplate.opsForValue().set("testinfo","123wo是测试数据");
-
+            return true;
         }
-        return flag;
+        return false;
     }
 
     @RequestMapping("/registerUser")
