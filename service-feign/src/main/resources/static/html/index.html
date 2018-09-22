@@ -162,42 +162,21 @@
                                user_close.style.display="none";
                                //显示隐藏域
                                user_open.style.display="inline-block";
-                               $("#user-open").children().append("<a href=\""+data.home_url+"\" >\n" +
+                               $("#user-logging-open").append("<a href=\""+data.home_url+"\" >\n" +
                                    "                            <img class=\"login_img\" src=\""+data.photo_url+"\">\n" +
                                    "                            <div class=\"toolbar-circle\"></div>\n" +
                                    "                        </a>");
                            },"json");
-                           // $.ajax({
-                           //     url:"/api-a/xuran/selectUser",
-                           //     type:"post",
-                           //     data:{"user_uuid":user_uuid},
-                           //     dateType:"json",
-                           //     success:function (data) {
-                           //         //获取对象
-                           //         var user_open = document.getElementById("user-open");
-                           //         var user_close = document.getElementById("user-close");
-                           //         //隐藏登录注册
-                           //         user_close.style.display="none";
-                           //         //显示隐藏域
-                           //         user_open.style.display="inline-block";
-                           //         $("#user-open").children().append("<a href=\""+data.home_url+"\" >\n" +
-                           //             "                            <img class=\"login_img\" src=\""+data.photo_url+"\">\n" +
-                           //             "                            <div class=\"toolbar-circle\"></div>\n" +
-                           //             "                        </a>");
-                           //
-                           //     }
-                           // });
-                       }else{
-                           //cookie里没有user_name的情况
-
                        }
                     });
-                </script>
-                <li class="userLogin" id="user-open">
-                    <div class="loginCenter">
 
+                </script>
+
+                <li class="userLogin" id="user-open">
+                    <div id="user-logging-all">
+                    <div class="loginCenter" id="user-logging-open">
                     </div>
-                    <div class="userControl">
+                    <div class="userControl" id="user-logging-info">
                         <div><a href="/api-a/xuran/blog" >我的博客</a></div>
                         <div><a class="xiaoxi" href="#" >消息<span class="toolbar-newsL">(3)</span></a></div>
                         <div><a href="#" >帐号设置</a></div>
@@ -205,7 +184,21 @@
                         <div><a href="#" >帮助</a></div>
                         <div><a href="#">退出</a></div>
                     </div>
+                    </div>
                 </li>
+
+                <script>
+                    $("#user-logging-all").mouseenter(function(){
+                        var obj = document.getElementById("user-logging-info");
+                        obj.style.display="block";
+                    });
+
+                    $("#user-logging-all").mouseleave(function(){
+                        var obj = document.getElementById("user-logging-info");
+                        obj.style.display="none";
+                    });
+                </script>
+
             </ul>
         </div>
     </div>
